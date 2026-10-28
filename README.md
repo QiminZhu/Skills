@@ -1,6 +1,24 @@
 # Skills
 
-Version-controlled source and recoverable release history for seven accessible custom plugins. Imported on 2026-10-28. Repository: https://github.com/QiminZhu/Skills (private). The preserved history was imported into GitHub on 2026-10-28.
+Version-controlled source and recoverable release history for seven accessible custom plugins. Imported on 2026-10-28. Repository: https://github.com/QiminZhu/Skills The preserved history was imported into GitHub on 2026-10-28.
+
+## Install Tutor me in Codex CLI
+
+With Codex CLI and Git installed, run this single line in a terminal:
+
+```sh
+codex plugin marketplace add QiminZhu/Skills && codex plugin add learn-tutor-plugin@anker-skills
+```
+
+Or use the installer wrapper on macOS/Linux:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/QiminZhu/Skills/main/install-tutor-me.sh | sh
+```
+
+The marketplace displays as **Skills** and the plugin displays as **Tutor me**. Only Tutor me is installed by these commands. Start a new Codex session afterward. Use `codex plugin marketplace upgrade anker-skills` followed by `codex plugin add learn-tutor-plugin@anker-skills` to refresh/reinstall from current source. See the [official CLI reference](https://learn.chatgpt.com/docs/cli/reference).
+
+The terminal can use teaching instructions, sources and scripts. Interactive HTML grading and Next buttons require a supported graphical host; the CLI alone cannot display those controls. Public downloads require this repository to be public. This GitHub marketplace is separate from the workspace-managed ChatGPT plugin.
 
 ## Layout
 

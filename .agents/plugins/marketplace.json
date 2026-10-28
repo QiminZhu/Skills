@@ -1,0 +1,92 @@
+{
+  "name": "anker-skills",
+  "interface": {
+    "displayName": "Skills"
+  },
+  "plugins": [
+    {
+      "name": "learn-tutor-plugin",
+      "source": {
+        "source": "local",
+        "path": "./plugins/learn-tutor-plugin"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "adaptive-question-bank",
+      "source": {
+        "source": "local",
+        "path": "./plugins/adaptive-question-bank"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "quiz-master",
+      "source": {
+        "source": "local",
+        "path": "./plugins/quiz-master"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "analyze-it",
+      "source": {
+        "source": "local",
+        "path": "./plugins/analyze-it"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "update-it",
+      "source": {
+        "source": "local",
+        "path": "./plugins/update-it"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "universal-explorer",
+      "source": {
+        "source": "local",
+        "path": "./plugins/universal-explorer"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "manager",
+      "source": {
+        "source": "local",
+        "path": "./plugins/manager"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
