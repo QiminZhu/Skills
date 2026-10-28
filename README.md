@@ -1,6 +1,6 @@
-# ChatGPT custom plugins
+# Skills
 
-Version-controlled source and recoverable release history for seven accessible custom plugins. Imported on 2026-10-28. This local repository is ready for a private GitHub remote; it has not yet been uploaded.
+Version-controlled source and recoverable release history for seven accessible custom plugins. Imported on 2026-10-28. Repository: https://github.com/QiminZhu/Skills (private). The preserved history was imported into GitHub on 2026-10-28.
 
 ## Layout
 
@@ -31,3 +31,7 @@ Historical commits are imports made today. Original release dates remain in meta
 Select a previous tag or stored snapshot, restore its content on a new branch, and assign a version higher than the currently installed version. Plugin updates reject lower versions. Because updates overlay existing files, explicitly delete files introduced after the restored snapshot and preserve required generated compatibility files. Publish against the current backend release ID, verify the resulting file inventory, and record which historical release was restored. A Git revert alone does not change the installed plugin.
 
 Do not commit credentials, learner records, lecture uploads, or signed download URLs. No automatic GitHub-to-plugin deployment is configured.
+
+## Practice component checks
+
+Run `python3 tests/practice_validation.py` with Python 3 and Node.js available. These checks exercise component behavior with a mocked host; they do not validate arbitrary future answer keys or prove live ChatGPT support.
