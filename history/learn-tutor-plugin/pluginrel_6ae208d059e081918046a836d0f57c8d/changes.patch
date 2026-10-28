@@ -1,0 +1,288 @@
+--- 0.6.0/.codex-plugin/plugin.json
++++ 0.7.0/.codex-plugin/plugin.json
+@@ -9,7 +9,7 @@
+     "capabilities": []
+   },
+   "name": "learn-tutor-plugin",
+-  "version": "0.6.0",
++  "version": "0.7.0",
+   "description": "Adaptive learning, review, and independent project assessment.",
+   "author": {
+     "name": "Learning System"
+--- 0.6.0/plugin.json
++++ 0.7.0/plugin.json
+@@ -1 +1,23 @@
+-{"name":"learn-tutor-plugin","version":"0.6.0","description":"Adaptive learning, review, and independent project assessment.","author":{"name":"Learning System"},"skills":"./skills","$schema":"https://agent-plugins.org/schemas/1.0.0/plugin.schema.json","extensions":{"com.openai":{"interface":{"displayName":"Tutor me","shortDescription":"Learning, review, and independent projects","category":"Other","longDescription":"Adaptive learning, review, and independent project assessment.","developerName":"Learning System","defaultPrompt":null,"capabilities":[]}}}}
++{
++  "name": "learn-tutor-plugin",
++  "version": "0.7.0",
++  "description": "Adaptive learning, review, and independent project assessment.",
++  "author": {
++    "name": "Learning System"
++  },
++  "skills": "./skills",
++  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
++  "extensions": {
++    "com.openai": {
++      "interface": {
++        "displayName": "Tutor me",
++        "shortDescription": "Learning, review, and independent projects",
++        "category": "Other",
++        "longDescription": "Adaptive learning, review, and independent project assessment.",
++        "developerName": "Learning System",
++        "defaultPrompt": null,
++        "capabilities": []
++      }
++    }
++  }
++}
+--- 0.6.0/skills/learn-combined/SKILL.md
++++ 0.7.0/skills/learn-combined/SKILL.md
+@@ -1,6 +1,6 @@
+ ---
+ name: learn-combined
+-description: Teach new topics and lectures with source-grounded coverage audits, hierarchical objectives, guided practice, independent assessments, and optional learning records. Use for initial learning, uploaded lecture materials, conceptual explanations, and guided study. Route explicit review or revision sessions to review-mode and project work to project-assessment.
++description: Teach new topics and lectures with source-grounded coverage audits, hierarchical objectives, guided practice, independent assessments, and session-only interactive practice. Use for initial learning, uploaded lecture materials, conceptual explanations, and guided study. Route explicit review or revision sessions to review-mode and project work to project-assessment.
+ ---
+ # Learning Mode
+ Build accurate mental models through explanation, examples, guided practice and fresh independent verification. Keep recall scheduling separate from understanding.
+@@ -10,6 +10,9 @@
+ 
+ ## Lecture source coverage (mandatory for full-lecture learning)
+ Read and apply [lecture-coverage.md](references/lecture-coverage.md) BEFORE claiming an uploaded or named lecture has been completely analyzed, taught, or verified. Inventory the complete source, build a source-linked Lecture > Topic > Subtopic > Objective map, audit both source-to-objective and objective-to-source, and track `introduced`, `explained`, `practiced`, and `verified` separately. A general topic heading does not satisfy its specific subtopics. Inspect diagrams and exercises, and flag unreadable or unmapped sections. If the user requests one concept or an immediate answer, comply without forcing a full-lecture audit; never imply whole-lecture completeness from that focused work.
++
++## Teach, Practice, Next (default lesson flow)
++Read and apply [interactive-lesson.md](references/interactive-lesson.md) before teaching a concept. Use original slide visuals first, search for a reliable supplementary visual when needed, validate each practice key before rendering, grade objective responses locally where supported, and offer a separate Next action that requests a new lesson message. Use the bundled practice renderer when a supported HTML surface exists; disclose missing UI or message-bridge support. Never mistake structural validation for a verified answer key.
+ 
+ ## Begin and practice
+ Follow the requested activity immediately; ask for topic only if missing. Use learner language and supplied sources first, cite accessible sections and disclose missing coverage.
+@@ -21,8 +24,8 @@
+ 6. Fade support and verify on a fresh unaided item, varying context for transfer. Track coverage evidence and revisit untouched objectives before close.
+ Read [feedback.md](references/feedback.md), [assessment.md](references/assessment.md) and [quiz-design.md](references/quiz-design.md). Distinguish independent, prompted, scaffolded and not-yet-demonstrated. Record recognition, explanation, familiar application and transfer separately. Never infer mastery from confidence or one success. Honor direct solution requests, marking support accurately.
+ 
+-## Continuity and local records
+-Read [records.md](references/records.md) and [scheduling.md](references/scheduling.md). When authorized records exist, offer up to three due recall items before new learning but honor direct requests. Do not pretend persistent storage or reminders exist. Keep evidence session-local unless the learner has an authorized and operational record destination. Do not require external mastery services or cross-plugin handoffs.
++## Session-only continuity
++Do not use a mastery tracker, progress synchronization, external recording, or review scheduling in this lesson flow. Keep only temporary conversation context needed to teach, explain feedback and continue. Do not invoke record destinations or cross-plugin handoffs. This rule overrides optional records/scheduling references, including when transitioning into Review or Project Mode. Read records.md or scheduling.md only if the learner separately and explicitly requests a change to persistent tracking; never treat existing records alone as authorization.
+ 
+ ## Close and completion gate
+-For full-lecture sessions, apply the explicit completion gates in lecture-coverage.md. Report separately `analysis_complete`, `teaching_complete`, and `learning_verified`; list uncovered, uninspected, deferred, and unverified objectives. Never declare the whole lecture complete merely because a high-level topic was mentioned or a long conversation occurred. For focused sessions, summarize the objective, independent understanding, supported progress, unresolved gaps and one next exercise. Mention review dates only when calculated or recorded. Do not claim any data was saved unless a write was verified.
++For full-lecture sessions, apply the explicit completion gates in lecture-coverage.md. Report separately `analysis_complete`, `teaching_complete`, and `learning_verified`; list uncovered, uninspected, deferred, and unverified objectives. Never declare the whole lecture complete merely because a high-level topic was mentioned or a long conversation occurred. For focused sessions, summarize the objective, independent understanding, supported progress, unresolved gaps and one next exercise. Do not create or suggest scheduled reviews as part of this session-only flow. Do not claim any data was saved unless a write was verified.
+--- 0.6.0/skills/learn-combined/references/interactive-lesson.md
++++ 0.7.0/skills/learn-combined/references/interactive-lesson.md
+@@ -0,0 +1,41 @@
++# Teach, Practice, Next
++
++Use this flow for new teaching unless the learner requests a different format. Keep one concept and one practice item per step. Honor direct explanation or solution requests.
++
++## Teach and visual sources
++
++Use the original readable lecture slides as the primary source. Cite slide/page numbers and retain the lecture's terminology. When a graph, diagram, or image materially helps explain a knowledge point, inspect the relevant slide visual and reuse it first. Show the image or an accurate crop when the host supports it; a citation alone is not displaying the visual. Preserve axes, units, labels, legends and context. Never claim an unseen diagram was inspected.
++
++If no suitable slide visual exists, search online for an accurate visual from a reliable primary or educational source, inspect it, and link the source. Explain how it supports the concept and label it as supplementary. Explain differences in assumptions, notation, values or conventions. Do not substitute an attractive but misleading visual, invent measurements, or silently imply an online image came from the lecture. If search or image display is unavailable, say so and provide the best supported explanation.
++
++## Validate before presenting practice
++
++Local grading compares the response with a prepared key; it cannot establish that the key is true. Before rendering:
++
++1. Define the observable objective and a source-grounded answer criterion with a slide/page locator. Identify any necessary background knowledge separately.
++2. Solve the literal question independently of the intended answer. For calculations or code, run appropriate checks where tools are available. Check units, rounding, boundary cases and the displayed values.
++3. Check every option and its explanation. Require exactly one defensible answer for single-select questions; revise ambiguous, duplicated or unverifiable items. Do not mark an item validated just because a key exists.
++4. Use deterministic local grading only for appropriate objective tasks. For free responses, include all defensible accepted forms and explicitly stated tolerances, or use conversational model review. Do not represent keyword matching as validation of reasoning.
++5. Keep the key, verdict and explanations hidden from the visible interface until submission. Client-side keys are not secure exam secrets. Offer a non-revealing hint only on request and preserve the distinction between supported and independent attempts.
++
++Use the bundled `scripts/render_practice.py` to create a self-contained fragment from validated single-select question JSON when an HTML interaction surface is available. Read the script's help and supply the real item, source locator, feedback for each choice, source-based validation evidence, and a concrete continuation prompt. The script checks structure, not factual correctness. It does not replace steps 1–4.
++
++## Practice locally
++
++Render the fragment through the host's supported interactive HTML surface, applying that surface's skill when available. A saved HTML file alone is not an inline widget. If only a supported native quiz widget is available, use it only when its task restrictions fit; do not force a subjective question into it. If no interactive renderer exists, explain the limitation and ask the question conversationally.
++
++Submission shows the result and option-specific explanation inside the component without a model call, network request, external write, or automatic lesson advance. Allow a grade challenge; it requests a source-based recheck through a new message. Recheck the source, calculations, alternatives and criterion before confirming or correcting a challenged grade. Correct erroneous feedback openly.
++
++## Separate Next button
++
++Keep Next separate from answer submission. On click, request the next lesson response through a supported host bridge and pass only the current objective, source position, question ID, submitted answer and result needed for continuation. Do not send a message on load, option selection, submission or grading. Prevent duplicate clicks while a message is pending, and permit retry after errors. Do not automatically advance after a correct answer.
++
++The bundled component feature-detects `window.openai.sendFollowUpMessage({prompt})`, documented at https://developers.openai.com/plugins/reference (checked 2026-10-28). Availability in a ChatGPT app does not prove availability in every HTML surface. Do not add undocumented postMessage protocols or call external tools as a substitute. If the bridge is missing or fails, show the continuation text for the learner to send manually; never claim it was sent.
++
++Continue from conversation context after Next. If practice state has not reached the model, ask only for what is necessary or accept an explicit skip; never infer local clicks, grades, or mastery from the displayed component alone.
++
++## Session-only operation and verification
++
++Keep this flow session-only. Do not read or write learner records, invoke mastery trackers, synchronize progress, export assessment evidence, create review schedules or send results to another plugin or repository. Do not use browser storage, analytics, telemetry, or persistent widget state for practice. This restriction overrides optional record/scheduling instructions during this flow and carries across mode transitions unless the learner explicitly changes it. GitHub versioning stores plugin source only.
++
++Keep source coverage and assistance context only as needed in the conversation. Do not promise control over the platform's normal chat retention. Before claiming that the UI works in a particular host, verify local submission, hidden-before-submit feedback, separate message handoff, duplicate prevention and missing-bridge fallback there. Report implementation checks separately from live host verification.
+--- 0.6.0/skills/learn-combined/scripts/render_practice.py
++++ 0.7.0/skills/learn-combined/scripts/render_practice.py
+@@ -0,0 +1,145 @@
++#!/usr/bin/env python3
++"""Render one source-validated single-select practice item as an HTML fragment.
++
++Input fields: id, question, source, objective, continuation, correct_id,
++explanation, validation {source_checked: true, independent_check: nonempty},
++options [{id, label, feedback}, ...]. Factual validation remains the tutor's job.
++"""
++import argparse
++import html
++import json
++import re
++from pathlib import Path
++
++
++def validate(data):
++    if not isinstance(data, dict):
++        raise ValueError("Question must be a JSON object")
++    for key in ("id", "question", "source", "objective", "continuation", "correct_id", "explanation"):
++        if not isinstance(data.get(key), str) or not data[key].strip():
++            raise ValueError(f"Missing nonempty {key}")
++    if not re.fullmatch(r"[a-zA-Z0-9_-]{1,64}", data["id"]):
++        raise ValueError("id must contain 1–64 letters, digits, hyphens or underscores")
++    evidence = data.get("validation", {})
++    if not isinstance(evidence, dict) or evidence.get("source_checked") is not True or not isinstance(evidence.get("independent_check"), str) or not evidence["independent_check"].strip():
++        raise ValueError("Source and independent-check evidence required; structure is not factual verification")
++    options = data.get("options")
++    if not isinstance(options, list) or not 2 <= len(options) <= 6:
++        raise ValueError("Supply 2–6 defensible options")
++    ids, labels = [], []
++    for option in options:
++        if not isinstance(option, dict) or any(not isinstance(option.get(k), str) or not option[k].strip() for k in ("id", "label", "feedback")):
++            raise ValueError("Each option requires id, label and feedback")
++        ids.append(option["id"])
++        labels.append(option["label"].strip().casefold())
++    if len(set(ids)) != len(ids) or len(set(labels)) != len(labels) or data["correct_id"] not in ids:
++        raise ValueError("Options must be unique and include exactly one correct_id")
++    return data
++
++
++def render(data):
++    validate(data)
++    root = "tutor-practice-" + data["id"]
++    escape = html.escape
++    options = "\n".join(
++        f'<label class="form-check"><input class="form-check-input" type="radio" name="{root}-answer" value="{escape(o["id"], quote=True)}"><span class="form-check-label">{escape(o["label"])}</span></label>'
++        for o in data["options"]
++    )
++    # JSON script text cannot terminate the enclosing script, even for source text
++    # containing HTML. All dynamic text is inserted through textContent.
++    config = json.dumps(data, ensure_ascii=True).replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
++    markup = f'''<section id="{root}" aria-label="Practice">
++  <form>
++    <fieldset><legend>{escape(data['question'])}</legend>{options}</fieldset>
++    <button type="submit" class="btn btn-primary">Check answer</button>
++  </form>
++  <p data-result aria-live="polite" hidden></p>
++  <p data-explanation hidden></p>
++  <p class="text-small">Source: {escape(data['source'])}</p>
++  <div class="viz-row">
++    <button type="button" class="btn" data-next>Next</button>
++    <button type="button" class="btn" data-challenge hidden>Challenge grade</button>
++  </div>
++  <p data-status aria-live="polite"></p>
++  <textarea class="form-control" data-manual aria-label="Message to send manually" readonly hidden></textarea>
++</section>
++<script>
++(() => {{
++  const root = document.getElementById({json.dumps(root)});
++  const config = {config};
++  const form = root.querySelector('form');
++  const result = root.querySelector('[data-result]');
++  const explanation = root.querySelector('[data-explanation]');
++  const next = root.querySelector('[data-next]');
++  const challenge = root.querySelector('[data-challenge]');
++  const status = root.querySelector('[data-status]');
++  const manual = root.querySelector('[data-manual]');
++  let attempt = null;
++  let pending = false;
++  form.addEventListener('change', () => {{
++    attempt = null;
++    result.hidden = explanation.hidden = challenge.hidden = true;
++    manual.hidden = true;
++    status.textContent = '';
++  }});
++  form.addEventListener('submit', event => {{
++    event.preventDefault();
++    const selected = root.querySelector('input:checked');
++    if (!selected) {{ status.textContent = 'Choose an answer first.'; return; }}
++    const option = config.options.find(option => option.id === selected.value);
++    if (!option) return;
++    attempt = {{answer_id: option.id, answer: option.label, correct: option.id === config.correct_id}};
++    result.textContent = attempt.correct ? 'Correct for the prepared key.' : 'Incorrect for the prepared key.';
++    explanation.textContent = option.feedback + ' ' + config.explanation;
++    result.hidden = explanation.hidden = challenge.hidden = false;
++    status.textContent = '';
++  }});
++  async function send(kind) {{
++    if (pending || (kind === 'challenge' && !attempt)) return;
++    const context = JSON.stringify({{objective: config.objective, source: config.source, question_id: config.id, question: config.question, attempt}});
++    const prompt = kind === 'challenge'
++      ? 'Tutor me: recheck this practice grade against the original source, independently checking the key and valid alternatives. Keep this session-only. Context: ' + context
++      : config.continuation + '\\nContinue Tutor me in this conversation without mastery tracking or external recording. Context: ' + context;
++    manual.value = prompt;
++    if (typeof window.openai?.sendFollowUpMessage !== 'function') {{
++      status.textContent = 'Automatic messages are unavailable here. Send the text below in chat.';
++      manual.hidden = false;
++      return;
++    }}
++    pending = true;
++    next.disabled = challenge.disabled = true;
++    try {{
++      await window.openai.sendFollowUpMessage({{prompt}});
++      status.textContent = 'Message requested. Continue in chat.';
++      manual.hidden = true;
++      // Keep controls disabled after success to avoid duplicate continuation.
++    }} catch (error) {{
++      status.textContent = 'The message could not be sent. Retry or send the text below in chat.';
++      manual.hidden = false;
++      next.disabled = challenge.disabled = false;
++      pending = false;
++    }}
++  }}
++  next.addEventListener('click', () => send('next'));
++  challenge.addEventListener('click', () => send('challenge'));
++}})();
++</script>
++'''
++    return markup
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("question_json", type=Path)
++    parser.add_argument("output_html", type=Path)
++    args = parser.parse_args()
++    try:
++        content = render(json.loads(args.question_json.read_text(encoding="utf-8")))
++    except (ValueError, OSError) as error:
++        parser.error(str(error))
++    args.output_html.write_text(content, encoding="utf-8")
++    print(args.output_html)
++
++
++if __name__ == "__main__":
++    main()
+--- 0.6.0/skills/project-assessment/SKILL.md
++++ 0.7.0/skills/project-assessment/SKILL.md
+@@ -2,6 +2,10 @@
+ name: project-assessment
+ description: Assess independently attempted learning projects, assignments, code, designs, or technical deliverables, including implementing, debugging, testing, and reviewing project tasks. Use when a learner requests Project Mode, begins a project, shares an implementation, or asks for project feedback. Default to independent attempts and graduated hints; do not give away solutions unless requested.
+ ---
++
++## Session-only override
++When the learner requests session-only learning or arrives from the Teach, Practice, Next flow, do not read/write learner records, track mastery, synchronize results, export assessment evidence, or schedule reviews. Preserve only temporary conversation context and assistance history. This instruction overrides record/scheduling guidance below until the learner explicitly requests a change. Apply `../learn-combined/references/interactive-lesson.md` to any teaching or interactive practice during this session.
++
+ 
+ # Project Mode — independent project assessment
+ 
+--- 0.6.0/skills/review-mode/SKILL.md
++++ 0.7.0/skills/review-mode/SKILL.md
+@@ -2,6 +2,10 @@
+ name: review-mode
+ description: Review previously studied lectures or topics with adaptive retrieval, immediate diagnostic feedback, targeted relearning, and evidence-based spaced review. Use for explicit Review Mode, revision, knowledge-gap checks, retention practice, or review of lecture material; route reviews of project submissions to project-assessment instead.
+ ---
++
++## Session-only override
++When the learner requests session-only learning or arrives from the Teach, Practice, Next flow, do not read/write learner records, track mastery, synchronize results, export assessment evidence, or schedule reviews. Preserve only temporary conversation context and assistance history. This instruction overrides record/scheduling guidance below until the learner explicitly requests a change. Apply `../learn-combined/references/interactive-lesson.md` to any teaching or interactive practice during this session.
++
+ # Review Mode
+ 
+ Purpose: strengthen and verify existing knowledge, not repeat an entire lecture. Respect an explicit mode choice. For new teaching use `../learn-combined/SKILL.md`; for assessment of project deliverables use `../project-assessment/SKILL.md`.

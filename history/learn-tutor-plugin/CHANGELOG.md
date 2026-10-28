@@ -1,6 +1,6 @@
 # learn-tutor-plugin changelog
 
-## 0.7.0 — candidate prepared 2026-10-28
+## 0.7.0 — 2026-10-28
 
 - Add slide-first visual reuse and reliable online visual fallback.
 - Require source-based answer-key verification, independent solving, per-option explanations and grade challenges.
@@ -8,7 +8,7 @@
 - Make the lesson flow session-only, including transitions to Review and Project Mode.
 - Preserve plugin identity, audience, existing assessment guidance and all unrelated files.
 - Validation: Python renderer input checks, script-escaping checks, mocked JavaScript interaction checks, YAML/JSON parsing, retained-file and metadata comparison. Live ChatGPT widget rendering/message handoff not verified.
-- Publication: pending.
+- Publication: saved and all 15 files verified. Backend release ID: `pluginrel_6ae208d059e081918046a836d0f57c8d`. Created: 2026-10-28T14:38:08.351237Z.
 
 
 ## 0.6.0 — 2026-10-28T07:07:25.929481Z
