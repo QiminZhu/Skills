@@ -11,7 +11,7 @@
         "capabilities": [],
         "defaultPrompt": "Use the learn-combined skill to help me learn or practice a topic. Ask one question at a time.",
         "developerName": "QIMIN ZHU",
-        "displayName": "Learn Tutor",
+        "displayName": "Tutor me",
         "longDescription": "Learn from supplied materials through adaptive practice, progressive hints, and independent checks. Tracking uses available authorized storage; this plugin does not provide a cloud database or reminders.",
         "shortDescription": "Practice, understand, review"
       }
@@ -23,5 +23,5 @@
     "practice"
   ],
   "name": "learn-tutor-plugin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
