@@ -1,9 +1,4 @@
 {
-  "author": {
-    "email": "qimin.zhu@student.mahidol.ac.th",
-    "name": "QIMIN ZHU"
-  },
-  "description": "Evaluate proposed changes, diagnose regressions, and recommend improvements before human approval.",
   "interface": {
     "capabilities": [],
     "category": "Other",
@@ -13,8 +8,13 @@
     "longDescription": "Evaluate proposed changes, diagnose regressions, and recommend improvements before human approval.",
     "shortDescription": "Evaluate proposed changes, diagnose regressions, and recomme"
   },
-  "keywords": [],
   "name": "manager",
-  "skills": "./skills",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "description": "Evaluate proposed changes, diagnose regressions, and recommend improvements before human approval.",
+  "author": {
+    "name": "QIMIN ZHU",
+    "email": "qimin.zhu@student.mahidol.ac.th"
+  },
+  "keywords": [],
+  "skills": "./skills"
 }

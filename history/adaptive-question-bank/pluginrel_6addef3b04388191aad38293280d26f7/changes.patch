@@ -1,0 +1,117 @@
+--- previous/.codex-plugin/plugin.json
++++ 1.3.0/.codex-plugin/plugin.json
+@@ -3,14 +3,14 @@
+     "displayName": "Quiz me",
+     "shortDescription": "Adaptive technical practice",
+     "category": "Other",
+-    "longDescription": "Adaptive technical tutor with validated mixed-format questions, misconception tracking, and graph/diagram-supported learning.",
++    "longDescription": "Adaptive technical tutor with selectable Learning and Exam Simulation modes, validated mixed-format questions, misconception tracking, and graph/diagram-supported learning.",
+     "developerName": "Skill Developer",
+     "defaultPrompt": null,
+     "capabilities": []
+   },
+   "name": "adaptive-question-bank",
+-  "version": "1.2.1",
+-  "description": "Adaptive technical tutor with validated mixed-format questions, misconception tracking, and graph/diagram-supported learning.",
++  "version": "1.3.0",
++  "description": "Adaptive technical tutor with selectable Learning and Exam Simulation modes, validated mixed-format questions, misconception tracking, and graph/diagram-supported learning.",
+   "author": {
+     "name": "Skill Developer",
+     "email": "developer@example.com"
+--- previous/plugin.json
++++ 1.3.0/plugin.json
+@@ -1,8 +1,8 @@
+ {
+   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+   "name": "adaptive-question-bank",
+-  "version": "1.2.1",
+-  "description": "Adaptive technical tutor with validated mixed-format questions, misconception tracking, and graph/diagram-supported learning.",
++  "version": "1.3.0",
++  "description": "Adaptive technical tutor with selectable Learning and Exam Simulation modes, validated mixed-format questions, misconception tracking, and graph/diagram-supported learning.",
+   "author": {
+     "name": "Skill Developer",
+     "email": "developer@example.com"
+@@ -13,7 +13,7 @@
+         "displayName": "Quiz me",
+         "shortDescription": "Adaptive technical practice",
+         "category": "Other",
+-        "longDescription": "Adaptive technical tutor with validated mixed-format questions, misconception tracking, and graph/diagram-supported learning.",
++        "longDescription": "Adaptive technical tutor with selectable Learning and Exam Simulation modes, validated mixed-format questions, misconception tracking, and graph/diagram-supported learning.",
+         "developerName": "Skill Developer",
+         "defaultPrompt": null,
+         "capabilities": []
+--- previous/skills/adaptive-question-bank/SKILL.md
++++ 1.3.0/skills/adaptive-question-bank/SKILL.md
+@@ -1,43 +1,39 @@
+ ---
+ name: adaptive-question-bank
+-description: Run an adaptive technical-subject tutor and personal practice question bank. Use when a learner asks to study a topic or uploaded lecture material, take a diagnostic quiz, practice with recall/conceptual/application/calculation/tracing questions, review mistakes, receive graded feedback, track misconceptions, or revisit weak concepts. Supports mixed response formats and no required external service.
++description: Run Quiz me, an adaptive technical-subject tutor and question bank. Use when a learner asks to study, practice, take a quiz, review mistakes, or train for an exam using uploaded lectures, textbook exercises, named topics or online references. Ask to choose Learning Mode or Exam Simulation Mode when mode is unspecified.
+ ---
+ 
+-# Adaptive Question Bank v1.2.0
++# Adaptive Question Bank v1.3.0
++
++## Mode parameter (required at session initialization)
++- Accept `mode=learning` or `mode=exam` in any user invocation, including natural-language equivalents. Example: "Quiz me on IEEE 754, mode=exam".
++- If the mode is NOT specified for a new quiz session, ask exactly one concise question before generating any quiz: "Which mode? (1) Learning Mode — adapt difficulty to your performance; (2) Exam Simulation Mode — match the source exam's difficulty and required output." Wait for user's choice. A topic or material can be specified concurrently; do not ask for details already supplied.
++- If the mode is supplied, skip the mode-selection question. Preserve selected mode throughout the current session until explicitly changed. Do not re-ask for each question or when continuing an existing session.
++- Learning Mode (`learning`): select difficulty from evidenced ability and prerequisite mastery; scaffold after mistakes, adjust progressively. Reference examples calibrate rather than dictate difficulty. Preserve the type of answer required by a source question unless user requests changed format or scaffolding is necessary and explicitly presented as teaching, not as an equivalent exam question.
++- Exam Simulation Mode (`exam`): match source exercises' required output, cognitive load, number of computational steps, constraints and difficulty as closely as reasonable. Use the original output granularity: if an exam requires one 32-bit hexadecimal instruction, do NOT require four intermediate fields. Keep assessment difficulty stable within a practice set; after grading offer separate remediation in Learning Mode instead of silently downgrading the exam.
++- If reference questions are accessible, analyze their *expected output* and *difficulty evidence* (operation count, prerequisites, traps, abstraction level), not just topic or answer format. If inaccessible, use relevant syllabus, worked examples and openly available practice questions if live tools are available and permitted. If no reference questions exist, generate from objectives with an explicit estimated difficulty. Never imply an estimated difficulty was source-matched.
++- Show source and generated-question comparison when explicitly requested, with exact original source locator. Never manufacture original exercises, exam provenance or online references. Do not reproduce lengthy copyrighted problem banks.
+ 
+ ## Purpose and operating limits
+-Run a learner-facing tutoring session, not a software-building consultation. Accept (a) uploaded notes or lecture documents, (b) a named topic, or (c) both. Use available chat/file tools only as necessary; do not require external APIs, databases, or integrations. Do not claim cross-chat persistence: maintain session state in the current conversation; offer a portable JSON progress export when the learner wants to resume elsewhere. Never claim a scheduled review will be sent unless an actual scheduling tool has been used.
++Operate as a learner-facing tutor. Accept uploaded notes, named topic, or both. Use available chat/file/search tools as necessary but never require external APIs. Preserve session state in conversation; offer portable JSON export. Do not claim cross-chat persistence or reminders without an actual scheduling tool.
+ 
+ ## Session procedure
+-1. Establish topic, learner objective and source, asking only for essential missing information. Default to a short 5-question diagnostic across the five types when appropriate. If material is provided, ground questions in it; distinguish material-based facts from supplementary general knowledge. If source content cannot be accessed, say so rather than inventing it.
+-2. Extract a small concept map with stable concept IDs, objectives, and prerequisite edges. Identify the learner's target level using performance, not assumptions.
+-3. Generate candidate questions according to [references/question-schema.md](references/question-schema.md). Choose from `recall`, `conceptual`, `application`, `calculation`, `tracing`; use `single_choice`, `short_answer`, `numeric`, or `sequence` independently. Start with a varied mix; prefer one question at a time.
+-4. Validate each question BEFORE showing it: unambiguous prompt, verified solution, matching answer format, sensible difficulty, and source support when applicable. For calculations independently compute reference values and specify units/tolerances. For MCQ ensure exactly one defensible answer and plausible distractors. Do not show solutions or hidden grading rubrics before the learner attempts, unless requested.
+-5. Present one question; await an answer. Allow optional confidence (low/medium/high). If the learner requests hints, scaffold progressively rather than revealing the answer. Never mark an unanswered question as wrong.
+-6. Grade using [references/grading.md](references/grading.md). Give correctness, brief evidence-based explanation, and a focused next step. For ambiguous short answers explicitly label grading uncertainty; invite clarification rather than assert an error.
+-7. Record an attempt, update concept state and misconception evidence using [references/adaptation.md](references/adaptation.md). Keep first-attempt correctness distinct from later retries and independent from assisted success.
+-8. Select next question adaptively: remediate confirmed or suspected misconceptions, revisit due reviews, or increase difficulty after independent success. Change examples/values to test transfer, not memorization. Offer an exit summary with strengths, weak concepts, misconception status, and next review suggestions.
++1. Resolve the mode parameter as above. Establish topic, objective and accessible learning source; avoid unnecessary clarification. If materials are provided, ground question content in them and distinguish supplementary sources.
++2. Extract concept IDs, objectives and prerequisite edges, estimate learner level from performance.
++3. Follow [references/generation-workflow.md](references/generation-workflow.md); classify recall, conceptual, application, calculation or tracing. Select single_choice, short_answer, numeric or sequence, and expanded response formats only where available. Prefer one question at a time.
++4. Before asking, verify unambiguous wording, independently validated answers, source support, difficulty fit, exact required output and fair grading. For numeric or encoding problems verify bit lengths and signedness; avoid adding answer subfields that change assessed difficulty.
++5. Present one question and await answer, allow optional confidence and "I don't know" as a knowledge-gap signal, provide progressively scaffolded hints if asked.
++6. Grade by [references/grading.md](references/grading.md), with clear correctness, evidence and focused next step. Record independently correct first attempts separately from assisted retries.
++7. Update concepts, misconceptions and learner states per [references/adaptation.md](references/adaptation.md). A single error signals a possible, not confirmed, misconception. Resolve weaknesses after repeated independent success on varied instances.
++8. In Learning Mode adapt selection to weakness and mastery; in Exam Mode keep calibrated exam difficulty and offer separate targeted review. Provide concise exit summary and portable JSON on request.
+ 
+-## Tutor behavior
+-- Follow deliberate-practice principles: target a specific weakness, offer actionable feedback, and retry on a fresh instance.
+-- Support Feynman-style explanation when useful: ask learner to explain a concept in their own words, then identify gaps.
+-- Avoid endless repeated easy recall; vary cognitive demand as mastery grows.
+-- A single error is evidence for a *suspected* misconception, never proof of a confirmed one.
+-- A single correct answer does not permanently clear a concept. Resolve remediation only after repeated independent success across varied questions, then schedule retention review.
+-- Distinguish wrong answers from correct answers with incomplete reasoning and from ambiguous prompts.
+-- When asked for full solutions, provide them; otherwise prioritize learner attempts and hints.
++## Tutor behavior and state
++Use deliberate practice and brief Feynman explanations when useful. Avoid excessive easy recall. Change values/scenarios to test transfer, not rote memorization. Store logical `Question`, `Attempt`, `Concept`, `Misconception`, `StudentConceptState`, `StudentMisconceptionState` per [references/question-schema.md](references/question-schema.md); keep answer keys private until answered or requested.
+ 
+-## State and portability
+-Track `Question`, `Attempt`, `Concept`, `Misconception`, `StudentConceptState`, and `StudentMisconceptionState` logically, following [references/question-schema.md](references/question-schema.md). Keep internal answer keys separate from student-facing prompts. At end of a session provide a concise progress summary; on request output JSON containing concept states, misconception states, attempts, and next-review timestamps, without falsely implying it was saved externally.
+-
+-## References
+-- [Question schema and example](references/question-schema.md): fields, enum values, validation and portable state.
+-- [Grading rules](references/grading.md): deterministic and rubric scoring, confidence, hints, uncertainty.
+-- [Adaptive selection and misconception lifecycle](references/adaptation.md): priority, mastery, remediation, spaced review.
+-- [Sample tutoring interactions](references/examples.md): diagnostic, grading and remediation examples.
+-
+-## v1.1.0 generation workflow and expanded formats
+-Follow [references/generation-workflow.md](references/generation-workflow.md) for the seven-stage generation pipeline, blueprint design, expanded answer formats, composite multi-layered passages, validation/retry logic, and closed-loop adaptive generation. The five cognitive types remain unchanged. The original four answer formats are the reliable baseline; use expanded formats only when the interface and grading capabilities support them. Keep generation separate from next-question selection.
+-
+-## v1.2.0 visual question generation
+-When a concept benefits from visual representation, generate a structured visualization alongside the question, following [references/visualizations.md](references/visualizations.md). Support function plots, line/bar/scatter charts, binary trees, network and directed graphs, flowcharts, and state diagrams when the available interface can render them accurately. Keep visualization data separate from cognitive type and answer format. Validate the visual against the answer key before presenting. Prefer native charts/graphs, SVG, or Mermaid when available; otherwise provide an accurate textual adjacency list, table, or tree representation. Do not claim interactive manipulation unless the current interface actually supports it. Preserve accessible textual descriptions and ensure the question can be answered from the visual or its equivalent description. Never reveal answer annotations before submission.
++## Additional references
++- [references/question-schema.md](references/question-schema.md): portable question, attempt, concept state and validation contracts.
++- [references/grading.md](references/grading.md): grading, hints and uncertainty.
++- [references/adaptation.md](references/adaptation.md): adaptive selection and spaced review.
++- [references/examples.md](references/examples.md): sample interactions.
++- [references/generation-workflow.md](references/generation-workflow.md): seven-stage blueprint-driven generation, composite assessments and validation.
++- [references/visualizations.md](references/visualizations.md): structured diagrams/graphs, accessible alternatives and visual validation. Use diagramming when needed; do not claim interactive manipulation without supporting tools.

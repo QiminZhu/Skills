@@ -1,0 +1,19 @@
+{
+  "plugin_id": "Plugin_35dd0aa3375c8191958fbe4fdea3ec8a",
+  "current_release_id": "pluginrel_6ae15df891d081919125d9d329639a20",
+  "releases": [
+    {
+      "release_id": "pluginrel_6ae15df891d081919125d9d329639a20",
+      "version": "1.1.0",
+      "created_at": "2026-10-28T02:29:12.569794Z",
+      "is_current": true
+    },
+    {
+      "release_id": "pluginrel_6ae15b8f9d8481919c4f5992c89b6233",
+      "version": "1.0.0",
+      "created_at": "2026-10-28T02:18:55.615473Z",
+      "is_current": false
+    }
+  ],
+  "next_cursor": null
+}

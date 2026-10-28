@@ -1,9 +1,4 @@
 {
-  "author": {
-    "email": "qimin.zhu@student.mahidol.ac.th",
-    "name": "QIMIN ZHU"
-  },
-  "description": "Extract and review lecture topics, objectives and source pages before approved synchronization.",
   "interface": {
     "capabilities": [],
     "category": "Other",
@@ -13,8 +8,13 @@
     "longDescription": "Extract and review lecture topics, objectives and source pages before approved synchronization.",
     "shortDescription": "Extract and review lecture topics, objectives and source pag"
   },
-  "keywords": [],
   "name": "analyze-it",
-  "skills": "./skills",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "description": "Extract and review lecture topics, objectives and source pages before approved synchronization.",
+  "author": {
+    "name": "QIMIN ZHU",
+    "email": "qimin.zhu@student.mahidol.ac.th"
+  },
+  "keywords": [],
+  "skills": "./skills"
 }

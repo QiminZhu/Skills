@@ -1,0 +1,74 @@
+--- previous/.codex-plugin/plugin.json
++++ 0.6.0/.codex-plugin/plugin.json
+@@ -1,16 +1,16 @@
+ {
+   "interface": {
+     "displayName": "Tutor me",
+-    "shortDescription": "Adaptive learning, review and independent project ",
++    "shortDescription": "Learning, review, and independent projects",
+     "category": "Other",
+-    "longDescription": "Adaptive learning, review and independent project assessment with evidence handoff.",
++    "longDescription": "Adaptive learning, review, and independent project assessment.",
+     "developerName": "Learning System",
+     "defaultPrompt": null,
+     "capabilities": []
+   },
+   "name": "learn-tutor-plugin",
+-  "version": "0.5.0",
+-  "description": "Adaptive learning, review and independent project assessment with evidence handoff.",
++  "version": "0.6.0",
++  "description": "Adaptive learning, review, and independent project assessment.",
+   "author": {
+     "name": "Learning System"
+   },
+--- previous/plugin.json
++++ 0.6.0/plugin.json
+@@ -1,23 +1 @@
+-{
+-  "name": "learn-tutor-plugin",
+-  "version": "0.5.0",
+-  "description": "Adaptive learning, review and independent project assessment with evidence handoff.",
+-  "author": {
+-    "name": "Learning System"
+-  },
+-  "skills": "./skills",
+-  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+-  "extensions": {
+-    "com.openai": {
+-      "interface": {
+-        "displayName": "Tutor me",
+-        "shortDescription": "Adaptive learning, review and independent project ",
+-        "category": "Other",
+-        "longDescription": "Adaptive learning, review and independent project assessment with evidence handoff.",
+-        "developerName": "Learning System",
+-        "defaultPrompt": null,
+-        "capabilities": []
+-      }
+-    }
+-  }
+-}
++{"name":"learn-tutor-plugin","version":"0.6.0","description":"Adaptive learning, review, and independent project assessment.","author":{"name":"Learning System"},"skills":"./skills","$schema":"https://agent-plugins.org/schemas/1.0.0/plugin.schema.json","extensions":{"com.openai":{"interface":{"displayName":"Tutor me","shortDescription":"Learning, review, and independent projects","category":"Other","longDescription":"Adaptive learning, review, and independent project assessment.","developerName":"Learning System","defaultPrompt":null,"capabilities":[]}}}}
+--- previous/skills/learn-combined/SKILL.md
++++ 0.6.0/skills/learn-combined/SKILL.md
+@@ -21,8 +21,8 @@
+ 6. Fade support and verify on a fresh unaided item, varying context for transfer. Track coverage evidence and revisit untouched objectives before close.
+ Read [feedback.md](references/feedback.md), [assessment.md](references/assessment.md) and [quiz-design.md](references/quiz-design.md). Distinguish independent, prompted, scaffolded and not-yet-demonstrated. Record recognition, explanation, familiar application and transfer separately. Never infer mastery from confidence or one success. Honor direct solution requests, marking support accurately.
+ 
+-## Continuity and mastery integration
+-Read [records.md](references/records.md), [scheduling.md](references/scheduling.md), and [mastery-integration.md](references/mastery-integration.md). When authorized records exist, offer up to three due recall items before new learning but honor direct requests. Do not pretend persistent storage or reminders exist. Never increase mastery from Tutor me evidence. Only qualifying completed formal Quiz me assessments can authorize advancement via Update it.
++## Continuity and local records
++Read [records.md](references/records.md) and [scheduling.md](references/scheduling.md). When authorized records exist, offer up to three due recall items before new learning but honor direct requests. Do not pretend persistent storage or reminders exist. Keep evidence session-local unless the learner has an authorized and operational record destination. Do not require external mastery services or cross-plugin handoffs.
+ 
+ ## Close and completion gate
+-For full-lecture sessions, apply the explicit completion gates in lecture-coverage.md. Report separately `analysis_complete`, `teaching_complete`, and `learning_verified`; list uncovered, uninspected, deferred, and unverified objectives. Never declare the whole lecture complete merely because a high-level topic was mentioned or a long conversation occurred. For focused sessions, summarize the objective, independent understanding, supported progress, unresolved gaps and one next exercise. Mention review dates only when calculated or recorded. Export or submit session evidence only through verified available integration.
++For full-lecture sessions, apply the explicit completion gates in lecture-coverage.md. Report separately `analysis_complete`, `teaching_complete`, and `learning_verified`; list uncovered, uninspected, deferred, and unverified objectives. Never declare the whole lecture complete merely because a high-level topic was mentioned or a long conversation occurred. For focused sessions, summarize the objective, independent understanding, supported progress, unresolved gaps and one next exercise. Mention review dates only when calculated or recorded. Do not claim any data was saved unless a write was verified.
+--- previous/skills/learn-combined/references/mastery-integration.md
++++ 0.6.0/skills/learn-combined/references/mastery-integration.md
+@@ -1,7 +0,0 @@
+-
+-## Shared mastery integration v0.4
+-- Preserve Learning, Review and Project workflows and immediate learning feedback.
+-- If available and authorized, retrieve topic IDs and mastery from Update it before targeted teaching or review. If not available, use supplied materials and state that current tracker status was not retrieved.
+-- Emit structured learning evidence with topicId, eventId, sessionId, cognitiveType, firstAttemptCorrect, reasoning, supportLevel, timestamp and source `tutor-me`. Submit through a verified shared tool only when available; otherwise offer portable JSON at session end.
+-- Learning, review, project and post-teaching verification evidence NEVER authorizes increasing mastery. Only Update it can apply mastery changes from qualifying completed Quiz me formal assessments.
+-- Avoid per-turn remote writes; batch at session end where possible without relying on inaccessible old chat context. Do not promise background work or claim writes succeeded without confirmation.

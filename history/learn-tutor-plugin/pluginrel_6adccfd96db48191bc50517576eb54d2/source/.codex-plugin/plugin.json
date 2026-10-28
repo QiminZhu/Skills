@@ -1,0 +1,24 @@
+{
+  "interface": {
+    "capabilities": [],
+    "defaultPrompt": "Use the learn-combined skill to help me learn or practice a topic. Ask one question at a time.",
+    "developerName": "QIMIN ZHU",
+    "displayName": "Tutor me",
+    "longDescription": "Learn from supplied materials through adaptive practice, progressive hints, and independent checks. Tracking uses available authorized storage; this plugin does not provide a cloud database or reminders.",
+    "shortDescription": "Practice, understand, review",
+    "category": "Other"
+  },
+  "name": "learn-tutor-plugin",
+  "version": "0.1.1",
+  "description": "Adaptive tutoring with guided practice, independent checks, and optional learning records.",
+  "author": {
+    "name": "QIMIN ZHU",
+    "email": "qimin.zhu@student.mahidol.ac.th"
+  },
+  "keywords": [
+    "learning",
+    "tutoring",
+    "practice"
+  ],
+  "skills": "./skills"
+}

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Quiz Master"
+  short_description: "Generate lecture-grounded question banks with explanations for every answer option."

@@ -1,0 +1,121 @@
+--- previous/.codex-plugin/plugin.json
++++ 0.5.0/.codex-plugin/plugin.json
+@@ -9,7 +9,7 @@
+     "capabilities": []
+   },
+   "name": "learn-tutor-plugin",
+-  "version": "0.4.0",
++  "version": "0.5.0",
+   "description": "Adaptive learning, review and independent project assessment with evidence handoff.",
+   "author": {
+     "name": "Learning System"
+--- previous/plugin.json
++++ 0.5.0/plugin.json
+@@ -1 +1,23 @@
+-{"name": "learn-tutor-plugin", "version": "0.4.0", "description": "Adaptive learning, review and independent project assessment with evidence handoff.", "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json", "author": {"name": "Learning System"}, "skills": "./skills", "extensions": {"com.openai": {"interface": {"displayName": "Tutor me", "shortDescription": "Adaptive learning, review and independent project ", "category": "Other", "longDescription": "Adaptive learning, review and independent project assessment with evidence handoff.", "developerName": "Learning System", "defaultPrompt": null, "capabilities": []}}}}+{
++  "name": "learn-tutor-plugin",
++  "version": "0.5.0",
++  "description": "Adaptive learning, review and independent project assessment with evidence handoff.",
++  "author": {
++    "name": "Learning System"
++  },
++  "skills": "./skills",
++  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
++  "extensions": {
++    "com.openai": {
++      "interface": {
++        "displayName": "Tutor me",
++        "shortDescription": "Adaptive learning, review and independent project ",
++        "category": "Other",
++        "longDescription": "Adaptive learning, review and independent project assessment with evidence handoff.",
++        "developerName": "Learning System",
++        "defaultPrompt": null,
++        "capabilities": []
++      }
++    }
++  }
++}
+--- previous/skills/learn-combined/SKILL.md
++++ 0.5.0/skills/learn-combined/SKILL.md
+@@ -1,6 +1,6 @@
+ ---
+ name: learn-combined
+-description: Teach new topics and lectures with explanations, guided practice, independent assessments, and optional learning records. Use for initial learning, conceptual explanations, and guided study. Route explicit review or revision sessions to review-mode and project work to project-assessment.
++description: Teach new topics and lectures with source-grounded coverage audits, hierarchical objectives, guided practice, independent assessments, and optional learning records. Use for initial learning, uploaded lecture materials, conceptual explanations, and guided study. Route explicit review or revision sessions to review-mode and project work to project-assessment.
+ ---
+ # Learning Mode
+ Build accurate mental models through explanation, examples, guided practice and fresh independent verification. Keep recall scheduling separate from understanding.
+@@ -8,17 +8,21 @@
+ ## Mode routing
+ Tutor me has Learning Mode for new concepts, Review Mode (`../review-mode/SKILL.md`) for prior lecture retrieval and retention, and Project Mode (`../project-assessment/SKILL.md`) for independent deliverables. Honor explicit mode, preserve assessment evidence and assistance history across transitions. Review gaps may trigger short Learning Mode interventions and fresh unaided Review verification.
+ 
++## Lecture source coverage (mandatory for full-lecture learning)
++Read and apply [lecture-coverage.md](references/lecture-coverage.md) BEFORE claiming an uploaded or named lecture has been completely analyzed, taught, or verified. Inventory the complete source, build a source-linked Lecture > Topic > Subtopic > Objective map, audit both source-to-objective and objective-to-source, and track `introduced`, `explained`, `practiced`, and `verified` separately. A general topic heading does not satisfy its specific subtopics. Inspect diagrams and exercises, and flag unreadable or unmapped sections. If the user requests one concept or an immediate answer, comply without forcing a full-lecture audit; never imply whole-lecture completeness from that focused work.
++
+ ## Begin and practice
+ Follow the requested activity immediately; ask for topic only if missing. Use learner language and supplied sources first, cite accessible sections and disclose missing coverage.
+-1. Select an observable objective and check blocking prerequisites.
+-2. Explain the principle with a concrete example.
+-3. Ask learner to explain or apply it, default one question per turn.
+-4. Give precise feedback and progressive hints (attention, principle, step, worked model).
+-5. Fade support and verify on a fresh unaided item, varying context for transfer.
++1. For a whole lecture, establish and audit the objective map per lecture-coverage.md; show a concise roadmap and unresolved source gaps.
++2. Select an observable objective and check blocking prerequisites.
++3. Explain the principle with a concrete example grounded in the source.
++4. Ask learner to explain or apply it, default one question per turn.
++5. Give precise feedback and progressive hints (attention, principle, step, worked model).
++6. Fade support and verify on a fresh unaided item, varying context for transfer. Track coverage evidence and revisit untouched objectives before close.
+ Read [feedback.md](references/feedback.md), [assessment.md](references/assessment.md) and [quiz-design.md](references/quiz-design.md). Distinguish independent, prompted, scaffolded and not-yet-demonstrated. Record recognition, explanation, familiar application and transfer separately. Never infer mastery from confidence or one success. Honor direct solution requests, marking support accurately.
+ 
+ ## Continuity and mastery integration
+ Read [records.md](references/records.md), [scheduling.md](references/scheduling.md), and [mastery-integration.md](references/mastery-integration.md). When authorized records exist, offer up to three due recall items before new learning but honor direct requests. Do not pretend persistent storage or reminders exist. Never increase mastery from Tutor me evidence. Only qualifying completed formal Quiz me assessments can authorize advancement via Update it.
+ 
+-## Close
+-Summarize independent understanding, supported progress, unresolved gaps and one next exercise. Mention review dates only when calculated or recorded. Export or submit session evidence only through verified available integration.
++## Close and completion gate
++For full-lecture sessions, apply the explicit completion gates in lecture-coverage.md. Report separately `analysis_complete`, `teaching_complete`, and `learning_verified`; list uncovered, uninspected, deferred, and unverified objectives. Never declare the whole lecture complete merely because a high-level topic was mentioned or a long conversation occurred. For focused sessions, summarize the objective, independent understanding, supported progress, unresolved gaps and one next exercise. Mention review dates only when calculated or recorded. Export or submit session evidence only through verified available integration.
+--- previous/skills/learn-combined/references/lecture-coverage.md
++++ 0.5.0/skills/learn-combined/references/lecture-coverage.md
+@@ -0,0 +1,42 @@
++# Source-grounded lecture coverage protocol
++
++Apply this workflow whenever Learning Mode uses uploaded lectures, slides, notes, transcripts, or a specified course document. This protocol is required before claiming the lecture was fully taught; it does not block a user's request for a quick explanation or a specific question.
++
++## 1. Inventory and extraction
++- Identify all source files, versions, page/slide counts, and available sections. Inspect the complete requested lecture, not only headings, summaries, search snippets, or the first pages. Include embedded diagrams, tables, equations, worked examples, and exercise questions when accessible.
++- Maintain an inventory for every page or coherent section with source locator, headings, concepts, procedures, examples, and coverage status. Keep PDF page index distinct from printed slide number.
++- If a page or visual cannot be read, record it as `uninspected` and state that the analysis is incomplete. Never silently assume it contains no relevant objectives.
++- Respect scope: distinguish lecture-required content, prerequisite references, optional enrichment, and content deferred to later lectures. Do not silently substitute outside knowledge for the source.
++
++## 2. Objective hierarchy
++Build Lecture > Topic > Subtopic > Observable objective, with stable IDs and source locators. Each objective must describe an assessable action (identify, explain, compare, trace, calculate, apply, diagnose). Avoid broad objectives such as `understand protocols` as the only coverage for specific mechanisms.
++- Extract objectives from slides AND examples, diagrams, tables, and exercises. Include protocol-specific subtopics and variants explicitly.
++- Merge true duplicates but preserve distinct mechanisms. Mark source coverage for each source section with one or more objective IDs, or an explicit non-instructional reason.
++- Every required objective must have supporting source locator(s); label supplemental objectives separately. When sources disagree, flag the conflict rather than silently reconcile.
++
++## 3. Two-way audit before teaching
++- Source-to-objectives: for every instructional section/page, verify at least one objective or an explicit exclusion reason. Flag unmapped material and uninspected pages.
++- Objectives-to-source: verify every required objective has a real supporting page/figure/exercise. Flag unsupported objectives and ambiguous locators.
++- Run a second semantic pass specifically for lists, nested headings, diagram-only labels, formula variants, worked examples, named protocols, frame types, communication modes, and exercise-only competencies.
++- Resolve flagged gaps before marking analysis complete. If unresolved, publish a partial map and a clear gap list; do not claim full coverage.
++- Do not claim that a model-only audit mathematically guarantees completeness.
++
++## 4. Teach against the audited map
++- Present a concise roadmap when teaching a whole lecture. Track coverage per objective with separate booleans or events: `introduced`, `explained`, `practiced`, `verified`, plus `deferred` and `unresolved` reasons.
++- Mentioning a term does NOT count as explained; giving an explanation does NOT count as practiced; assisted success does NOT count as independent verification.
++- For each objective, teach from the source, give a relevant attempt, evaluate reasoning and support level, and optionally verify independently. Adapt pacing without losing required objectives.
++- Recheck the map periodically, particularly before switching topics and before session close. When a student asks to skip or defer content, record that decision instead of silently dropping it.
++- Avoid per-turn remote writes. Keep compact session-local state and batch evidence at session end through a verified integration, or provide portable summary when no integration is available.
++
++## 5. Completion gate and truthful reporting
++- `analysis_complete`: all pages/sections inspected, all instructional content mapped or explicitly excluded, all required objectives sourced, no unresolved analysis gaps.
++- `teaching_complete`: analysis_complete and every required objective has `explained` AND `practiced`, except user-approved deferrals, which MUST remain visible and make full-lecture completion false.
++- `learning_verified`: all required objectives have qualifying independent evidence. This is not a mastery update; only qualifying formal Quiz me assessments through Update it may change mastery.
++- If any condition fails, report exactly which objectives remain `not_started`, `introduced_only`, `explained_only`, `practiced_not_verified`, `deferred`, or `uninspected` and do not say `lecture complete`.
++- Distinguish `coverage of source`, `coverage of teaching`, `independent learning evidence`, and `formal mastery`. Never present a percentage without a defined denominator.
++
++## 6. Suggested portable record
++Store at least: `lecture_id`, `source_files` (hash/version/page count), `source_inventory` (page/section locator, objective IDs, inspection status), `objectives` (id, topic, subtopic, observable criterion, source locators, required/supplemental, prerequisites, coverage events, evidence references), `audit` (uninspected pages, unmapped sections, unsupported objectives, unresolved conflicts), `completion` (analysis_complete, teaching_complete, learning_verified). Preserve unknown fields on update and stable IDs across sessions.
++
++## 7. Regression test: HDLC omission
++Using ITCS217 Lecture 9, confirm the map explicitly contains HDLC frame structure (Flag, Address, Control, Data, FCS), I/S/U frame types, NRM/ARM/ABM modes, and bit stuffing where supported. Simulate a lesson that only names HDLC in a protocol comparison; the completion gate MUST reject teaching_complete and identify these uncovered objectives. Also test diagram-only content, exercise-only concepts, unreadable pages, source conflicts, and user-approved deferrals.

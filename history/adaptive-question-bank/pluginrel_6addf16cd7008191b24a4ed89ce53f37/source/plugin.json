@@ -1,0 +1,23 @@
+{
+  "name": "adaptive-question-bank",
+  "version": "1.4.0",
+  "description": "Adaptive technical tutor with selectable learning and exam modes and dependent multi-layered exam simulations.",
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "name": "Skill Developer",
+    "email": "developer@example.com"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Quiz me",
+        "shortDescription": "Adaptive technical practice",
+        "category": "Other",
+        "longDescription": "Adaptive technical tutor with selectable learning and exam modes and dependent multi-layered exam simulations.",
+        "developerName": "Skill Developer",
+        "defaultPrompt": null,
+        "capabilities": []
+      }
+    }
+  }
+}

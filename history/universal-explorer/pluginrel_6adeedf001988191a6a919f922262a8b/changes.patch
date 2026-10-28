@@ -1,0 +1,56 @@
+--- previous/.codex-plugin/plugin.json
++++ 1.0.1/.codex-plugin/plugin.json
+@@ -1,18 +1,17 @@
+ {
++  "name": "universal-explorer",
++  "version": "1.0.1",
++  "description": "Explore unfamiliar concepts, ideas, techniques, apps, products, technologies, and proposals through structured critical questioning.",
++  "interface": {
++    "displayName": "Grill it",
++    "category": "Other",
++    "capabilities": [],
++    "shortDescription": "Explore ideas through adaptive critical questions",
++    "longDescription": "Explore unfamiliar subjects through evidence-based, adaptive critical questioning.",
++    "developerName": "QIMIN ZHU"
++  },
+   "author": {
+-    "email": "qimin.zhu@student.mahidol.ac.th",
+-    "name": "QIMIN ZHU"
+-  },
+-  "description": "Explore unfamiliar concepts, ideas, techniques, apps, products, technologies, and proposals through structured critical questioning. Use when the user encounters something new and wants to understand it deeply, challenge claims, compare alternatives, investigate evidence, or decide whether to use or implement it. Supports quick, deep, and research exploration with adaptive follow-up questions.",
+-  "interface": {
+-    "capabilities": [],
+-    "category": "Other",
+-    "defaultPrompt": null,
+-    "developerName": "QIMIN ZHU",
+-    "displayName": "universal-explorer",
+-    "longDescription": "Explore unfamiliar concepts, ideas, techniques, apps, products, technologies, and proposals through structured critical questioning. Use when the user encounters something new and wants to understand it deeply, challenge claims, compare alternatives, investigate evidence, or decide whether to use or implement it. Supports quick, deep, and research exploration with adaptive follow-up questions.",
+-    "shortDescription": "Explore unfamiliar concepts, ideas, techniques, apps, products, technologies, and proposals through structured critical questioning. Use when the user encounters something new and wants to understand it deeply, challenge claims, compare alternatives, investigate evidence, or decide whether to use or implement it. Supports quick, deep, and research exploration with adaptive follow-up questions."
+-  },
+-  "name": "universal-explorer",
+-  "version": "1.0.0"
+-}+    "name": "QIMIN ZHU",
++    "email": "qimin.zhu@student.mahidol.ac.th"
++  }
++}
+--- previous/skills/universal-explorer/SKILL.md
++++ 1.0.1/skills/universal-explorer/SKILL.md
+@@ -1,9 +1,9 @@
+ ---
+-name: universal-explorer
++name: grill-it
+ description: Explore unfamiliar concepts, ideas, techniques, apps, products, technologies, and proposals through structured critical questioning. Use when the user encounters something new and wants to understand it deeply, challenge claims, compare alternatives, investigate evidence, or decide whether to use or implement it. Supports quick, deep, and research exploration with adaptive follow-up questions.
+ ---
+ 
+-# Universal Explorer v1.0.0
++# Grill it v1.0.1
+ 
+ ## Mission
+ Turn an unfamiliar subject into an evidence-aware, adaptive investigation. Maximize useful uncertainty reduction rather than the number of questions asked. Do not automatically convert exploration into a quiz.
+--- previous/skills/universal-explorer/agents/openai.yaml
++++ 1.0.1/skills/universal-explorer/agents/openai.yaml
+@@ -1,3 +1,3 @@
+ interface:
+-  display_name: "Universal Explorer"
++  display_name: "Grill it"
+   short_description: "Explore unfamiliar ideas through adaptive critical questions"
