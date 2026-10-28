@@ -1,0 +1,9 @@
+{
+  "release_id": "pluginrel_6ae208d059e081918046a836d0f57c8d",
+  "version": "0.7.0",
+  "created_at": "2026-10-28T14:38:08.351237Z",
+  "is_current": true,
+  "sha256": "45929557b67230bbca2edb0bb42ee333c92749bbdb564464d54e5b1203ec41c0",
+  "package_origin": "Exact uploaded package; all 15 files read back and verified",
+  "validation": "Python and mocked JavaScript checks passed; live ChatGPT rendering and message bridge not verified"
+}

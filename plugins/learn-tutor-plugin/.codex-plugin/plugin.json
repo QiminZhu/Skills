@@ -9,7 +9,7 @@
     "capabilities": []
   },
   "name": "learn-tutor-plugin",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Adaptive learning, review, and independent project assessment.",
   "author": {
     "name": "Learning System"

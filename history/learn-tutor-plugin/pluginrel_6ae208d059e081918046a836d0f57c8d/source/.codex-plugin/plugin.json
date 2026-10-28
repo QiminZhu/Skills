@@ -1,0 +1,19 @@
+{
+  "interface": {
+    "displayName": "Tutor me",
+    "shortDescription": "Learning, review, and independent projects",
+    "category": "Other",
+    "longDescription": "Adaptive learning, review, and independent project assessment.",
+    "developerName": "Learning System",
+    "defaultPrompt": null,
+    "capabilities": []
+  },
+  "name": "learn-tutor-plugin",
+  "version": "0.7.0",
+  "description": "Adaptive learning, review, and independent project assessment.",
+  "author": {
+    "name": "Learning System"
+  },
+  "keywords": [],
+  "skills": "./skills"
+}

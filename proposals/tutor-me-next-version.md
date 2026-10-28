@@ -1,6 +1,6 @@
-# Tutor me next version — candidate, not published
+# Tutor me 0.7.0 — implemented proposal
 
-Baseline: 0.6.0. Proposed version: 0.7.0. Existing plugin identity and audience remain unchanged.
+Baseline: 0.6.0. Published version: 0.7.0. Existing plugin identity and audience remain unchanged.
 
 ## Teach
 
@@ -29,4 +29,4 @@ No mastery tracker, external learner records, progress synchronization, or recal
 - Next sends one new message only when clicked; unsupported hosts receive an honest fallback.
 - No external learner-record tools or tracking writes occur.
 
-Instructions alone cannot guarantee host UI support or grading correctness. This proposal is preserved for implementation after the GitHub baseline is backed up.
+Instructions alone cannot guarantee host UI support or grading correctness. Implemented in 0.7.0 with a bundled renderer. Structural and mocked-runtime checks passed; live ChatGPT rendering remains unverified.

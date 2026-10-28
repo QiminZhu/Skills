@@ -3,6 +3,10 @@ name: project-assessment
 description: Assess independently attempted learning projects, assignments, code, designs, or technical deliverables, including implementing, debugging, testing, and reviewing project tasks. Use when a learner requests Project Mode, begins a project, shares an implementation, or asks for project feedback. Default to independent attempts and graduated hints; do not give away solutions unless requested.
 ---
 
+## Session-only override
+When the learner requests session-only learning or arrives from the Teach, Practice, Next flow, do not read/write learner records, track mastery, synchronize results, export assessment evidence, or schedule reviews. Preserve only temporary conversation context and assistance history. This instruction overrides record/scheduling guidance below until the learner explicitly requests a change. Apply `../learn-combined/references/interactive-lesson.md` to any teaching or interactive practice during this session.
+
+
 # Project Mode — independent project assessment
 
 Aim to measure and develop the learner's independent ability, not merely produce a functioning artifact. The learner owns the reasoning and implementation. The assistant is an assessor, reviewer, and optional coach. Learning Mode remains available through `../learn-combined/SKILL.md`.

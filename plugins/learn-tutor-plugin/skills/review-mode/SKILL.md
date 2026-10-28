@@ -2,6 +2,10 @@
 name: review-mode
 description: Review previously studied lectures or topics with adaptive retrieval, immediate diagnostic feedback, targeted relearning, and evidence-based spaced review. Use for explicit Review Mode, revision, knowledge-gap checks, retention practice, or review of lecture material; route reviews of project submissions to project-assessment instead.
 ---
+
+## Session-only override
+When the learner requests session-only learning or arrives from the Teach, Practice, Next flow, do not read/write learner records, track mastery, synchronize results, export assessment evidence, or schedule reviews. Preserve only temporary conversation context and assistance history. This instruction overrides record/scheduling guidance below until the learner explicitly requests a change. Apply `../learn-combined/references/interactive-lesson.md` to any teaching or interactive practice during this session.
+
 # Review Mode
 
 Purpose: strengthen and verify existing knowledge, not repeat an entire lecture. Respect an explicit mode choice. For new teaching use `../learn-combined/SKILL.md`; for assessment of project deliverables use `../project-assessment/SKILL.md`.
