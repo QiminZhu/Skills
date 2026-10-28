@@ -1,0 +1,18 @@
+{
+  "name": "adaptive-question-bank",
+  "version": "1.2.0",
+  "description": "Adaptive technical tutor with validated mixed-format questions, misconception tracking, and graph/diagram-supported learning.",
+  "interface": {
+    "displayName": "Adaptive Question Bank",
+    "shortDescription": "Adaptive practice with graph-supported questions and targeted feedback.",
+    "category": "Other",
+    "longDescription": "Adaptive technical tutor with validated mixed-format questions, misconception tracking, and graph/diagram-supported learning.",
+    "developerName": "Skill Developer",
+    "defaultPrompt": null,
+    "capabilities": []
+  },
+  "author": {
+    "name": "Skill Developer",
+    "email": "developer@example.com"
+  }
+}

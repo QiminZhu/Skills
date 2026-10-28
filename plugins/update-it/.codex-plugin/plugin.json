@@ -1,0 +1,20 @@
+{
+  "interface": {
+    "capabilities": [],
+    "category": "Other",
+    "defaultPrompt": null,
+    "developerName": "QIMIN ZHU",
+    "displayName": "Update it",
+    "longDescription": "Manage topic mastery, evidence logs and Google Sheets synchronization with strict formal assessment gates.",
+    "shortDescription": "Manage topic mastery, evidence logs and Google Sheets synchr"
+  },
+  "name": "update-it",
+  "version": "1.0.0",
+  "description": "Manage topic mastery, evidence logs and Google Sheets synchronization with strict formal assessment gates.",
+  "author": {
+    "name": "QIMIN ZHU",
+    "email": "qimin.zhu@student.mahidol.ac.th"
+  },
+  "keywords": [],
+  "skills": "./skills"
+}

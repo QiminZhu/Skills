@@ -1,0 +1,19 @@
+{
+  "interface": {
+    "displayName": "Quiz me",
+    "shortDescription": "Formal fixed assessments, optional adaptive practi",
+    "category": "Other",
+    "longDescription": "Formal fixed assessments, optional adaptive practice, and mastery evidence export.",
+    "developerName": "Learning System",
+    "defaultPrompt": null,
+    "capabilities": []
+  },
+  "name": "adaptive-question-bank",
+  "version": "2.0.0",
+  "description": "Formal fixed assessments, optional adaptive practice, and mastery evidence export.",
+  "author": {
+    "name": "Learning System"
+  },
+  "keywords": [],
+  "skills": "./skills"
+}

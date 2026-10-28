@@ -1,0 +1,24 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "email": "qimin.zhu@student.mahidol.ac.th",
+    "name": "QIMIN ZHU"
+  },
+  "description": "Manage topic mastery, evidence logs and Google Sheets synchronization with strict formal assessment gates.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "capabilities": [],
+        "category": "Other",
+        "defaultPrompt": null,
+        "developerName": "QIMIN ZHU",
+        "displayName": "Update it",
+        "longDescription": "Manage topic mastery, evidence logs and Google Sheets synchronization with strict formal assessment gates.",
+        "shortDescription": "Manage topic mastery, evidence logs and Google Sheets synchr"
+      }
+    }
+  },
+  "name": "update-it",
+  "skills": "./skills",
+  "version": "1.0.0"
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "email": "qimin.zhu@student.mahidol.ac.th",
+    "name": "QIMIN ZHU"
+  },
+  "description": "Evaluate proposed changes, diagnose regressions, and recommend improvements before human approval.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "capabilities": [],
+        "category": "Other",
+        "defaultPrompt": null,
+        "developerName": "QIMIN ZHU",
+        "displayName": "Manager",
+        "longDescription": "Evaluate proposed changes, diagnose regressions, and recommend improvements before human approval.",
+        "shortDescription": "Evaluate proposed changes, diagnose regressions, and recomme"
+      }
+    }
+  },
+  "name": "manager",
+  "skills": "./skills",
+  "version": "1.0.0"
+}

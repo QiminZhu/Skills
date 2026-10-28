@@ -1,0 +1,24 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "email": "qimin.zhu@student.mahidol.ac.th",
+    "name": "QIMIN ZHU"
+  },
+  "description": "Extract and review lecture topics, objectives and source pages before approved synchronization.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "capabilities": [],
+        "category": "Other",
+        "defaultPrompt": null,
+        "developerName": "QIMIN ZHU",
+        "displayName": "Analyze it",
+        "longDescription": "Extract and review lecture topics, objectives and source pages before approved synchronization.",
+        "shortDescription": "Extract and review lecture topics, objectives and source pag"
+      }
+    }
+  },
+  "name": "analyze-it",
+  "skills": "./skills",
+  "version": "1.0.0"
+}

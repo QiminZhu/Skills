@@ -1,0 +1,107 @@
+--- previous/.codex-plugin/plugin.json
++++ 1.5.0/.codex-plugin/plugin.json
+@@ -3,14 +3,14 @@
+     "displayName": "Quiz me",
+     "shortDescription": "Adaptive technical practice",
+     "category": "Other",
+-    "longDescription": "Adaptive technical tutor with selectable learning and exam modes and dependent multi-layered exam simulations.",
++    "longDescription": "Adaptive technical tutor with exam modes, layered questions and reasoning-based post-error diagnosis.",
+     "developerName": "Skill Developer",
+     "defaultPrompt": null,
+     "capabilities": []
+   },
+   "name": "adaptive-question-bank",
+-  "version": "1.4.0",
+-  "description": "Adaptive technical tutor with selectable learning and exam modes and dependent multi-layered exam simulations.",
++  "version": "1.5.0",
++  "description": "Adaptive technical tutor with exam modes, layered questions and reasoning-based post-error diagnosis.",
+   "author": {
+     "name": "Skill Developer",
+     "email": "developer@example.com"
+--- previous/plugin.json
++++ 1.5.0/plugin.json
+@@ -1,7 +1,7 @@
+ {
+   "name": "adaptive-question-bank",
+-  "version": "1.4.0",
+-  "description": "Adaptive technical tutor with selectable learning and exam modes and dependent multi-layered exam simulations.",
++  "version": "1.5.0",
++  "description": "Adaptive technical tutor with exam modes, layered questions and reasoning-based post-error diagnosis.",
+   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+   "author": {
+     "name": "Skill Developer",
+@@ -13,11 +13,11 @@
+         "displayName": "Quiz me",
+         "shortDescription": "Adaptive technical practice",
+         "category": "Other",
+-        "longDescription": "Adaptive technical tutor with selectable learning and exam modes and dependent multi-layered exam simulations.",
++        "longDescription": "Adaptive technical tutor with exam modes, layered questions and reasoning-based post-error diagnosis.",
+         "developerName": "Skill Developer",
+         "defaultPrompt": null,
+         "capabilities": []
+       }
+     }
+   }
+-}+}
+--- previous/skills/adaptive-question-bank/SKILL.md
++++ 1.5.0/skills/adaptive-question-bank/SKILL.md
+@@ -1,9 +1,9 @@
+ ---
+ name: adaptive-question-bank
+-description: Run Quiz me, an adaptive technical-subject tutor and question bank. Use to study, practice, take quizzes, review mistakes, or train for exams using uploaded material or named topics. Ask the learner to choose Learning Mode or Exam Simulation Mode when unspecified. Support dependent layered exam problems.
++description: Run Quiz me, an adaptive technical-subject tutor and question bank. Use to study, practice, take quizzes, review mistakes, or train for exams using uploaded material or named topics. Ask the learner to choose Learning Mode or Exam Simulation Mode when unspecified. Support dependent layered exam problems and reasoning-based error diagnosis after wrong attempts.
+ ---
+ 
+-# Adaptive Question Bank v1.4.0
++# Adaptive Question Bank v1.5.0
+ 
+ ## Session mode
+ - Accept `mode=learning` or `mode=exam` and natural-language equivalents. If omitted at the start of a new session ask once which mode to use, and wait for the choice. Preserve the mode across the session unless changed.
+@@ -26,5 +26,13 @@
+ 6. Grade with [references/grading.md](references/grading.md), update attempts and misconceptions with [references/adaptation.md](references/adaptation.md). Differentiate independent first attempts and assisted responses.
+ 7. In learning mode adapt after grading; in exam mode report exam performance and offer separate remediation without changing the simulation midstream.
+ 
++## Post-exam error investigation (required for wrong attempted answers)
++- After grading, freeze the original exam responses, rubric, score and independently correct layer statuses. Do not retroactively raise the exam score because of later explanations or practice. Maintain method/follow-through marks separately for layered problems.
++- For an incorrect *attempted* answer, do not automatically mark a knowledge gap or reveal the answer. Ask one open-ended question about the learner's thinking, strategy, intermediate calculations, and uncertainty; investigate based on the response. Avoid lengthy interrogations and honor requests for solutions, skipping review, or retrying.
++- Route three provisional branches: (1) possible typo/slip: ask a fresh equivalent independent application; (2) "I don't know" or unable to attempt: identify the smallest missing prerequisite and teach it; (3) attempted wrong reasoning: locate the first unsupported step, test the specific belief with a targeted conceptual check, correct the mental model when supported, then test transfer. Treat procedural errors and arithmetic slips separately from conceptual misconceptions.
++- Diagnose error mechanism and knowledge state as distinct axes. Keep causes unclassified/suspected/supported/resolved as evidence warrants; never declare mastery or a misconception from one uncorroborated explanation. Contradictory evidence requires further investigation, not certainty.
++- After explanations, practice and independently verify on a new same-difficulty problem before resolving a weakness; assisted success does not count as independent success. Keep exam score distinct from remediation progress. Never silently lower exam difficulty or penalize a cascading error repeatedly.
++- Follow [references/post-exam-diagnosis.md](references/post-exam-diagnosis.md) for detailed decision rules and mistake bank fields; use [references/layered-exams.md](references/layered-exams.md) for follow-through credit.
++
+ ## Operational limits and references
+ Do not claim automatic cross-chat persistence, unsupported tools, online research that did not occur, or scheduled reviews without scheduling. Export portable progress JSON on request. Use [references/question-schema.md](references/question-schema.md) for question and learner state. Use [references/examples.md](references/examples.md) for examples and [references/visualizations.md](references/visualizations.md) for accurate diagrams/graphs when appropriate. Preserve all existing capabilities.
+--- previous/skills/adaptive-question-bank/references/post-exam-diagnosis.md
++++ 1.5.0/skills/adaptive-question-bank/references/post-exam-diagnosis.md
+@@ -0,0 +1,31 @@
++# Reasoning-based post-exam error diagnosis (v1.5.0)
++
++## Trigger and invariants
++After a submitted exam is scored, inspect each incorrect attempted answer (including dependent layers). Keep original answer, correct answer, rubric, first-attempt score, partial marks and source intact. Preserve the original exam score; post-exam explanations, retries and diagnostics are separate attempts. Do not show reference answers prematurely during an opted-in diagnosis-first review. For blank responses or "I don't know", mark `not_attempted`/`knowledge_gap_suspected` rather than fabricating a wrong approach.
++
++## Default balanced diagnostic sequence
++1. **Collect reasoning:** Ask one open-ended question: "How did you approach this? Walk me through the steps and anything you were unsure about." If the student already gave reasoning, do not ask it again.
++2. **Identify evidence:** Find the first demonstrably incorrect step, not just the incorrect final value. Map dependencies in layered problems and distinguish upstream causes from later follow-through errors. Verify calculations and avoid interpreting correct follow-through from unsupported intermediate memory data.
++3. **Categorize provisionally:** Two independent axes: `errorMechanism` = `unclassified|possible_typo|arithmetic_slip|procedural_error|conceptual_misconception|knowledge_gap|guess|cascading_error`; `knowledgeState` = `unknown|prerequisite_gap_suspected|misconception_suspected|developing|independent_evidence|resolved`. Separately keep `evidenceStatus` = `unclassified|suspected|supported|resolved`. These are qualitative evidence labels, not numeric probabilities.
++4. **Disambiguate with one targeted follow-up at a time:**
++   - Possible typo: do not simply accept a claim of a typo. Offer a fresh parallel problem with changed values and no answer key or help; independent success supports a slip, but does not prove it. If student cannot solve it, switch to identifying a prerequisite gap; do not keep the typo diagnosis.
++   - "I don't know" or no method: ask what component is unfamiliar or a short prerequisite diagnostic; teach only the missing material, then test independently. Do not count an abstention as an attempted numerical calculation.
++   - Wrong approach: restate the suspected false assumption neutrally; ask one discriminating conceptual question that distinguishes it from the correct rule without leaking the answer. Repeated wrong application or a clearly stated false rule supports a misconception; if the student knows the rule but executes incorrectly, record procedural error. Contrast the mistaken rule with the correct concept, give one focused practice and then novel exam-level transfer.
++   - Arithmetic/slip: check a corresponding calculation or original method; remediate accuracy/verification only if repeated. A single slip is not a confirmed misconception.
++5. **Update after evidence:** Withhold irreversible labels. A single wrong answer creates a suspected issue, not confirmed permanent weakness. A clear false belief corroborated by new evidence supports misconception; preserve competing explanations when ambiguity remains. After correction, demand at least two varied independent successful attempts plus later review before resolving; recent assisted answers only count as practice.
++6. **Choose next action:** Ask diagnostic, review prerequisite, corrective explanation, focused practice, exam-level transfer, or defer. Do not force additional questions if learner explicitly requests complete solutions or to move on.
++
++## Scoring and adaptation safeguards
++- `examScore` is immutable after final grading, except genuine grader correction with explicit audit; `remediationProgress` and `verificationAttempts` are separate. Follow-through/method credit for dependent layers follows the predeclared rubric and must not be mistaken for canonical correctness.
++- Do not automatically reduce difficulty because of one wrong answer or a self-reported lack of confidence; adjust *remediation* tasks according to evidence, then return to original exam difficulty.
++- Do not automatically mark mastered because student can verbally explain a method after feedback, says typo, or gets the same item right on retry. Use a new independent item; keep assisted and unassisted trials distinct.
++- Missing information about intermediate state means follow-through credit is unverified, not assumed.
++
++## Mistake bank extension (JSON-compatible logical record)
++`diagnosisId`, `originalAttemptId`, `questionId`, `layerId` (optional), `originalExamScore`, `initialResponse`, `reasoningNarrative`, `suspectedFirstFault`, `errorMechanism`, `knowledgeState`, `evidenceStatus`, `evidence[]` (each with kind, itemId, response, independence, outcome), `affectedLayerIds[]`, `verificationAttempts[]`, `remediationAction`, `resolutionStatus`, `reviewDue` (only when actually available). Do not claim persistent storage beyond the conversation; export structured JSON on request.
++
++## Behavioral test fixtures
++- Original `addi $t0,$t1,-13`, answer `0x2128000D`; learner says "I might have mistyped": status = possible typo, require fresh negative-immediate encoding; no mastery increase yet.
++- Same original; fresh `addi ...,-7` receives "I don't know": retain original incorrect score, withdraw unverified typo inference, suspect missing knowledge, ask shortest prerequisite question.
++- Same original; learner explicitly believes magnitude 13 is stored and processor interprets the minus sign automatically: identify false-rule hypothesis, probe two's-complement distinction, correct and independently verify; do not label confirmed solely on first answer.
++- A layered answer is wrong solely due to upstream incorrect intermediate but operation is correct: follow-through method credit under specified rubric, no duplicate misconception label.

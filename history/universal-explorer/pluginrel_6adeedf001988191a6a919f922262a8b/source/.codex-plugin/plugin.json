@@ -1,0 +1,17 @@
+{
+  "name": "universal-explorer",
+  "version": "1.0.1",
+  "description": "Explore unfamiliar concepts, ideas, techniques, apps, products, technologies, and proposals through structured critical questioning.",
+  "interface": {
+    "displayName": "Grill it",
+    "category": "Other",
+    "capabilities": [],
+    "shortDescription": "Explore ideas through adaptive critical questions",
+    "longDescription": "Explore unfamiliar subjects through evidence-based, adaptive critical questioning.",
+    "developerName": "QIMIN ZHU"
+  },
+  "author": {
+    "name": "QIMIN ZHU",
+    "email": "qimin.zhu@student.mahidol.ac.th"
+  }
+}

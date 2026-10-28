@@ -1,0 +1,3 @@
+interface:
+  display_name: Analyze it
+  short_description: Extract lecture topics and objectives

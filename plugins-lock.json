@@ -1,0 +1,86 @@
+[
+  {
+    "plugin_id": "Plugin_1b7a91fe6ee8819181a3e325566cf0c6",
+    "name": "manager",
+    "description": "Evaluate proposed changes, diagnose regressions, and recommend improvements before human approval.",
+    "version": "1.0.0",
+    "current_release_id": "pluginrel_6adf6a74531081919a21f227e479ec4a",
+    "scope": "WORKSPACE",
+    "discoverability": "PRIVATE",
+    "workspace_id": "73addf6d-14af-4dc0-a5ad-8d5c30c8602b",
+    "source_path": "plugins/manager",
+    "history_path": "history/manager"
+  },
+  {
+    "plugin_id": "Plugin_35dd0aa3375c8191958fbe4fdea3ec8a",
+    "name": "quiz-master",
+    "description": "Three complementary skills for a static quiz website: Lecture Analyzer extracts source-grounded topics and objectives; Quiz Master generates draft BankQuestion v2 items; Question Validator independently reviews each answer, option explanation, and citation before approval.",
+    "version": "1.1.0",
+    "current_release_id": "pluginrel_6ae15df891d081919125d9d329639a20",
+    "scope": "WORKSPACE",
+    "discoverability": "PRIVATE",
+    "workspace_id": "73addf6d-14af-4dc0-a5ad-8d5c30c8602b",
+    "source_path": "plugins/quiz-master",
+    "history_path": "history/quiz-master"
+  },
+  {
+    "plugin_id": "Plugin_39a6717c6ac48191b1581e423838e2e4",
+    "name": "adaptive-question-bank",
+    "description": "Formal fixed assessments, optional adaptive practice, and mastery evidence export.",
+    "version": "2.0.0",
+    "current_release_id": "pluginrel_6adf6abebcd48191add23e46cadc2ae3",
+    "scope": "WORKSPACE",
+    "discoverability": "PRIVATE",
+    "workspace_id": "73addf6d-14af-4dc0-a5ad-8d5c30c8602b",
+    "source_path": "plugins/adaptive-question-bank",
+    "history_path": "history/adaptive-question-bank"
+  },
+  {
+    "plugin_id": "Plugin_5a240b861520819183297712e07e20db",
+    "name": "learn-tutor-plugin",
+    "description": "Adaptive learning, review, and independent project assessment.",
+    "version": "0.6.0",
+    "current_release_id": "pluginrel_6ae19f2dedec819187b85f56bacb6427",
+    "scope": "WORKSPACE",
+    "discoverability": "PRIVATE",
+    "workspace_id": "73addf6d-14af-4dc0-a5ad-8d5c30c8602b",
+    "source_path": "plugins/learn-tutor-plugin",
+    "history_path": "history/learn-tutor-plugin"
+  },
+  {
+    "plugin_id": "Plugin_4a01d1cbc8ac819182cabeea49635fe8",
+    "name": "update-it",
+    "description": "Manage topic mastery, evidence logs and Google Sheets synchronization with strict formal assessment gates.",
+    "version": "1.0.0",
+    "current_release_id": "pluginrel_6adf6a64408c81919ae03c26c65f54a9",
+    "scope": "WORKSPACE",
+    "discoverability": "PRIVATE",
+    "workspace_id": "73addf6d-14af-4dc0-a5ad-8d5c30c8602b",
+    "source_path": "plugins/update-it",
+    "history_path": "history/update-it"
+  },
+  {
+    "plugin_id": "Plugin_b1923e088e908191ba64cea863b9f81b",
+    "name": "analyze-it",
+    "description": "Extract and review lecture topics, objectives and source pages before approved synchronization.",
+    "version": "1.0.0",
+    "current_release_id": "pluginrel_6adf6af0a39481919317a4779df671e2",
+    "scope": "WORKSPACE",
+    "discoverability": "PRIVATE",
+    "workspace_id": "73addf6d-14af-4dc0-a5ad-8d5c30c8602b",
+    "source_path": "plugins/analyze-it",
+    "history_path": "history/analyze-it"
+  },
+  {
+    "plugin_id": "Plugin_b33713181d308191b8c7e501d16f1edf",
+    "name": "universal-explorer",
+    "description": "Explore unfamiliar concepts, ideas, techniques, apps, products, technologies, and proposals through structured critical questioning.",
+    "version": "1.0.1",
+    "current_release_id": "pluginrel_6adeedf001988191a6a919f922262a8b",
+    "scope": "WORKSPACE",
+    "discoverability": "PRIVATE",
+    "workspace_id": "73addf6d-14af-4dc0-a5ad-8d5c30c8602b",
+    "source_path": "plugins/universal-explorer",
+    "history_path": "history/universal-explorer"
+  }
+]

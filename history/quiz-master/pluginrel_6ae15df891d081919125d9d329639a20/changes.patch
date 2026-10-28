@@ -1,0 +1,116 @@
+--- previous/.codex-plugin/plugin.json
++++ 1.1.0/.codex-plugin/plugin.json
+@@ -1,18 +1,17 @@
+ {
++  "name": "quiz-master",
++  "version": "1.1.0",
++  "description": "Three complementary skills for a static quiz website: Lecture Analyzer extracts source-grounded topics and objectives; Quiz Master generates draft BankQuestion v2 items; Question Validator independently reviews each answer, option explanation, and citation before approval.",
++  "interface": {
++    "displayName": "Quiz Master",
++    "shortDescription": "Analyze lectures, generate questions, independently validate answers.",
++    "longDescription": "A three-skill question production toolkit for static HTML quiz applications. No server or education-level attribute required.",
++    "category": "Education",
++    "capabilities": [],
++    "developerName": "QIMIN ZHU"
++  },
+   "author": {
+-    "email": "qimin.zhu@student.mahidol.ac.th",
+-    "name": "QIMIN ZHU"
+-  },
+-  "description": "Generate curated, source-grounded question banks for a static HTML quiz app from an approved lecture topic catalog or supplied educational material. Use when asked to create, revise, export, or blueprint quiz questions with answer keys, option-specific explanations, and validation-ready metadata. Does not administer student sessions or claim independent validation.",
+-  "interface": {
+-    "capabilities": [],
+-    "category": "Other",
+-    "defaultPrompt": null,
+-    "developerName": "QIMIN ZHU",
+-    "displayName": "quiz-master",
+-    "longDescription": "Generate curated, source-grounded question banks for a static HTML quiz app from an approved lecture topic catalog or supplied educational material. Use when asked to create, revise, export, or blueprint quiz questions with answer keys, option-specific explanations, and validation-ready metadata. Does not administer student sessions or claim independent validation.",
+-    "shortDescription": "Generate curated, source-grounded question banks for a static HTML quiz app from an approved lecture topic catalog or supplied educational material. Use when asked to create, revise, export, or blueprint quiz questions with answer keys, option-specific explanations, and validation-ready metadata. Does not administer student sessions or claim independent validation."
+-  },
+-  "name": "quiz-master",
+-  "version": "1.0.0"
++    "name": "QIMIN ZHU",
++    "email": "qimin.zhu@student.mahidol.ac.th"
++  }
+ }--- previous/skills/lecture-analyzer/SKILL.md
++++ 1.1.0/skills/lecture-analyzer/SKILL.md
+@@ -0,0 +1,19 @@
++---
++name: lecture-analyzer
++description: Analyze user-uploaded lecture PDFs, slides, or notes into a source-grounded catalog of subjects, lectures, topics, and measurable learning objectives for Quiz Master. Use when asked to extract topics, organize lecture material, or prepare a question blueprint.
++---
++# Lecture Analyzer
++
++## Role
++Read the user's actual uploaded materials and produce a topic catalog, not questions. Preserve lecture terminology, distinguish source facts from inferred objectives, and never fabricate pages or claims. No visuals in v1; diagrams in sources must still be inspected and described if material.
++
++## Procedure
++1. Identify each source file, its version if available, and page/slide numbers. Inspect diagrams, tables and figures, not only extracted text. State unreadable or missing sections.
++2. Extract a subject > lecture > topic > learning objective hierarchy. Group near-duplicates, retain meaningful subtopics, and avoid overfragmenting slides.
++3. Write assessable objectives with observable verbs. Record evidence references for each objective, and distinguish explicit objectives from inferred objectives.
++4. Note prerequisite links only when supported or label them as inferred. Flag contradictions or ambiguous source material rather than silently correcting it.
++5. Export JSON using `references/topic-contract.md`. Mark the catalog `draft` until reviewed; do not claim it is approved automatically.
++6. Hand the catalog and the original source to Quiz Master; source citations must remain available for Question Validator.
++
++## Boundaries
++Do not generate questions or answer keys. Do not add EducationLevel or levels. Do not require a database, external API, or backend. Do not infer absent material. Preserve 1-based page numbers.
+--- previous/skills/lecture-analyzer/agents/openai.yaml
++++ 1.1.0/skills/lecture-analyzer/agents/openai.yaml
+@@ -0,0 +1,3 @@
++interface:
++  display_name: "Lecture Analyzer"
++  short_description: "Extract source-grounded topics and learning objectives"
+--- previous/skills/lecture-analyzer/references/topic-contract.md
++++ 1.1.0/skills/lecture-analyzer/references/topic-contract.md
+@@ -0,0 +1,13 @@
++# Topic Catalog contract
++
++Produce JSON with:
++- `catalogId`: stable identifier; `status`: `draft` or `reviewed`.
++- `subject`: source-supported subject name.
++- `lectures`: array of `{lectureId, title, sourceFiles, topics}`.
++- `sourceFiles`: array of `{file, version?}` where version is a hash or provided revision if known.
++- `topics`: array of `{topicId, name, summary, objectives, sourceRefs, prerequisites?}`.
++- `objectives`: array of `{objectiveId, statement, cognitiveTargets, sourceRefs, origin}` where origin is `explicit` or `inferred`.
++- `sourceRefs`: array of `{file, page?}` with actual 1-based page numbers.
++- `cognitiveTargets`: values from Remember, Understand, Apply, Analyze, Evaluate, Create; these are intended cognitive operations, not estimated difficulty.
++
++Ensure unique IDs and real source references. Mark unsupported inferences for review. Quiz Master maps each BankQuestion `objectiveId` to a catalog objective. Keep source text and files available for validation.
+--- previous/skills/question-validator/SKILL.md
++++ 1.1.0/skills/question-validator/SKILL.md
+@@ -0,0 +1,21 @@
++---
++name: question-validator
++description: Independently audit draft quiz questions generated by Quiz Master against uploaded lecture material and the topic catalog. Use when asked to validate answer keys, every option explanation, distractors, source citations, objective alignment, or approve questions for a static quiz bank.
++---
++# Question Validator
++
++## Role
++Review every question, every answer option, and each option-specific explanation. The validator must not trust Quiz Master's answer key. Return structured findings and approve only supported, unambiguous, correctly keyed question versions. No visuals in v1.
++
++## Procedure
++1. Obtain the complete draft BankQuestion v2 array, topic catalog when available, and original source material. If the original material cannot be accessed, mark source-grounding checks `unverified` and withhold approval.
++2. Run or replicate deterministic schema checks from Quiz Master's `scripts/check_bank.py`: required fields, type rules, unique IDs, zero-based indexes, unique indexes, explanations aligned to answers, and no `levels` field.
++3. For each question, hide the supplied `correct`, `explanation`, and `optionExplanations` while independently solving the exact prompt. Establish the complete valid answer set. Check each answer against the prompt's full assumptions.
++4. Compare independent results with `correct`. Check each option's explanation separately for truth, relevance, and whether it accurately justifies or refutes that specific choice. Inspect the overall explanation.
++5. Verify topic/objective match and every source reference against the actual uploaded source, including diagrams and tables where necessary. Do not invent page references. Flag external facts or unsupported inference.
++6. Check ambiguity, near-duplicate options, accidental answer cues, plausible distractors, cognitive level and estimated difficulty. For `multiple`, ensure the prompt explicitly requests all correct options.
++7. Emit a report per `references/validation-contract.md`. Critical failures (wrong key, ambiguous prompt, invalid option explanation, missing required source evidence, invalid schema) prevent approval. Do not auto-fix silently.
++8. For approved questions, return a new approved copy with its exact content hash and version; a subsequent edit invalidates approval. For revisions, give precise issues to Quiz Master and require a fresh validation pass. Escalate unresolved or subjective issues to human review.
++
++## Independence and limitations
++Separate model passes reduce but do not eliminate correlated errors. Do not claim independent tool/model execution unless it actually occurred. Never approve on a score alone. Do not require a backend or claim persistent storage or publication unless a write is confirmed.
+--- previous/skills/question-validator/agents/openai.yaml
++++ 1.1.0/skills/question-validator/agents/openai.yaml
+@@ -0,0 +1,3 @@
++interface:
++  display_name: "Question Validator"
++  short_description: "Independently verify quiz questions and explanations"
+--- previous/skills/question-validator/references/validation-contract.md
++++ 1.1.0/skills/question-validator/references/validation-contract.md
+@@ -0,0 +1,5 @@
++# Validation report contract
++
++Return JSON `{questionId, questionVersion, contentHash?, checks, issues, decision}` per item. `checks` has `schema`, `independentAnswer`, `optionExplanations`, `overallExplanation`, `sourceGrounding`, `objectiveAlignment`, `ambiguity`, `distractors`, `difficulty`, `cognitiveLevel`; each is `pass`, `fail`, or `unverified`. `issues` is an array of `{severity, field, finding, evidence?, proposedFix?}`. `decision` is `approved`, `revision_required`, or `rejected`.
++
++Only approve when all critical checks pass and evidence is available. The validated content hash must cover the exact question payload, including prompt, answer ordering, correct indexes, explanations, references and version. Store reports separately from published BankQuestion JSON. Never assert an item was approved if the independent review was not actually performed.
