@@ -1,19 +1,18 @@
 {
   "interface": {
     "displayName": "Quiz me",
-    "shortDescription": "Adaptive technical practice",
+    "shortDescription": "Formal fixed assessments, optional adaptive practi",
     "category": "Other",
-    "longDescription": "Adaptive technical tutor with exam modes, layered questions and reasoning-based post-error diagnosis.",
-    "developerName": "Skill Developer",
+    "longDescription": "Formal fixed assessments, optional adaptive practice, and mastery evidence export.",
+    "developerName": "Learning System",
     "defaultPrompt": null,
     "capabilities": []
   },
   "name": "adaptive-question-bank",
-  "version": "1.5.0",
-  "description": "Adaptive technical tutor with exam modes, layered questions and reasoning-based post-error diagnosis.",
+  "version": "2.0.0",
+  "description": "Formal fixed assessments, optional adaptive practice, and mastery evidence export.",
   "author": {
-    "name": "Skill Developer",
-    "email": "developer@example.com"
+    "name": "Learning System"
   },
   "keywords": [],
   "skills": "./skills"
