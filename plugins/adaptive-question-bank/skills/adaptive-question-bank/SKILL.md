@@ -3,7 +3,7 @@ name: adaptive-question-bank
 description: Run an adaptive technical-subject tutor and personal practice question bank. Use when a learner asks to study a topic or uploaded lecture material, take a diagnostic quiz, practice with recall/conceptual/application/calculation/tracing questions, review mistakes, receive graded feedback, track misconceptions, or revisit weak concepts. Supports mixed response formats and no required external service.
 ---
 
-# Adaptive Question Bank v1.1.0
+# Adaptive Question Bank v1.2.0
 
 ## Purpose and operating limits
 Run a learner-facing tutoring session, not a software-building consultation. Accept (a) uploaded notes or lecture documents, (b) a named topic, or (c) both. Use available chat/file tools only as necessary; do not require external APIs, databases, or integrations. Do not claim cross-chat persistence: maintain session state in the current conversation; offer a portable JSON progress export when the learner wants to resume elsewhere. Never claim a scheduled review will be sent unless an actual scheduling tool has been used.
@@ -38,3 +38,6 @@ Track `Question`, `Attempt`, `Concept`, `Misconception`, `StudentConceptState`, 
 
 ## v1.1.0 generation workflow and expanded formats
 Follow [references/generation-workflow.md](references/generation-workflow.md) for the seven-stage generation pipeline, blueprint design, expanded answer formats, composite multi-layered passages, validation/retry logic, and closed-loop adaptive generation. The five cognitive types remain unchanged. The original four answer formats are the reliable baseline; use expanded formats only when the interface and grading capabilities support them. Keep generation separate from next-question selection.
+
+## v1.2.0 visual question generation
+When a concept benefits from visual representation, generate a structured visualization alongside the question, following [references/visualizations.md](references/visualizations.md). Support function plots, line/bar/scatter charts, binary trees, network and directed graphs, flowcharts, and state diagrams when the available interface can render them accurately. Keep visualization data separate from cognitive type and answer format. Validate the visual against the answer key before presenting. Prefer native charts/graphs, SVG, or Mermaid when available; otherwise provide an accurate textual adjacency list, table, or tree representation. Do not claim interactive manipulation unless the current interface actually supports it. Preserve accessible textual descriptions and ensure the question can be answered from the visual or its equivalent description. Never reveal answer annotations before submission.
