@@ -1,8 +1,8 @@
 {
-  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "adaptive-question-bank",
-  "version": "1.3.0",
-  "description": "Adaptive technical tutor with selectable Learning and Exam Simulation modes, validated mixed-format questions, misconception tracking, and graph/diagram-supported learning.",
+  "version": "1.4.0",
+  "description": "Adaptive technical tutor with selectable learning and exam modes and dependent multi-layered exam simulations.",
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "author": {
     "name": "Skill Developer",
     "email": "developer@example.com"
@@ -13,7 +13,7 @@
         "displayName": "Quiz me",
         "shortDescription": "Adaptive technical practice",
         "category": "Other",
-        "longDescription": "Adaptive technical tutor with selectable Learning and Exam Simulation modes, validated mixed-format questions, misconception tracking, and graph/diagram-supported learning.",
+        "longDescription": "Adaptive technical tutor with selectable learning and exam modes and dependent multi-layered exam simulations.",
         "developerName": "Skill Developer",
         "defaultPrompt": null,
         "capabilities": []
