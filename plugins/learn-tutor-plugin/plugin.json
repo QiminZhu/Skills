@@ -1,15 +1,30 @@
 {
+  "name": "learn-tutor-plugin",
+  "version": "0.3.0",
+  "description": "Adaptive learning, review, and independent project assessment.",
+  "author": {
+    "name": "QIMIN ZHU",
+    "email": "qimin.zhu@student.mahidol.ac.th"
+  },
+  "keywords": [
+    "learning",
+    "review",
+    "spaced-repetition",
+    "tutoring",
+    "project-assessment"
+  ],
+  "skills": "./skills",
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "author": {"email": "qimin.zhu@student.mahidol.ac.th", "name": "QIMIN ZHU"},
-  "description": "Adaptive tutoring with guided practice, independent checks, and optional learning records.",
-  "extensions": {"com.openai": {"interface": {
-    "capabilities": [],
-    "defaultPrompt": "Use the learn-combined skill to help me learn or practice a topic. Ask one question at a time.",
-    "developerName": "QIMIN ZHU",
-    "displayName": "Tutor me",
-    "longDescription": "Learn from supplied materials through adaptive practice, progressive hints, and independent checks. Tracking uses available authorized storage; this plugin does not provide a cloud database or reminders.",
-    "shortDescription": "Practice, understand, review"
-  }}},
-  "keywords": ["learning", "tutoring", "practice", "project-assessment", "code-review"],
-  "name": "learn-tutor-plugin", "version": "0.2.0"
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "capabilities": [],
+        "defaultPrompt": "Use Tutor me in Learning, Review, or Project Mode as appropriate. Ask one question at a time.",
+        "developerName": "QIMIN ZHU",
+        "displayName": "Tutor me",
+        "longDescription": "Learn new lectures, adaptively review prior knowledge with immediate feedback, or assess independent projects. Optional tracking requires authorized storage; no built-in cloud database or reminders.",
+        "shortDescription": "Learn, review, build"
+      }
+    }
+  }
 }
