@@ -1,1 +1,23 @@
-{"name": "learn-tutor-plugin", "version": "0.4.0", "description": "Adaptive learning, review and independent project assessment with evidence handoff.", "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json", "author": {"name": "Learning System"}, "skills": "./skills", "extensions": {"com.openai": {"interface": {"displayName": "Tutor me", "shortDescription": "Adaptive learning, review and independent project ", "category": "Other", "longDescription": "Adaptive learning, review and independent project assessment with evidence handoff.", "developerName": "Learning System", "defaultPrompt": null, "capabilities": []}}}}
+{
+  "name": "learn-tutor-plugin",
+  "version": "0.5.0",
+  "description": "Adaptive learning, review and independent project assessment with evidence handoff.",
+  "author": {
+    "name": "Learning System"
+  },
+  "skills": "./skills",
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Tutor me",
+        "shortDescription": "Adaptive learning, review and independent project ",
+        "category": "Other",
+        "longDescription": "Adaptive learning, review and independent project assessment with evidence handoff.",
+        "developerName": "Learning System",
+        "defaultPrompt": null,
+        "capabilities": []
+      }
+    }
+  }
+}
