@@ -1,0 +1,27 @@
+name: Import preserved plugin history
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: import-plugin-history
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Merge preserved history and tags
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'Anker Zhu'
+          git config user.email 'Booher12138@gmail.com'
+          git bundle verify chatgpt-plugins.bundle
+          git fetch ./chatgpt-plugins.bundle refs/heads/main:refs/heads/preserved-history
+          git fetch ./chatgpt-plugins.bundle 'refs/tags/*:refs/tags/*'
+          git merge --no-edit --allow-unrelated-histories preserved-history
+          git push origin HEAD:main
+          git push origin --tags
