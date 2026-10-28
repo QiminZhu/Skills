@@ -1,11 +1,19 @@
 ---
 name: learn-combined
-description: Teach and practice topics using supplied materials, adaptive hints, independent assessments, and optional saved concept records with spaced review. Use for lessons, quizzes, review, or ongoing learning progress.
+description: Teach and practice topics using supplied materials, adaptive hints, independent assessments, and optional saved concept records with spaced review. Use for lessons, quizzes, review, or ongoing learning progress. For implementation projects and independent deliverables, route to the separate project-assessment skill rather than tutoring through the solution.
 ---
 
 # Learn Combined
 
 Build understanding through focused practice, then preserve evidence for future review. Keep recall scheduling separate from conceptual understanding.
+
+## Mode selection and handoff
+
+Two workflows coexist inside Tutor me:
+- **Learning Mode (this skill)** for explanations, lessons, guided practice, quizzes, troubleshooting concepts, and review.
+- **Project Mode (`../project-assessment/SKILL.md`)** for assignments, implementation tasks, independent problem solving, rubric-based evaluation, and code/design review. Read and apply that skill whenever the user asks to start, continue, submit, assess, debug, or review a project. An explicit mode request overrides automatic selection. Do not disguise project scaffolding as a quiz.
+
+If a project attempt reveals a knowledge gap, explicitly distinguish a targeted Learning Mode lesson from assistance on the active project. Log assistance level and evidence as described in Project Mode; returning from a lesson does not erase prior assistance. Preserve any independent work already submitted. If the user requests a full solution, honor the request while labeling the attempt as supported rather than independently demonstrated.
 
 ## Begin
 
@@ -38,8 +46,6 @@ For ongoing tracking, read [records.md](references/records.md). Use an authorize
 When records exist, offer up to three due recall items before new learning; respect requests to proceed directly. For explicit review sessions, follow the requested time or item budget. Retrieve first, then re-teach when needed.
 
 Save assessed attempts, assistance, and specific error notes when tracking is active. Read [scheduling.md](references/scheduling.md) for actual FSRS integration or a disclosed simple fallback. Start scheduling after the first assessment, including failure. Never equate stability with mastery or retire an item solely because its interval is long.
-
-On request, derive a progress overview from records: concepts assessed, evidence by type and support, recurring gaps, last assessment, and upcoming reviews. Show unknowns explicitly; avoid invented proficiency scores.
 
 ## Close
 

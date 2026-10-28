@@ -9,7 +9,7 @@
     "category": "Other"
   },
   "name": "learn-tutor-plugin",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Adaptive tutoring with guided practice, independent checks, and optional learning records.",
   "author": {
     "name": "QIMIN ZHU",
@@ -18,7 +18,9 @@
   "keywords": [
     "learning",
     "tutoring",
-    "practice"
+    "practice",
+    "project-assessment",
+    "code-review"
   ],
   "skills": "./skills"
 }
