@@ -1,26 +1,19 @@
 {
   "interface": {
-    "capabilities": [],
-    "defaultPrompt": "Use Tutor me in Learning, Review, or Project Mode as appropriate. Ask one question at a time.",
-    "developerName": "QIMIN ZHU",
     "displayName": "Tutor me",
-    "longDescription": "Learn new lectures, adaptively review prior knowledge with immediate feedback, or assess independent projects. Optional tracking requires authorized storage; no built-in cloud database or reminders.",
-    "shortDescription": "Learn, review, build",
-    "category": "Other"
+    "shortDescription": "Adaptive learning, review and independent project ",
+    "category": "Other",
+    "longDescription": "Adaptive learning, review and independent project assessment with evidence handoff.",
+    "developerName": "Learning System",
+    "defaultPrompt": null,
+    "capabilities": []
   },
   "name": "learn-tutor-plugin",
-  "version": "0.3.0",
-  "description": "Adaptive learning, review, and independent project assessment.",
+  "version": "0.4.0",
+  "description": "Adaptive learning, review and independent project assessment with evidence handoff.",
   "author": {
-    "name": "QIMIN ZHU",
-    "email": "qimin.zhu@student.mahidol.ac.th"
+    "name": "Learning System"
   },
-  "keywords": [
-    "learning",
-    "review",
-    "spaced-repetition",
-    "tutoring",
-    "project-assessment"
-  ],
+  "keywords": [],
   "skills": "./skills"
 }
