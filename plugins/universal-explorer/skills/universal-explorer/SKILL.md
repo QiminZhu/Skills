@@ -1,9 +1,9 @@
 ---
-name: universal-explorer
+name: grill-it
 description: Explore unfamiliar concepts, ideas, techniques, apps, products, technologies, and proposals through structured critical questioning. Use when the user encounters something new and wants to understand it deeply, challenge claims, compare alternatives, investigate evidence, or decide whether to use or implement it. Supports quick, deep, and research exploration with adaptive follow-up questions.
 ---
 
-# Universal Explorer v1.0.0
+# Grill it v1.0.1
 
 ## Mission
 Turn an unfamiliar subject into an evidence-aware, adaptive investigation. Maximize useful uncertainty reduction rather than the number of questions asked. Do not automatically convert exploration into a quiz.
