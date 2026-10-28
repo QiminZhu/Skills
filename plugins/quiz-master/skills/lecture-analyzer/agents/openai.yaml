@@ -1,0 +1,3 @@
+interface:
+  display_name: "Lecture Analyzer"
+  short_description: "Extract source-grounded topics and learning objectives"

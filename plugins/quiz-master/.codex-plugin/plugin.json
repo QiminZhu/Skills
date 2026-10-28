@@ -1,18 +1,17 @@
 {
-  "author": {
-    "email": "qimin.zhu@student.mahidol.ac.th",
-    "name": "QIMIN ZHU"
-  },
-  "description": "Generate curated, source-grounded question banks for a static HTML quiz app from an approved lecture topic catalog or supplied educational material. Use when asked to create, revise, export, or blueprint quiz questions with answer keys, option-specific explanations, and validation-ready metadata. Does not administer student sessions or claim independent validation.",
-  "interface": {
-    "capabilities": [],
-    "category": "Other",
-    "defaultPrompt": null,
-    "developerName": "QIMIN ZHU",
-    "displayName": "quiz-master",
-    "longDescription": "Generate curated, source-grounded question banks for a static HTML quiz app from an approved lecture topic catalog or supplied educational material. Use when asked to create, revise, export, or blueprint quiz questions with answer keys, option-specific explanations, and validation-ready metadata. Does not administer student sessions or claim independent validation.",
-    "shortDescription": "Generate curated, source-grounded question banks for a static HTML quiz app from an approved lecture topic catalog or supplied educational material. Use when asked to create, revise, export, or blueprint quiz questions with answer keys, option-specific explanations, and validation-ready metadata. Does not administer student sessions or claim independent validation."
-  },
   "name": "quiz-master",
-  "version": "1.0.0"
+  "version": "1.1.0",
+  "description": "Three complementary skills for a static quiz website: Lecture Analyzer extracts source-grounded topics and objectives; Quiz Master generates draft BankQuestion v2 items; Question Validator independently reviews each answer, option explanation, and citation before approval.",
+  "interface": {
+    "displayName": "Quiz Master",
+    "shortDescription": "Analyze lectures, generate questions, independently validate answers.",
+    "longDescription": "A three-skill question production toolkit for static HTML quiz applications. No server or education-level attribute required.",
+    "category": "Education",
+    "capabilities": [],
+    "developerName": "QIMIN ZHU"
+  },
+  "author": {
+    "name": "QIMIN ZHU",
+    "email": "qimin.zhu@student.mahidol.ac.th"
+  }
 }
