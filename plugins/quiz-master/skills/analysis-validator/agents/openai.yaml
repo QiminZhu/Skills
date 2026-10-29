@@ -1,0 +1,3 @@
+interface:
+  display_name: "Analysis Validator"
+  short_description: "Audit lecture analysis for completeness and consistency."

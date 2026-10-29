@@ -1,5 +1,15 @@
 # quiz-master changelog
 
+## 1.3.0 — synced 2026-10-29
+
+Installed release: `pluginrel_6ae34181d1a88191a5936519826865c9`.
+
+- Synchronized all 20 current plugin source files from the installed release.
+- Added independent analysis validation and source-backed objective coverage checks.
+- Preserved six question formats and added workload and matching-pair limits.
+- Validation: all 24 coverage regression tests passed.
+- Intermediate release history was not imported in this sync.
+
 ## 1.1.0 — 2026-10-28T02:29:12.569794Z
 
 Release ID: `pluginrel_6ae15df891d081919125d9d329639a20`. Current at import: true.

@@ -1,0 +1,23 @@
+{
+  "name": "quiz-master",
+  "version": "1.3.0",
+  "description": "Four complementary skills: analyze lecture concepts, independently audit analysis, generate six-format quiz banks with workload limits, and validate questions plus source-backed objective coverage.",
+  "author": {
+    "name": "QIMIN ZHU",
+    "email": "qimin.zhu@student.mahidol.ac.th"
+  },
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Quiz Master",
+        "shortDescription": "Analyze lectures, generate questions, independently validate answers.",
+        "longDescription": "A four-skill question production toolkit: source analysis, independent analysis audit, six-format generation, and question/coverage validation for static quiz applications.",
+        "category": "Education",
+        "capabilities": [],
+        "developerName": "QIMIN ZHU",
+        "defaultPrompt": null
+      }
+    }
+  }
+}

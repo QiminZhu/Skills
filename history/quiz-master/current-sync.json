@@ -1,0 +1,29 @@
+{
+  "version": "1.3.0",
+  "release_id": "pluginrel_6ae34181d1a88191a5936519826865c9",
+  "synced_on": "2026-10-29",
+  "status": "read back from installed plugin; synced to GitHub",
+  "validation": "24 coverage regression tests passed",
+  "sha256": {
+    ".codex-plugin/plugin.json": "8c3d95b7ff3e9c036265c66bd8f423305ddcf1c1a7829819963ad92025b0cf87",
+    "plugin.json": "b1cd3e03ab9c24602c2270814a103635bda137f3fad9882cc87cdbac37b0544d",
+    "skills/analysis-validator/SKILL.md": "f5765fae6469c24f326da4cdfefe1a0a0e0efdc757371005bb87bf42e90ca299",
+    "skills/analysis-validator/agents/openai.yaml": "1a9c5e301646ad188a02e8c3cc342a0e4d2f37eda7b22ad18f162462cf67c2de",
+    "skills/analysis-validator/references/analysis-contract.md": "0d108f5e3cf40622a2ccc280d711165e3609982a05d9a180dc0e46c7af141c60",
+    "skills/lecture-analyzer/SKILL.md": "eb575b53e5fd80105fc98f1aed1ebac47907b2664c6e3de035cf0cd9741d616f",
+    "skills/lecture-analyzer/agents/openai.yaml": "210379d55291c33fb281b3ac5832a56a4aab62c4ebc590d4eb40a5ac3b8fc7f2",
+    "skills/lecture-analyzer/references/topic-contract.md": "de097c0af8bd00493068efc8473045dc12140a676ea891af4824cd4c70e4c70f",
+    "skills/question-validator/SKILL.md": "ba65942676aac54dcdc159404945488b0e7f1d3480a3048f179c48222a12ac46",
+    "skills/question-validator/agents/openai.yaml": "36096cf57f669c6780cf2da5927cf0feed3699afaea782123fe2b2af97fb1669",
+    "skills/question-validator/references/validation-contract.md": "170ab1b07f5f5d3f2a9ad9aad7fe20c7d9bda86d4dee3a94d8e55f61d716a945",
+    "skills/quiz-master/SKILL.md": "6953259399284904fe7c7c54036212bebf29f9ef17dbe3b3b6bb2bb818516b96",
+    "skills/quiz-master/agents/openai.yaml": "0146ff74bba61788a41fb590ff01a032957e9d48cc6c244ed5c12ca0a0b8fb20",
+    "skills/quiz-master/references/blueprints.md": "4abd18eeab7e9a8ddb5a5398c3a2b40a29725571a43e2995f3652621b96dafc4",
+    "skills/quiz-master/references/coverage-contract.md": "9bf469edc3c6ee143b4c943c3e5507f8c171459d6aacbf43555e9662e496f5ff",
+    "skills/quiz-master/references/quality-checklist.md": "a8141ae0d13411e68c7c6d2c1eda7af41db18e7f2ace0e1c73cb291a10b83d21",
+    "skills/quiz-master/references/question-contract.md": "20e9b1ad96be707d80d94239b4db016ed4699583f6f121225f80e9cfdd996f9c",
+    "skills/quiz-master/scripts/check_bank.py": "954e33abe5dd8132d1c7fb65977ffd6bac837a243379fa6c52984fb63ba18465",
+    "skills/quiz-master/scripts/check_coverage.py": "a2eb23bd71687007c7c30e51793f22423ce53384fdf6fd6ed4dcf1e84086881d",
+    "tests/test_coverage.py": "6ad3e8f72583416cd4854fdfc51af20c186b9959b4b20a1def24bac04f36db50"
+  }
+}

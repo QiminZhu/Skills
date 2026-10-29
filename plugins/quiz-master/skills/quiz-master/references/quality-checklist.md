@@ -13,3 +13,7 @@ For each final draft:
 10. Are the question ID, schema, version, and draft status valid?
 
 This self-check is not a substitute for independent Question Validator review.
+
+For matching check every pair and reuse policy. For ordering check the complete permutation and unique sequence. For blanks check marker coverage, accepted variants, normalization, numeric tolerance, units, and rounding. Check the applicable explanation array or per-blank explanation rather than requiring option explanations for non-choice types.
+
+Before handing off, check small coherent tasks, workload caps, plausible misconceptions as distractors, no mnemonic/lexical answer leaks, context-complete field interpretations, atomic objective-part evidence, and faithful source references. Fix inflated cognitive labels. Independent validation of the exact final question and mapping is required before any adequate-coverage credit. A report of 100% requires every required objective and every source-analysis gate; it is not a guarantee of mastery.

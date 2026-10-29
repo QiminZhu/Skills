@@ -14,9 +14,9 @@
   {
     "plugin_id": "Plugin_35dd0aa3375c8191958fbe4fdea3ec8a",
     "name": "quiz-master",
-    "description": "Three complementary skills for a static quiz website: Lecture Analyzer extracts source-grounded topics and objectives; Quiz Master generates draft BankQuestion v2 items; Question Validator independently reviews each answer, option explanation, and citation before approval.",
-    "version": "1.1.0",
-    "current_release_id": "pluginrel_6ae15df891d081919125d9d329639a20",
+    "description": "Four complementary skills: analyze lecture concepts, independently audit analysis, generate six-format quiz banks with workload limits, and validate questions plus source-backed objective coverage.",
+    "version": "1.3.0",
+    "current_release_id": "pluginrel_6ae34181d1a88191a5936519826865c9",
     "scope": "WORKSPACE",
     "discoverability": "PRIVATE",
     "workspace_id": "73addf6d-14af-4dc0-a5ad-8d5c30c8602b",
