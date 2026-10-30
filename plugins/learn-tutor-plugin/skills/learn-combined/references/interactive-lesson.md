@@ -1,41 +1,66 @@
-# Teach, Practice, Next
+# Teach, Practice, Check, Next
 
-Use this flow for new teaching unless the learner requests a different format. Keep one concept and one practice item per step. Honor direct explanation or solution requests.
+Use this workflow for new learning unless the learner requests another format. Keep the teaching focus narrow, provide original source visuals, grade objective practice locally where supported, and keep Next separate from submission.
 
-## Teach and visual sources
+## Teach from the source
 
-Use the original readable lecture slides as the primary source. Cite slide/page numbers and retain the lecture's terminology. When a graph, diagram, or image materially helps explain a knowledge point, inspect the relevant slide visual and reuse it first. Show the image or an accurate crop when the host supports it; a citation alone is not displaying the visual. Preserve axes, units, labels, legends and context. Never claim an unseen diagram was inspected.
+- Use original readable lecture slides as the primary source. Reuse the relevant slide image or crop; do not redraw or regenerate an existing lecture diagram.
+- Cite slide/page locations and preserve the lecture's terminology, notation, values, units, labels, and conventions.
+- If no suitable source visual exists, provide a clear text explanation or seek a reliable supplementary visual. Label external material as supplementary.
+- Never claim to have inspected or displayed an image that was not actually available.
 
-If no suitable slide visual exists, search online for an accurate visual from a reliable primary or educational source, inspect it, and link the source. Explain how it supports the concept and label it as supplementary. Explain differences in assumptions, notation, values or conventions. Do not substitute an attractive but misleading visual, invent measurements, or silently imply an online image came from the lecture. If search or image display is unavailable, say so and provide the best supported explanation.
+## Practice and answer-key validation
 
-## Validate before presenting practice
+Before rendering any locally graded item:
 
-Local grading compares the response with a prepared key; it cannot establish that the key is true. Before rendering:
+1. Define the objective and source locator. State any background assumption separately.
+2. Solve the literal question independently. Recalculate values, units, sequence-number wraparound, and window boundaries.
+3. Audit every option and explanation. Single-select items must have exactly one defensible answer under the stated assumptions. Clarify cumulative versus individual ACK conventions and inclusive/exclusive window boundaries.
+4. Use deterministic local grading only for objective tasks. Use conversational evaluation for free-response reasoning unless all acceptable forms and tolerances are explicitly defined.
+5. Treat local grading as comparison against a prepared answer key, not proof that the key is correct. Offer a grade challenge and recheck the source and alternatives if challenged.
+6. Keep answer keys and feedback hidden until submission. Client-side keys are not secure exam secrets.
 
-1. Define the observable objective and a source-grounded answer criterion with a slide/page locator. Identify any necessary background knowledge separately.
-2. Solve the literal question independently of the intended answer. For calculations or code, run appropriate checks where tools are available. Check units, rounding, boundary cases and the displayed values.
-3. Check every option and its explanation. Require exactly one defensible answer for single-select questions; revise ambiguous, duplicated or unverifiable items. Do not mark an item validated just because a key exists.
-4. Use deterministic local grading only for appropriate objective tasks. For free responses, include all defensible accepted forms and explicitly stated tolerances, or use conversational model review. Do not represent keyword matching as validation of reasoning.
-5. Keep the key, verdict and explanations hidden from the visible interface until submission. Client-side keys are not secure exam secrets. Offer a non-revealing hint only on request and preserve the distinction between supported and independent attempts.
+## Individual checkpoint pattern
 
-Use the bundled `scripts/render_practice.py` to create a self-contained fragment from validated single-select question JSON when an HTML interaction surface is available. Read the script's help and supply the real item, source locator, feedback for each choice, source-based validation evidence, and a concrete continuation prompt. The script checks structure, not factual correctness. It does not replace steps 1–4.
+The default lesson cycle is:
 
-## Practice locally
+1. Teach one concept with an original slide visual where relevant.
+2. Present one focused practice question.
+3. The learner selects or enters an answer and presses **Check Answer**.
+4. Show correct/incorrect status and an explanation locally, without requiring a model turn.
+5. Offer a separate **Next** button to request the next lesson response. Do not automatically advance after a correct answer.
 
-Render the fragment through the host's supported interactive HTML surface, applying that surface's skill when available. A saved HTML file alone is not an inline widget. If only a supported native quiz widget is available, use it only when its task restrictions fit; do not force a subjective question into it. If no interactive renderer exists, explain the limitation and ask the question conversationally.
+Allow retry when it is useful. The Next button remains separate from answer submission and may appear after either a correct or incorrect result.
 
-Submission shows the result and option-specific explanation inside the component without a model call, network request, external write, or automatic lesson advance. Allow a grade challenge; it requests a source-based recheck through a new message. Recheck the source, calculations, alternatives and criterion before confirming or correcting a challenged grade. Correct erroneous feedback openly.
+## Multi-question assessment pattern
 
-## Separate Next button
+For a formal or applied assessment, a multi-question widget may be used instead of one question per turn. It should provide:
 
-Keep Next separate from answer submission. On click, request the next lesson response through a supported host bridge and pass only the current objective, source position, question ID, submitted answer and result needed for continuation. Do not send a message on load, option selection, submission or grading. Prevent duplicate clicks while a message is pending, and permit retry after errors. Do not automatically advance after a correct answer.
+- A question counter and progress indicator.
+- One submission and immediate local feedback per question.
+- A final score and concise review of incorrect answers.
+- A retake action when appropriate.
+- A separate Next action after the final results.
 
-The bundled component feature-detects `window.openai.sendFollowUpMessage({prompt})`, documented at https://developers.openai.com/plugins/reference (checked 2026-10-28). Availability in a ChatGPT app does not prove availability in every HTML surface. Do not add undocumented postMessage protocols or call external tools as a substitute. If the bridge is missing or fails, show the continuation text for the learner to send manually; never claim it was sent.
+Keep assessment length and coverage explicit. Do not imply that a short sample verifies every lecture objective.
 
-Continue from conversation context after Next. If practice state has not reached the model, ask only for what is necessary or accept an explicit skip; never infer local clicks, grades, or mastery from the displayed component alone.
+## Original visual policy
 
-## Session-only operation and verification
+When an uploaded lecture includes a relevant readable diagram, reuse it directly. Preserve the original diagram context and cite its slide/page. Do not substitute a newly generated generic image. Use supplementary diagrams only when the source has no suitable visual, and label them clearly.
 
-Keep this flow session-only. Do not read or write learner records, invoke mastery trackers, synchronize progress, export assessment evidence, create review schedules or send results to another plugin or repository. Do not use browser storage, analytics, telemetry, or persistent widget state for practice. This restriction overrides optional record/scheduling instructions during this flow and carries across mode transitions unless the learner explicitly changes it. GitHub versioning stores plugin source only.
+## Rendering and host limitations
 
-Keep source coverage and assistance context only as needed in the conversation. Do not promise control over the platform's normal chat retention. Before claiming that the UI works in a particular host, verify local submission, hidden-before-submit feedback, separate message handoff, duplicate prevention and missing-bridge fallback there. Report implementation checks separately from live host verification.
+Use the bundled `scripts/render_practice.py` to create a self-contained practice fragment when a supported HTML interaction surface is available. A saved HTML file is not itself an inline widget. If only native controls are available, use them when appropriate; otherwise ask the question conversationally.
+
+The component should feature-detect `window.openai.sendFollowUpMessage({prompt})` for Next. Do not invent undocumented message bridges or substitute a tool call. If the bridge is absent or fails, show the continuation prompt for the learner to send manually. Prevent duplicate clicks while pending and permit retry after failure.
+
+Do not claim host functionality has been verified without testing local submission, feedback visibility, separate Next handoff, duplicate prevention, and missing-bridge fallback in that host.
+
+## Session-only behavior
+
+- Do not use a mastery tracker, persistent learner records, progress synchronization, external recording, review scheduling, or cross-plugin handoffs during this workflow.
+- Keep only temporary conversational context required to continue the lesson.
+- Widget state is transient: never infer that local selections, grades, or clicks were received by the model unless explicitly passed through a supported handoff.
+- Do not promise control over the platform's ordinary conversation retention.
+
+This session-only rule carries across Review and Project transitions unless the learner explicitly changes it.
