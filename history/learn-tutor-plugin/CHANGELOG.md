@@ -1,5 +1,19 @@
 # learn-tutor-plugin changelog
 
+## 0.8.0 — 2026-10-30
+
+- Make the default Learning Mode sequence explicit: Teach → Practice → Check Answer → Next.
+- Require original uploaded lecture visuals when available; do not generate or redraw replacement diagrams for source visuals.
+- Specify immediate local correctness feedback and explanation for objective practice, with a separate Next action that does not auto-advance.
+- Add a defined multi-question assessment experience: question count, per-item feedback, final score, incorrect-answer review, retake and separate Next.
+- Tighten answer-key QA for distractor uniqueness, cumulative versus individual ACK semantics, sequence-number wraparound, and window boundaries.
+- Keep learning session-only with no mastery tracker, persistent records, progress sync, external recording, review scheduling or cross-plugin handoffs.
+- Preserve existing project/review skills, renderer and plugin identity.
+- Validation: both manifests parsed; overlay archive inventory checked; plugin update succeeded; all four changed plugin paths read back at v0.8.0. Live host rendering and message handoff were not verified.
+- Publication: backend release ID: `pluginrel_6ae4ba02ad40819192044207ba1e0ad2`; overlay archive SHA-256: `92c59cb42667d26888f2eb887fce43b240f2dfc5fe00dea31b35770c31605317`.
+
+# learn-tutor-plugin changelog
+
 ## 0.7.0 — 2026-10-28
 
 - Add slide-first visual reuse and reliable online visual fallback.

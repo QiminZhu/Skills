@@ -3,14 +3,14 @@
     "displayName": "Tutor me",
     "shortDescription": "Learning, review, and independent projects",
     "category": "Other",
-    "longDescription": "Adaptive learning, review, and independent project assessment.",
+    "longDescription": "Source-grounded learning with original slide visuals, locally graded practice, and session-only lesson flow.",
     "developerName": "Learning System",
     "defaultPrompt": null,
     "capabilities": []
   },
   "name": "learn-tutor-plugin",
-  "version": "0.7.0",
-  "description": "Adaptive learning, review, and independent project assessment.",
+  "version": "0.8.0",
+  "description": "Source-grounded learning with original slide visuals, locally graded practice, and session-only lesson flow.",
   "author": {
     "name": "Learning System"
   },
