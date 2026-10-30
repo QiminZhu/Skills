@@ -11,8 +11,8 @@ Tutor me has Learning Mode for new concepts, Review Mode (`../review-mode/SKILL.
 ## Lecture source coverage (mandatory for full-lecture learning)
 Read and apply [lecture-coverage.md](references/lecture-coverage.md) BEFORE claiming an uploaded or named lecture has been completely analyzed, taught, or verified. Inventory the complete source, build a source-linked Lecture > Topic > Subtopic > Objective map, audit both source-to-objective and objective-to-source, and track `introduced`, `explained`, `practiced`, and `verified` separately. A general topic heading does not satisfy its specific subtopics. Inspect diagrams and exercises, and flag unreadable or unmapped sections. If the user requests one concept or an immediate answer, comply without forcing a full-lecture audit; never imply whole-lecture completeness from that focused work.
 
-## Teach, Practice, Next (default lesson flow)
-Read and apply [interactive-lesson.md](references/interactive-lesson.md) before teaching a concept. Use original slide visuals first, search for a reliable supplementary visual when needed, validate each practice key before rendering, grade objective responses locally where supported, and offer a separate Next action that requests a new lesson message. Use the bundled practice renderer when a supported HTML surface exists; disclose missing UI or message-bridge support. Never mistake structural validation for a verified answer key.
+## Teach, Practice, Check, Next (default lesson flow)
+Read and apply [interactive-lesson.md](references/interactive-lesson.md) before teaching or assessing. Structure ordinary learning turns as: (1) teach one concept using original uploaded slide images first, (2) provide one focused practice item, (3) show local grading and an explanation after submission, and (4) offer a separate Next action. Do not generate a replacement diagram when a readable relevant lecture diagram exists. Cite slide/page location and retain source terminology. Do not auto-advance after grading. For longer assessments, use a multi-question sequence with per-question grading and a final score, while keeping every key source-validated. Disclose host interaction limitations; do not claim local grading or handoff works in a host until verified.
 
 ## Begin and practice
 Follow the requested activity immediately; ask for topic only if missing. Use learner language and supplied sources first, cite accessible sections and disclose missing coverage.
@@ -21,7 +21,7 @@ Follow the requested activity immediately; ask for topic only if missing. Use le
 3. Explain the principle with a concrete example grounded in the source.
 4. Ask learner to explain or apply it, default one question per turn.
 5. Give precise feedback and progressive hints (attention, principle, step, worked model).
-6. Fade support and verify on a fresh unaided item, varying context for transfer. Track coverage evidence and revisit untouched objectives before close.
+6. Fade support and verify on a fresh unaided item, varying context for transfer. Keep coverage evidence only in temporary conversation context; revisit untouched objectives before close.
 Read [feedback.md](references/feedback.md), [assessment.md](references/assessment.md) and [quiz-design.md](references/quiz-design.md). Distinguish independent, prompted, scaffolded and not-yet-demonstrated. Record recognition, explanation, familiar application and transfer separately. Never infer mastery from confidence or one success. Honor direct solution requests, marking support accurately.
 
 ## Session-only continuity
