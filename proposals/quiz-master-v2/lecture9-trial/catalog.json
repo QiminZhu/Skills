@@ -1,0 +1,1562 @@
+{
+  "catalogId": "ITCS217-L9",
+  "status": "draft",
+  "subject": "ITCS217 Data Communications and Networking",
+  "sourceFiles": [
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "version": "2eb61b8246aad4987e648bf4b71f9597fb67b42e60c97a75841f137912e9a597",
+      "pageCount": 59
+    }
+  ],
+  "lectures": [
+    {
+      "lectureId": "L9",
+      "title": "Introduction to Data Link Layer",
+      "topics": [
+        {
+          "topicId": "T1",
+          "name": "Role of the data link layer",
+          "units": [
+            {
+              "unitId": "U01",
+              "kind": "concept",
+              "statement": "Explain that a link joins two adjacent nodes and that links on one path can be of different types (wired, wireless).",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "The data link layer delivers data end to end"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 4
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 5
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 44
+                }
+              ]
+            },
+            {
+              "unitId": "U02",
+              "kind": "procedure",
+              "statement": "Trace how a datagram is put in a new frame for each link: the sender frames it, each router removes the frame and builds a new one for the next link.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "Routers forward the original frame unchanged"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 6
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 17
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 18
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 44
+                }
+              ]
+            },
+            {
+              "unitId": "U03",
+              "kind": "distinction",
+              "statement": "Distinguish logical end-to-end communication of upper layers from hop-by-hop delivery at the data link and physical layers.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "Every layer communicates hop by hop"
+              ],
+              "contrasts": [
+                "U01",
+                "U02"
+              ],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 17
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "topicId": "T2",
+          "name": "Problems the data link layer solves",
+          "units": [
+            {
+              "unitId": "U04",
+              "kind": "concept",
+              "statement": "Identify the physical-layer limits (no error repair, inefficient FDM/TDM sharing, no rate adaptation) that the data link layer addresses.",
+              "priority": "supporting",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 7
+                }
+              ]
+            },
+            {
+              "unitId": "U05",
+              "kind": "distinction",
+              "statement": "Distinguish a single-bit error from a burst error and measure burst length from the first to the last corrupted bit.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "Burst length counts only the flipped bits"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 8
+                }
+              ]
+            },
+            {
+              "unitId": "U06",
+              "kind": "distinction",
+              "statement": "Distinguish error detection from error correction (FEC done by the receiver).",
+              "priority": "supporting",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "Detecting an error also fixes it"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 9
+                }
+              ]
+            },
+            {
+              "unitId": "U07",
+              "kind": "concept",
+              "statement": "Explain that flow control stops a sender from overwhelming a receiver, and that frames arriving at a full buffer are dropped.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "Flow control fixes bit errors"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 10
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 11
+                }
+              ]
+            },
+            {
+              "unitId": "U08",
+              "kind": "concept",
+              "statement": "Explain why media access control is needed when stations share a medium without FDM or TDM, and that collisions can occur.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 12
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 14
+                }
+              ]
+            },
+            {
+              "unitId": "U09",
+              "kind": "distinction",
+              "statement": "Distinguish dedicated links (full-duplex switch, star) from shared links (bus, wireless).",
+              "priority": "supporting",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 13
+                }
+              ]
+            },
+            {
+              "unitId": "U39",
+              "kind": "concept",
+              "statement": "Read a collision-timing diagram: on a shared medium a frame is vulnerable to collision for 2 × T_fr (one frame time before and after it starts).",
+              "priority": "supporting",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "A frame can only collide while it is being sent"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 14
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "topicId": "T3",
+          "name": "Sublayers and framing",
+          "units": [
+            {
+              "unitId": "U10",
+              "kind": "fact",
+              "statement": "Assign data link functions to LLC (upper-layer multiplexing) and MAC (framing, addressing, FCS, medium access); error recovery and flow control are optional.",
+              "priority": "supporting",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 15
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 19
+                }
+              ]
+            },
+            {
+              "unitId": "U11",
+              "kind": "concept",
+              "statement": "Explain framing: the header carries control information and link addresses; the trailer carries the FCS for error detection.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "The FCS sits in the frame header"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 16
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 18
+                }
+              ]
+            },
+            {
+              "unitId": "U12",
+              "kind": "fact",
+              "statement": "State that Wireshark normally hides the Ethernet preamble, SFD and FCS.",
+              "priority": "detail",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 18
+                }
+              ]
+            },
+            {
+              "unitId": "U13",
+              "kind": "fact",
+              "statement": "Match example link types to protocols and architectures (Ethernet LLC/SNAP + MAC; PPP and HDLC frame directly).",
+              "priority": "detail",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 19
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "topicId": "T4",
+          "name": "HDLC",
+          "units": [
+            {
+              "unitId": "U14",
+              "kind": "distinction",
+              "statement": "Distinguish the HDLC modes NRM, ARM and ABM by which station may start a transmission.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "In ARM the secondary controls the link"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 20
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 21
+                }
+              ]
+            },
+            {
+              "unitId": "U15",
+              "kind": "procedure",
+              "statement": "Order the basic HDLC frame fields: Flag, Address, Control, Data, FCS, Flag.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 22
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 23
+                }
+              ]
+            },
+            {
+              "unitId": "U16",
+              "kind": "fact",
+              "statement": "State the HDLC field sizes: Flag 8 bits, Address 8 or more bits, Control 8 or 16 bits, FCS 16 or 32 bits.",
+              "priority": "supporting",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 22
+                }
+              ]
+            },
+            {
+              "unitId": "U17",
+              "kind": "concept",
+              "statement": "Explain the role of each HDLC field: Flag delimits, Address names the secondary station, Control carries frame type and sequence data, FCS detects errors.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "The address field holds the sender address"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 22
+                }
+              ]
+            },
+            {
+              "unitId": "U18",
+              "kind": "distinction",
+              "statement": "Distinguish I-, S- and U-frames by purpose and by the first control-field bits (0, 10, 11).",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "S-frames carry user data"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 23
+                }
+              ]
+            },
+            {
+              "unitId": "U19",
+              "kind": "fact",
+              "statement": "Recall the S-frame function codes: RR 00, REJ 01, RNR 10, SREJ 11.",
+              "priority": "supporting",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 23
+                }
+              ]
+            },
+            {
+              "unitId": "U20",
+              "kind": "concept",
+              "statement": "Relate PPP, Cisco HDLC and LAPB to HDLC-style framing, and contrast ATM fixed 53-byte cells.",
+              "priority": "detail",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 24
+                }
+              ]
+            },
+            {
+              "unitId": "U40",
+              "kind": "distinction",
+              "statement": "Distinguish serial links (one bit at a time, point-to-point, e.g. HDLC) from parallel links (several bits at a time, short distances).",
+              "priority": "detail",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 20
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "topicId": "T5",
+          "name": "Addressing and casting",
+          "units": [
+            {
+              "unitId": "U21",
+              "kind": "fact",
+              "statement": "Match the four address types (MAC, IP, port, application-level) to their layer and an example.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "MAC addresses identify hosts across the Internet"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 26
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 30
+                }
+              ]
+            },
+            {
+              "unitId": "U22",
+              "kind": "concept",
+              "statement": "Explain that IP addresses stay the same end to end while link-layer addresses change at every hop.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "Link-layer addresses are end to end like IP addresses"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 27
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 52
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 53
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 54
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 55
+                }
+              ]
+            },
+            {
+              "unitId": "U23",
+              "kind": "distinction",
+              "statement": "Distinguish unicast, anycast, multicast and broadcast; Ethernet supports unicast, multicast and broadcast, while anycast is normally a network-layer function.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "Anycast is an Ethernet address type"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 28
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 29
+                }
+              ]
+            },
+            {
+              "unitId": "U24",
+              "kind": "fact",
+              "statement": "Recognise the broadcast MAC FF:FF:FF:FF:FF:FF and multicast MACs starting 01:00:5E.",
+              "priority": "supporting",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 29
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 51
+                }
+              ]
+            },
+            {
+              "unitId": "U25",
+              "kind": "procedure",
+              "statement": "Find a device's MAC and IP addresses (ipconfig /all, ip link show, ifconfig -a, device settings).",
+              "priority": "detail",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 31
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 32
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 33
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 34
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "topicId": "T6",
+          "name": "DHCP",
+          "units": [
+            {
+              "unitId": "U26",
+              "kind": "concept",
+              "statement": "Explain that DHCP gives a new host its IP address, subnet mask, gateway and DNS settings, and that it developed from BOOTP.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 35
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 37
+                }
+              ]
+            },
+            {
+              "unitId": "U27",
+              "kind": "procedure",
+              "statement": "Order the DHCP exchange: Discover, Offer, Request, Ack.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "The client sends Request before receiving an Offer"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 35
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 36
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 39
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 40
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 41
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 42
+                }
+              ]
+            },
+            {
+              "unitId": "U28",
+              "kind": "fact",
+              "statement": "State which DHCP messages the client broadcasts (Discover, Request) and which the server sent unicast in the lecture capture (Offer, Ack).",
+              "priority": "supporting",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 29
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 36
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 40
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 42
+                }
+              ]
+            },
+            {
+              "unitId": "U29",
+              "kind": "fact",
+              "statement": "Read DHCP captures: the client starts from 0.0.0.0 to 255.255.255.255 and uses UDP port 68; the server uses port 67.",
+              "priority": "supporting",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 39
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 40
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 41
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 42
+                }
+              ]
+            },
+            {
+              "unitId": "U30",
+              "kind": "procedure",
+              "statement": "Trigger and capture a DHCP exchange (ipconfig /release and /renew; dhclient, nmcli, networkctl).",
+              "priority": "detail",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 39
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 43
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "topicId": "T7",
+          "name": "Switches and routers",
+          "units": [
+            {
+              "unitId": "U31",
+              "kind": "procedure",
+              "statement": "Explain how a switch learns which MAC address is on which port and records it in its MAC table.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 45
+                }
+              ]
+            },
+            {
+              "unitId": "U32",
+              "kind": "distinction",
+              "statement": "Distinguish switches (layer 2, MAC, frames, one broadcast domain, forwards unknown destinations out other ports) from routers (layer 3, IP, packets, between networks, drop unknown destinations).",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "A router floods packets with unknown destinations"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 47
+                }
+              ]
+            },
+            {
+              "unitId": "U33",
+              "kind": "concept",
+              "statement": "Read a routing table entry chosen by metric (EIGRP feasible distance, next hop).",
+              "priority": "detail",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 46
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "topicId": "T8",
+          "name": "ARP and RARP",
+          "units": [
+            {
+              "unitId": "U34",
+              "kind": "concept",
+              "statement": "Explain that ARP finds the link-layer address that matches a known IP address on the local link.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "ARP finds an IP address from a MAC address"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 48
+                }
+              ]
+            },
+            {
+              "unitId": "U35",
+              "kind": "distinction",
+              "statement": "Distinguish an ARP request (broadcast, opcode 1, target MAC all zeros) from an ARP reply (unicast, opcode 2).",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "The ARP request is sent to the target MAC"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 49
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 50
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 56
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 57
+                }
+              ]
+            },
+            {
+              "unitId": "U36",
+              "kind": "procedure",
+              "statement": "Trace ARP across networks: the sender resolves its gateway, each router resolves the next hop, and the last router resolves the destination host.",
+              "priority": "core",
+              "prioritySource": "suggested",
+              "misconceptions": [
+                "The sender resolves the destination host MAC directly"
+              ],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 52
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 53
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 54
+                },
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 55
+                }
+              ]
+            },
+            {
+              "unitId": "U37",
+              "kind": "procedure",
+              "statement": "View and clear the ARP cache (arp -a, arp -d, netsh interface ip delete arpcache).",
+              "priority": "detail",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 51
+                }
+              ]
+            },
+            {
+              "unitId": "U38",
+              "kind": "concept",
+              "statement": "Explain that RARP lets a host learn its own IP address from a RARP server using its MAC address (legacy).",
+              "priority": "detail",
+              "prioritySource": "suggested",
+              "misconceptions": [],
+              "contrasts": [],
+              "sourceRefs": [
+                {
+                  "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+                  "page": 58
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pageAccounting": [
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 1,
+      "disposition": "administrative",
+      "reason": "Title slide",
+      "unitIds": [],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 2,
+      "disposition": "administrative",
+      "reason": "Quote of the week",
+      "unitIds": [],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 3,
+      "disposition": "administrative",
+      "reason": "Copyright notice",
+      "unitIds": [],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 4,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U01"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 5,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U01"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 6,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U02"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 7,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U04"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 8,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U05"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 9,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U06"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 10,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U07"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 11,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U07"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 12,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U08"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 13,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U09"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 14,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U08",
+        "U39"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 15,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U10"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 16,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U11"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 17,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U02",
+        "U03"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 18,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U02",
+        "U11",
+        "U12"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 19,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U10",
+        "U13"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 20,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U14",
+        "U40"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 21,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U14"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 22,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U15",
+        "U16",
+        "U17"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 23,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U15",
+        "U18",
+        "U19"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 24,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U20"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 25,
+      "disposition": "administrative",
+      "reason": "Break and exercise prompt",
+      "unitIds": [],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 26,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U21"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 27,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U22"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 28,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U23"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 29,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U23",
+        "U24",
+        "U28"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 30,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U21"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 31,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U25"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 32,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U25"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 33,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U25"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 34,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U25"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 35,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U26",
+        "U27"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 36,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U27",
+        "U28"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 37,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U26"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 38,
+      "disposition": "external_resource",
+      "reason": "Links to an external video and article only; not inspected",
+      "unitIds": [],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 39,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U27",
+        "U29",
+        "U30"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 40,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U27",
+        "U28",
+        "U29"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 41,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U27",
+        "U29"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 42,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U27",
+        "U28",
+        "U29"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 43,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U30"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 44,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U01",
+        "U02"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 45,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U31"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 46,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U33"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 47,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U32"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 48,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U34"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 49,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U35"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 50,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U35"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 51,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U24",
+        "U37"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 52,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U22",
+        "U36"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 53,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U22",
+        "U36"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 54,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U22",
+        "U36"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 55,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U22",
+        "U36"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 56,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U35"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 57,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U35"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 58,
+      "disposition": "included",
+      "reason": "Teaching content",
+      "unitIds": [
+        "U38"
+      ],
+      "inspection": "image and extracted text"
+    },
+    {
+      "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+      "page": 59,
+      "disposition": "administrative",
+      "reason": "Exercise prompt",
+      "unitIds": [],
+      "inspection": "image and extracted text"
+    }
+  ],
+  "sourceIssues": [
+    {
+      "sourceRefs": [
+        {
+          "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+          "page": 7
+        }
+      ],
+      "status": "unresolved",
+      "externalRefs": [],
+      "finding": "The slide lists three issues (error, multiple access, flow control) but says the data link layer solves \"these two issues\".",
+      "resolution": "Proposed: follow slide 15, which lists flow control as an optional data link function. Internal inconsistency; no outside source needed. Awaiting your OK."
+    },
+    {
+      "sourceRefs": [
+        {
+          "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+          "page": 29
+        },
+        {
+          "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+          "page": 36
+        }
+      ],
+      "status": "unresolved",
+      "externalRefs": [
+        {
+          "title": "RFC 2131: Dynamic Host Configuration Protocol, section 4.1",
+          "url": "https://www.rfc-editor.org/rfc/rfc2131.txt"
+        }
+      ],
+      "finding": "Offer and Ack are labelled unicast. Per RFC 2131 section 4.1, the server broadcasts them when the client sets the BROADCAST bit, and unicasts them when the bit is clear. The lecture capture (slides 40, 42) shows unicast.",
+      "resolution": "Proposed: questions say \"in the lecture capture\" and never state unicast as a general rule. Awaiting your OK."
+    },
+    {
+      "sourceRefs": [
+        {
+          "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+          "page": 58
+        }
+      ],
+      "status": "unresolved",
+      "externalRefs": [
+        {
+          "title": "RFC 903: A Reverse Address Resolution Protocol",
+          "url": "https://www.rfc-editor.org/rfc/rfc903"
+        }
+      ],
+      "finding": "The RARP diagram shows the request sent to the server MAC with an IP header. RFC 903 specifies RARP at the data-link level with its own EtherType, not inside IP, on a broadcast medium where any RARP server may answer.",
+      "resolution": "Proposed: keep U38 as detail and test only its purpose (MAC to IP), not the frame layout. Awaiting your OK."
+    },
+    {
+      "sourceRefs": [
+        {
+          "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+          "page": 47
+        }
+      ],
+      "status": "unresolved",
+      "externalRefs": [
+        {
+          "title": "Cisco: How to Verify Cisco Express Forwarding Switching",
+          "url": "https://www.cisco.com/c/en/us/support/docs/routers/12000-series-routers/47321-ciscoef.html"
+        }
+      ],
+      "finding": "The table says a switch \"will broadcast\" an unknown destination (it floods that frame out its other ports) and that routing is slower because it is software based. Cisco documents distributed CEF, where line cards forward packets using a hardware forwarding plane.",
+      "resolution": "Proposed: test only layer, address type, data unit, broadcast domain and unknown-destination behaviour, worded as \"sends it out every other port\". Awaiting your OK."
+    },
+    {
+      "sourceRefs": [
+        {
+          "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+          "page": 48
+        }
+      ],
+      "status": "unresolved",
+      "externalRefs": [
+        {
+          "title": "RFC 6747: ARP for ILNPv4",
+          "url": "https://www.rfc-editor.org/rfc/rfc6747"
+        }
+      ],
+      "finding": "The diagram labels ARP as \"rfc6747\". RFC 6747 is an ARP extension for ILNPv4; base ARP is RFC 826, which the slide also lists beside the diagram.",
+      "resolution": "Proposed: never ask for ARP's RFC number; if needed, use RFC 826. Awaiting your OK."
+    }
+  ]
+}

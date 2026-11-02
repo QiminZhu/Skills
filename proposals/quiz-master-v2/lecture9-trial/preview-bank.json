@@ -1,0 +1,514 @@
+[
+  {
+    "id": "L9-Q01",
+    "subject": "ITCS217",
+    "topic": "DHCP",
+    "unitId": "U27",
+    "lectureId": "L9",
+    "cognitiveRole": "recall",
+    "type": "ordering",
+    "difficulty": "Easy",
+    "cognitiveLevel": "Remember",
+    "prompt": "A new laptop joins the lecture network and gets its address by DHCP. Put the four DHCP messages in the order they are sent, first to last.",
+    "sourceRefs": [
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 35
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 39
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 40
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 41
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 42
+      }
+    ],
+    "status": "draft",
+    "version": 1,
+    "confidenceCheck": true,
+    "items": [
+      "DHCP Request",
+      "DHCP Discover",
+      "DHCP Ack",
+      "DHCP Offer"
+    ],
+    "correctOrder": [
+      1,
+      3,
+      0,
+      2
+    ],
+    "stepExplanations": [
+      "Discover comes first: the client has no address and looks for any DHCP server.",
+      "Offer: a server proposes an address to the client.",
+      "Request: the client asks to use the offered address.",
+      "Ack: the server confirms, and the client can now use the address."
+    ],
+    "explanation": "Slides 39 to 42 show the same exchange in Wireshark: Discover, Offer, Request, then Ack."
+  },
+  {
+    "id": "L9-Q02",
+    "subject": "ITCS217",
+    "topic": "ARP and RARP",
+    "unitId": "U35",
+    "lectureId": "L9",
+    "cognitiveRole": "application",
+    "type": "two_tier",
+    "difficulty": "Medium",
+    "cognitiveLevel": "Apply",
+    "prompt": "Host A (10.34.10.44) needs to send to host B (10.34.10.80) on the same LAN. A's ARP cache has no entry for B.",
+    "sourceRefs": [
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 49
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 50
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 56
+      }
+    ],
+    "status": "draft",
+    "version": 1,
+    "confidenceCheck": true,
+    "answerTier": {
+      "prompt": "Which destination MAC address does A put on the frame that carries its ARP request?",
+      "answers": [
+        "FF:FF:FF:FF:FF:FF",
+        "00:00:00:00:00:00",
+        "B's MAC address",
+        "The default gateway's MAC address"
+      ],
+      "correct": [
+        0
+      ],
+      "optionExplanations": [
+        "Correct: the ARP request frame is a broadcast (slides 49, 56).",
+        "All zeros is the empty target-MAC field inside the ARP message, not the frame destination.",
+        "A cannot address B directly: B's MAC is exactly what A is asking for.",
+        "B is on the same LAN, so A resolves B itself; the gateway is only used for other networks."
+      ],
+      "misconceptions": [
+        null,
+        "Confuses the ARP target-MAC field with the frame destination",
+        "Assumes the sender already knows the MAC it is asking for",
+        "Thinks ARP always goes through the default gateway"
+      ]
+    },
+    "reasonTier": {
+      "prompt": "Why is that the right destination?",
+      "answers": [
+        "A does not know B's MAC yet, so every node must hear it",
+        "Broadcast frames reach their target faster than unicast",
+        "The switch answers ARP requests on behalf of hosts",
+        "The target-MAC field is all zeros, so the frame is too"
+      ],
+      "correct": [
+        0
+      ],
+      "optionExplanations": [
+        "Correct: only the node that owns 10.34.10.80 replies, and its reply is unicast (slide 50).",
+        "Speed is not the reason; reach is.",
+        "In the lecture, host B itself sends the ARP reply (slide 57).",
+        "The two fields are separate; the zeros only mark the unknown answer."
+      ],
+      "misconceptions": [
+        null,
+        "Believes broadcast is a speed optimisation",
+        "Thinks switches resolve ARP",
+        "Merges the ARP payload with the Ethernet header"
+      ]
+    },
+    "explanation": "An ARP request is broadcast because the sender does not yet know the receiver's link-layer address; the reply comes back unicast."
+  },
+  {
+    "id": "L9-Q03",
+    "subject": "ITCS217",
+    "topic": "ARP and RARP",
+    "unitId": "U36",
+    "lectureId": "L9",
+    "cognitiveRole": "application",
+    "type": "single",
+    "difficulty": "Medium",
+    "cognitiveLevel": "Apply",
+    "prompt": "Alice (network N1) sends data to Bob on a different network, through routers R1 and R2. Alice's ARP cache is empty. Whose MAC address does Alice's first ARP request ask for?",
+    "sourceRefs": [
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 52
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 53
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 54
+      }
+    ],
+    "status": "draft",
+    "version": 1,
+    "confidenceCheck": true,
+    "answers": [
+      "R1, Alice's default gateway",
+      "Bob's computer",
+      "R2, the router on Bob's network",
+      "Bob's IP address"
+    ],
+    "correct": [
+      0
+    ],
+    "optionExplanations": [
+      "Correct: Alice frames the data for her default gateway R1, so she resolves R1's MAC (slide 52).",
+      "Bob is on another network; Alice never needs his MAC. R2 resolves it at the last hop (slide 54).",
+      "R2 is two links away; R1 resolves R2's MAC for the middle hop (slide 53).",
+      "Alice already knows Bob's IP address; ARP resolves IP to MAC, not the reverse."
+    ],
+    "misconceptions": [
+      null,
+      "Treats link-layer addresses as end to end",
+      "Skips the first hop",
+      "Reverses the direction of ARP"
+    ],
+    "explanation": "Each sender only resolves the next hop on its own link: Alice resolves R1, R1 resolves R2, and R2 resolves Bob."
+  },
+  {
+    "id": "L9-Q04",
+    "subject": "ITCS217",
+    "topic": "Addressing and casting",
+    "unitId": "U22",
+    "lectureId": "L9",
+    "cognitiveRole": "application",
+    "type": "multiple",
+    "difficulty": "Medium",
+    "cognitiveLevel": "Analyze",
+    "prompt": "A packet goes from Alice to Bob through R1 and R2, as on slides 52 to 55. Select ALL values that are the same on every link of the path.",
+    "sourceRefs": [
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 27
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 52
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 53
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 54
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 55
+      }
+    ],
+    "status": "draft",
+    "version": 1,
+    "confidenceCheck": true,
+    "answers": [
+      "Source IP address",
+      "Destination IP address",
+      "Source MAC address",
+      "Destination MAC address"
+    ],
+    "correct": [
+      0,
+      1
+    ],
+    "optionExplanations": [
+      "Correct: the IP header keeps Alice's address (NA) end to end.",
+      "Correct: the IP header keeps Bob's address (NB) end to end.",
+      "Each router builds a new frame with its own interface as the source.",
+      "Each frame is addressed to the next hop only (L1, then L3, then LB)."
+    ],
+    "misconceptions": [
+      null,
+      null,
+      "Believes the original sender MAC travels end to end",
+      "Believes the frame is addressed to the final host"
+    ],
+    "explanation": "IP addresses identify the two end hosts and stay fixed; link-layer addresses identify the two ends of the current link and change at every hop."
+  },
+  {
+    "id": "L9-Q05",
+    "subject": "ITCS217",
+    "topic": "HDLC",
+    "unitId": "U18",
+    "lectureId": "L9",
+    "cognitiveRole": "recall",
+    "type": "matching",
+    "difficulty": "Easy",
+    "cognitiveLevel": "Remember",
+    "prompt": "Match each HDLC frame type to its purpose. Each purpose is used once.",
+    "sourceRefs": [
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 23
+      }
+    ],
+    "status": "draft",
+    "version": 1,
+    "confidenceCheck": true,
+    "leftItems": [
+      "Information frame (I-frame)",
+      "Supervisory frame (S-frame)",
+      "Unnumbered frame (U-frame)"
+    ],
+    "rightItems": [
+      "System and link management",
+      "Carrying user data",
+      "Flow and error control"
+    ],
+    "reuseRight": false,
+    "matches": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "pairExplanations": [
+      "I-frames carry the information (user data).",
+      "S-frames carry flow and error control, such as RR and REJ.",
+      "U-frames are reserved for system and link management."
+    ],
+    "explanation": "The control field tells the receiver which of the three frame types it has received (slide 23)."
+  },
+  {
+    "id": "L9-Q06",
+    "subject": "ITCS217",
+    "topic": "Problems the data link layer solves",
+    "unitId": "U05",
+    "lectureId": "L9",
+    "cognitiveRole": "application",
+    "type": "single",
+    "difficulty": "Medium",
+    "cognitiveLevel": "Apply",
+    "prompt": "In a 16-bit frame, only bits 4, 5, 8 and 11 (counting from 1) are corrupted. How should this error be described?",
+    "sourceRefs": [
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 8
+      }
+    ],
+    "status": "draft",
+    "version": 1,
+    "confidenceCheck": true,
+    "answers": [
+      "A burst error of length 8",
+      "A burst error of length 4",
+      "Four single-bit errors",
+      "A burst error of length 16"
+    ],
+    "correct": [
+      0
+    ],
+    "optionExplanations": [
+      "Correct: burst length runs from the first corrupted bit (4) to the last (11), so 11 − 4 + 1 = 8. This matches slide 8.",
+      "Four is the number of flipped bits, not the length of the burst.",
+      "Several corrupted bits close together form one burst error, not separate single-bit errors.",
+      "The burst stops at the last corrupted bit; bits 12 to 16 are unaffected."
+    ],
+    "misconceptions": [
+      null,
+      "Counts only flipped bits as the burst length",
+      "Treats each flipped bit as a separate error",
+      "Assumes the whole frame is the burst"
+    ],
+    "explanation": "A burst error is measured from the first to the last corrupted bit; bits inside the burst may or may not be flipped."
+  },
+  {
+    "id": "L9-Q07",
+    "subject": "ITCS217",
+    "topic": "Switches and routers",
+    "unitId": "U32",
+    "lectureId": "L9",
+    "cognitiveRole": "comparison",
+    "type": "single",
+    "difficulty": "Medium",
+    "cognitiveLevel": "Analyze",
+    "prompt": "A switch receives a frame for a MAC address that is not in its MAC table. A router receives a packet for a network that is not in its routing table and it has no default route. What does each device do, according to slide 47?",
+    "sourceRefs": [
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 47
+      }
+    ],
+    "status": "draft",
+    "version": 1,
+    "confidenceCheck": true,
+    "answers": [
+      "Switch: out every other port. Router: drops it",
+      "Switch: drops it. Router: drops it",
+      "Switch: out every other port. Router: out every interface",
+      "Switch: drops it. Router: out every interface"
+    ],
+    "correct": [
+      0
+    ],
+    "optionExplanations": [
+      "Correct: the switch floods unknown destinations in its broadcast domain; the router discards packets it cannot route.",
+      "A switch does not drop an unknown destination; it floods it.",
+      "A router does not flood; that would spread traffic across separate networks.",
+      "This swaps the two behaviours."
+    ],
+    "misconceptions": [
+      null,
+      "Thinks switches discard unknown frames",
+      "Thinks routers flood like switches",
+      "Swaps switch and router behaviour"
+    ],
+    "explanation": "Switches work inside one broadcast domain and flood unknown MACs; routers join different networks and drop packets with no route."
+  },
+  {
+    "id": "L9-Q08",
+    "subject": "ITCS217",
+    "topic": "Role of the data link layer",
+    "unitId": "U02",
+    "lectureId": "L9",
+    "cognitiveRole": "explain",
+    "type": "self_explain",
+    "difficulty": "Medium",
+    "cognitiveLevel": "Understand",
+    "prompt": "In 2 to 3 sentences, explain why a router removes the incoming frame and builds a new frame, instead of forwarding the original frame unchanged.",
+    "sourceRefs": [
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 6
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 17
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 18
+      }
+    ],
+    "status": "draft",
+    "version": 1,
+    "confidenceCheck": true,
+    "modelAnswer": "Each link can be a different type, such as Wi-Fi (802.11) on one side and Ethernet (802.3) on the other, so the next link may need a different frame format. Link-layer addresses only name the two ends of the current link, so the router writes new source and destination MAC addresses for the next hop. The IP packet inside stays the same.",
+    "checklist": [
+      "Says links can be of different types or frame formats",
+      "Says link-layer addresses are only valid for one link",
+      "Says the IP packet inside is kept unchanged"
+    ],
+    "explanation": "Self-graded practice; not scored and not counted as coverage evidence."
+  },
+  {
+    "id": "L9-Q09",
+    "subject": "ITCS217",
+    "topic": "DHCP",
+    "unitId": "U29",
+    "lectureId": "L9",
+    "cognitiveRole": "recall",
+    "type": "fill_blank",
+    "difficulty": "Easy",
+    "cognitiveLevel": "Remember",
+    "prompt": "In the lecture's DHCP Discover capture, the client sends from UDP port {{1}} to server port {{2}}.",
+    "sourceRefs": [
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 39
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 41
+      }
+    ],
+    "status": "draft",
+    "version": 1,
+    "confidenceCheck": true,
+    "blanks": [
+      {
+        "id": "1",
+        "kind": "number",
+        "value": 68,
+        "absoluteTolerance": 0,
+        "unit": "",
+        "rounding": "none",
+        "explanation": "Slide 39: the client source port is 68."
+      },
+      {
+        "id": "2",
+        "kind": "number",
+        "value": 67,
+        "absoluteTolerance": 0,
+        "unit": "",
+        "rounding": "none",
+        "explanation": "Slide 39: the server destination port is 67."
+      }
+    ],
+    "explanation": "DHCP clients use UDP port 68 and servers use port 67, as the Wireshark captures show."
+  },
+  {
+    "id": "L9-Q10",
+    "subject": "ITCS217",
+    "topic": "HDLC",
+    "unitId": "U14",
+    "lectureId": "L9",
+    "cognitiveRole": "comparison",
+    "type": "single",
+    "difficulty": "Medium",
+    "cognitiveLevel": "Understand",
+    "prompt": "Which HDLC mode lets both stations start a transmission as equal peers?",
+    "sourceRefs": [
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 20
+      },
+      {
+        "file": "ITCS217-Lecture_9-Intro-to_Data-Link-Layer-2026.pdf",
+        "page": 21
+      }
+    ],
+    "status": "draft",
+    "version": 1,
+    "confidenceCheck": true,
+    "answers": [
+      "Asynchronous Balanced Mode (ABM)",
+      "Normal Response Mode (NRM)",
+      "Asynchronous Response Mode (ARM)",
+      "All three modes"
+    ],
+    "correct": [
+      0
+    ],
+    "optionExplanations": [
+      "Correct: in ABM both combined stations can send commands and responses (slide 21).",
+      "In NRM the secondary only transmits after the primary polls it.",
+      "In ARM the secondary may start a transmission, but the primary still manages the link.",
+      "Only ABM treats the two stations as equal peers."
+    ],
+    "misconceptions": [
+      null,
+      "Thinks polling gives both sides equal rights",
+      "Confuses \"secondary may initiate\" with equal peers",
+      "Assumes all modes are symmetric"
+    ],
+    "explanation": "The modes differ in who may start a transmission: NRM after a poll, ARM the secondary too, ABM both stations as peers."
+  }
+]

@@ -1,0 +1,404 @@
+<title>Data Link Layer Quiz</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow study column; a frame-like progress strip on top, one question card, feedback opens beneath it. */
+:root {
+  --bg: #f3f5f8;
+  --surface: #ffffff;
+  --ink: #17202b;
+  --muted: #5a6676;
+  --line: #d6dde6;
+  --accent: #2b5fa8;
+  --accent-soft: #e3ecf8;
+  --good: #1f7a4d;
+  --good-soft: #e2f3ea;
+  --bad: #b23a2e;
+  --bad-soft: #fbe7e4;
+  --warn: #8a5a00;
+  --warn-soft: #fbf0d9;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11161d; --surface: #19212b; --ink: #e6ebf1; --muted: #9aa7b6; --line: #2c3746;
+    --accent: #7fa9e6; --accent-soft: #1d2c42; --good: #63c08f; --good-soft: #15302a;
+    --bad: #f08a7c; --bad-soft: #3a1e1c; --warn: #e3b55a; --warn-soft: #33290f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11161d; --surface: #19212b; --ink: #e6ebf1; --muted: #9aa7b6; --line: #2c3746;
+  --accent: #7fa9e6; --accent-soft: #1d2c42; --good: #63c08f; --good-soft: #15302a;
+  --bad: #f08a7c; --bad-soft: #3a1e1c; --warn: #e3b55a; --warn-soft: #33290f; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 48px;
+}
+.wrap { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+header { display: flex; flex-direction: column; gap: 6px; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 5vw, 34px); line-height: 1.1; margin: 0; text-wrap: balance; }
+.note { font-size: 13.5px; color: var(--warn); background: var(--warn-soft); border-radius: 8px; padding: 8px 12px; }
+.strip { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 4px; }
+.strip span { height: 8px; border-radius: 2px; background: var(--line); }
+.strip span.cur { background: var(--accent); }
+.strip span.ok { background: var(--good); }
+.strip span.no { background: var(--bad); }
+.strip span.done { background: var(--muted); }
+.meta { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag { font-family: var(--font-mono); font-size: 11.5px; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.tag.plain { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+.stem { font-size: 17px; font-weight: 500; margin: 0; }
+.sub { font-size: 15.5px; font-weight: 600; margin: 0; }
+.opts { display: flex; flex-direction: column; gap: 8px; }
+.opt { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; cursor: pointer; }
+.opt:hover { border-color: var(--accent); }
+.opt input { margin-top: 4px; accent-color: var(--accent); }
+.opt.is-right { border-color: var(--good); background: var(--good-soft); }
+.opt.is-wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.locked { cursor: default; }
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.match { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 12px; align-items: center; }
+.match label { font-weight: 500; }
+select, input[type="text"], input[type="date"], textarea {
+  font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; width: 100%;
+}
+textarea { min-height: 110px; resize: vertical; }
+.blank { width: 6.5em; display: inline-block; text-align: center; font-family: var(--font-mono); }
+.fill { font-size: 17px; font-weight: 500; line-height: 2.2; margin: 0; }
+.order { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.order li { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+.order .pos { font-family: var(--font-mono); font-size: 13px; color: var(--muted); width: 1.6em; }
+.order .txt { flex: 1; min-width: 0; }
+.order li.is-right { border-color: var(--good); background: var(--good-soft); }
+.order li.is-wrong { border-color: var(--bad); background: var(--bad-soft); }
+.iconbtn { font: inherit; font-size: 14px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 6px; width: 32px; height: 32px; cursor: pointer; }
+.conf { display: flex; flex-direction: column; gap: 8px; border-top: 1px dashed var(--line); padding-top: 14px; }
+.conf .lbl { font-size: 13.5px; color: var(--muted); }
+.pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill { position: relative; }
+.pill input { position: absolute; opacity: 0; inset: 0; }
+.pill span { display: inline-block; padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; cursor: pointer; }
+.pill input:checked + span { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.pill input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.btn { font: inherit; font-weight: 600; font-size: 15px; padding: 10px 18px; border-radius: 8px; border: 1px solid var(--accent); background: var(--accent); color: var(--surface); cursor: pointer; }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.err { color: var(--bad); font-size: 13px; }
+.fb { border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--line); }
+.fb.good { background: var(--good-soft); border-color: var(--good); }
+.fb.bad { background: var(--bad-soft); border-color: var(--bad); }
+.fb.mixed { background: var(--warn-soft); border-color: var(--warn); }
+.fb h3 { margin: 0; font-family: var(--font-display); font-size: 17px; }
+.fb p { margin: 0; font-size: 15px; }
+.mis { font-size: 14px; }
+.mis b { font-weight: 600; }
+.src { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); }
+.model { background: var(--accent-soft); border-radius: 8px; padding: 12px 14px; }
+.checklist { display: flex; flex-direction: column; gap: 6px; }
+.checklist label { display: flex; gap: 8px; align-items: flex-start; }
+.summary h2 { font-family: var(--font-display); font-size: 22px; margin: 0; }
+.score { font-family: var(--font-display); font-weight: 800; font-size: 44px; line-height: 1; font-variant-numeric: tabular-nums; }
+.score small { font-size: 18px; color: var(--muted); font-weight: 500; }
+.sec { display: flex; flex-direction: column; gap: 10px; }
+.sec h3 { margin: 0; font-size: 15px; font-family: var(--font-display); }
+.item { border-left: 3px solid var(--bad); padding: 4px 0 4px 12px; display: flex; flex-direction: column; gap: 2px; }
+.item.warn { border-color: var(--warn); }
+.item .q { font-weight: 500; }
+.item .d { font-size: 14px; color: var(--muted); }
+.empty { color: var(--muted); font-size: 14.5px; }
+.sched { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.sched div { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: 14px; }
+.sched b { display: block; font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--accent); }
+.foot { font-size: 13px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .fb { animation: rise .2s ease-out; } @keyframes rise { from { transform: translateY(4px); } to { transform: none; } } }
+@media (max-width: 480px) { .match { grid-template-columns: 1fr; } .card { padding: 16px; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">ITCS217 · Lecture 9 · Practice</div>
+    <h1>Data Link Layer Quiz</h1>
+  </header>
+  <div class="note" id="note">Author preview, not for students yet. Topic priorities are unconfirmed and these 10 questions have not had the blind check or a human review, so treat the answer key as provisional.</div>
+  <div class="strip" id="strip"></div>
+  <div class="meta" id="meta"></div>
+  <main id="main"></main>
+  <p class="foot">Low stakes: nothing here is graded or sent anywhere. Wrong answers are useful, because they show exactly what to look at again. Your attempt history stays in this browser only.</p>
+</div>
+
+<script>
+const BANK = __BANK__;
+const UNITS = __UNITS__;
+const LECTURE_FILE = 'Lecture 9 slides';
+const STORE = 'l9-dll-quiz-v1';
+const ROLE_ORDER = { recall: 0, comparison: 1, application: 1, predict: 1, explain: 2 };
+
+function load() { try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch (e) { return {}; } }
+function save(data) { try { localStorage.setItem(STORE, JSON.stringify(data)); } catch (e) {} }
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+function shuffle(a) { const r = a.slice(); for (let i = r.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [r[i], r[j]] = [r[j], r[i]]; } return r; }
+function range(n) { return Array.from({ length: n }, (_, i) => i); }
+function slides(refs) {
+  const p = [...new Set(refs.map(r => r.page))].sort((a, b) => a - b);
+  const parts = []; let s = p[0], prev = p[0];
+  for (let i = 1; i <= p.length; i++) {
+    if (p[i] === prev + 1) { prev = p[i]; continue; }
+    parts.push(s === prev ? String(s) : s + '–' + prev); s = prev = p[i];
+  }
+  return (p.length > 1 ? 'Slides ' : 'Slide ') + parts.join(', ');
+}
+const scored = q => q.type !== 'self_explain';
+
+let state;
+function start() {
+  const hist = load();
+  const missed = new Set(((hist.attempts || []).slice(-1)[0] || {}).missed || []);
+  const ordered = shuffle(BANK).sort((a, b) => (ROLE_ORDER[a.cognitiveRole] ?? 1) - (ROLE_ORDER[b.cognitiveRole] ?? 1)
+    || (missed.has(b.id) - missed.has(a.id)));
+  state = { qs: ordered.map(prep), idx: 0, done: false };
+  render();
+}
+function prep(q) {
+  const v = { q, checked: false, result: null, conf: null };
+  if (q.answers) v.perm = shuffle(range(q.answers.length));
+  if (q.type === 'two_tier') { v.permA = shuffle(range(q.answerTier.answers.length)); v.permR = shuffle(range(q.reasonTier.answers.length)); }
+  if (q.type === 'matching') v.permRight = shuffle(range(q.rightItems.length));
+  if (q.type === 'ordering') { let s; do { s = shuffle(range(q.items.length)); } while (s.join() === q.correctOrder.join()); v.seq = s; }
+  return v;
+}
+
+function renderStrip() {
+  const strip = document.getElementById('strip');
+  strip.style.setProperty('--n', state.qs.length);
+  strip.innerHTML = state.qs.map((v, i) => {
+    let c = '';
+    if (v.checked) c = !scored(v.q) ? 'done' : v.result.correct ? 'ok' : 'no';
+    else if (i === state.idx && !state.done) c = 'cur';
+    return `<span class="${c}" title="Question ${i + 1}"></span>`;
+  }).join('');
+  const n = state.qs.filter(v => v.checked && scored(v.q)).length;
+  const ok = state.qs.filter(v => v.checked && scored(v.q) && v.result.correct).length;
+  document.getElementById('meta').innerHTML = state.done
+    ? `<span>Attempt complete</span><span>${ok} / ${state.qs.filter(v => scored(v.q)).length} correct</span>`
+    : `<span>Question ${state.idx + 1} of ${state.qs.length}</span><span>${ok} / ${n} correct so far</span>`;
+}
+
+function choiceBlock(name, tier, perm, v, kind) {
+  const multi = kind === 'multiple';
+  return `<div class="opts">` + perm.map(o => `<label class="opt" data-o="${o}"><input type="${multi ? 'checkbox' : 'radio'}" name="${name}" id="${name}-${o}" value="${o}"><span>${esc(tier.answers[o])}</span></label>`).join('') + `</div>`;
+}
+function bodyFor(v) {
+  const q = v.q;
+  if (['single', 'multiple', 'boolean'].includes(q.type))
+    return `<p class="stem">${esc(q.prompt)}</p>${q.type === 'multiple' ? '<p class="src">Select all that apply.</p>' : ''}${choiceBlock('c-' + q.id, q, v.perm, v, q.type)}`;
+  if (q.type === 'two_tier')
+    return `<p class="stem">${esc(q.prompt)}</p><p class="sub">${esc(q.answerTier.prompt)}</p>${choiceBlock('a-' + q.id, q.answerTier, v.permA, v, 'single')}<p class="sub">${esc(q.reasonTier.prompt)}</p>${choiceBlock('r-' + q.id, q.reasonTier, v.permR, v, 'single')}`;
+  if (q.type === 'matching')
+    return `<p class="stem">${esc(q.prompt)}</p><div class="match">` + q.leftItems.map((l, i) => `<label for="m-${q.id}-${i}">${esc(l)}</label><select id="m-${q.id}-${i}" data-left="${i}"><option value="">Choose…</option>${v.permRight.map(r => `<option value="${r}">${esc(q.rightItems[r])}</option>`).join('')}</select>`).join('') + `</div>`;
+  if (q.type === 'ordering')
+    return `<p class="stem">${esc(q.prompt)}</p><p class="src">Use the arrows to reorder, first at the top.</p><ol class="order" id="ord"></ol>`;
+  if (q.type === 'fill_blank') {
+    const html = esc(q.prompt).replace(/\{\{(\d+)\}\}/g, (_, id) => `<input type="text" inputmode="decimal" class="blank" id="b-${q.id}-${id}" data-blank="${id}" aria-label="Blank ${id}">`);
+    return `<p class="fill">${html}</p>`;
+  }
+  if (q.type === 'self_explain')
+    return `<p class="stem">${esc(q.prompt)}</p><textarea id="se-${q.id}" placeholder="Write your explanation here, then compare it with the model answer."></textarea>`;
+  return '';
+}
+function drawOrder(v) {
+  const ol = document.getElementById('ord'); if (!ol) return;
+  ol.innerHTML = v.seq.map((it, i) => {
+    let cls = '';
+    if (v.checked) cls = it === v.q.correctOrder[i] ? 'is-right' : 'is-wrong';
+    return `<li class="${cls}"><span class="pos">${i + 1}</span><span class="txt">${esc(v.q.items[it])}</span>${v.checked ? '' : `<button class="iconbtn" data-up="${i}" aria-label="Move up" ${i === 0 ? 'disabled' : ''}>↑</button><button class="iconbtn" data-down="${i}" aria-label="Move down" ${i === v.seq.length - 1 ? 'disabled' : ''}>↓</button>`}</li>`;
+  }).join('');
+}
+
+function render() {
+  renderStrip();
+  const main = document.getElementById('main');
+  if (state.done) { main.innerHTML = summaryHTML(); wireSummary(); return; }
+  const v = state.qs[state.idx], q = v.q;
+  const last = state.idx === state.qs.length - 1;
+  main.innerHTML = `<section class="card" aria-live="polite">
+    <div class="tags"><span class="tag">${esc(q.topic)}</span><span class="tag plain">${esc(q.cognitiveRole)}</span><span class="tag plain">${esc(q.difficulty)}</span></div>
+    <div id="body" style="display:flex;flex-direction:column;gap:14px">${bodyFor(v)}</div>
+    ${scored(q) ? `<div class="conf" id="confbox"><span class="lbl">Before you check: how sure are you?</span><div class="pills">${['Guessing', 'Fairly sure', 'Certain'].map((c, i) => `<label class="pill"><input type="radio" name="conf" id="conf-${i}" value="${c}"><span>${c}</span></label>`).join('')}</div></div>` : ''}
+    <div class="err" id="err" hidden></div>
+    <div class="actions">
+      <button class="btn" id="check">${scored(q) ? 'Check answer' : 'Show model answer'}</button>
+      <button class="btn ghost" id="next" hidden>${last ? 'See results' : 'Next question'}</button>
+    </div>
+    <div id="fb"></div>
+  </section>`;
+  if (q.type === 'ordering') drawOrder(v);
+  main.querySelector('#body').addEventListener('click', e => {
+    const up = e.target.closest('[data-up]'), down = e.target.closest('[data-down]');
+    if (!up && !down || v.checked) return;
+    const i = Number((up || down).dataset[up ? 'up' : 'down']), j = up ? i - 1 : i + 1;
+    [v.seq[i], v.seq[j]] = [v.seq[j], v.seq[i]]; drawOrder(v);
+  });
+  main.addEventListener('input', () => { const er = document.getElementById('err'); if (er) er.hidden = true; });
+  main.addEventListener('change', () => { const er = document.getElementById('err'); if (er) er.hidden = true; });
+  document.getElementById('check').addEventListener('click', () => check(v));
+  document.getElementById('next').addEventListener('click', () => {
+    if (state.idx < state.qs.length - 1) { state.idx++; render(); window.scrollTo({ top: 0 }); }
+    else finish();
+  });
+}
+
+function fail(msg) { const e = document.getElementById('err'); e.textContent = msg; e.hidden = false; }
+function picked(name) { return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(i => Number(i.value)); }
+function sameSet(a, b) { return a.length === b.length && a.every(x => b.includes(x)); }
+function gradeBlank(b, raw) {
+  if (b.kind === 'number') { const t = raw.trim(); if (t === '' || !/^[-+]?\d*\.?\d+(e[-+]?\d+)?$/i.test(t)) return false; const n = Number(t); return Number.isFinite(n) && Math.abs(n - b.value) <= b.absoluteTolerance; }
+  const norm = s => { let r = s; if (b.trim) r = r.trim(); if (b.collapseWhitespace) r = r.replace(/\s+/g, ' '); if (!b.caseSensitive) r = r.toLowerCase(); return r; };
+  return b.acceptedAnswers.some(a => norm(a) === norm(raw));
+}
+
+function check(v) {
+  const q = v.q; let res = {};
+  if (q.type === 'self_explain') {
+    const t = document.getElementById('se-' + q.id).value.trim();
+    if (t.split(/\s+/).length < 8) return fail('Write at least a sentence or two first. The model answer appears after you commit to your own.');
+    res = { text: t };
+  } else if (['single', 'multiple', 'boolean'].includes(q.type)) {
+    const p = picked('c-' + q.id); if (!p.length) return fail('Choose an answer first.');
+    res = { picked: p, correct: sameSet(p, q.correct) };
+  } else if (q.type === 'two_tier') {
+    const a = picked('a-' + q.id), r = picked('r-' + q.id);
+    if (!a.length || !r.length) return fail('Answer both parts first.');
+    const ca = sameSet(a, q.answerTier.correct), cr = sameSet(r, q.reasonTier.correct);
+    res = { a, r, ca, cr, correct: ca && cr };
+  } else if (q.type === 'matching') {
+    const sel = [...document.querySelectorAll('[data-left]')].map(s => s.value);
+    if (sel.some(s => s === '')) return fail('Match every item first.');
+    const map = sel.map(Number);
+    res = { map, pairs: q.matches.map(([l, r]) => map[l] === r), };
+    res.correct = res.pairs.every(Boolean);
+  } else if (q.type === 'ordering') {
+    res = { seq: v.seq.slice(), correct: v.seq.join() === q.correctOrder.join() };
+  } else if (q.type === 'fill_blank') {
+    const vals = q.blanks.map(b => document.getElementById(`b-${q.id}-${b.id}`).value);
+    if (vals.some(x => x.trim() === '')) return fail('Fill every blank first.');
+    res = { vals, each: q.blanks.map((b, i) => gradeBlank(b, vals[i])) };
+    res.correct = res.each.every(Boolean);
+  }
+  if (scored(q)) {
+    const c = document.querySelector('input[name="conf"]:checked');
+    if (!c) return fail('Pick how sure you are before checking.');
+    v.conf = c.value;
+  }
+  v.checked = true; v.result = res;
+  lock(v); feedback(v); renderStrip();
+  document.getElementById('check').hidden = true;
+  const nx = document.getElementById('next'); nx.hidden = false; nx.classList.remove('ghost'); nx.focus();
+}
+
+function markChoices(name, tier, picks) {
+  document.querySelectorAll(`input[name="${name}"]`).forEach(i => {
+    i.disabled = true; const o = Number(i.value), lab = i.closest('.opt'); lab.classList.add('locked');
+    if (tier.correct.includes(o)) lab.classList.add('is-right');
+    else if (picks.includes(o)) lab.classList.add('is-wrong');
+  });
+}
+function lock(v) {
+  const q = v.q, r = v.result;
+  document.querySelectorAll('#body input, #body select, #body textarea, #confbox input').forEach(el => el.disabled = true);
+  if (['single', 'multiple', 'boolean'].includes(q.type)) markChoices('c-' + q.id, q, r.picked);
+  if (q.type === 'two_tier') { markChoices('a-' + q.id, q.answerTier, r.a); markChoices('r-' + q.id, q.reasonTier, r.r); }
+  if (q.type === 'ordering') drawOrder(v);
+}
+function optNotes(tier, picks) {
+  return picks.map(o => {
+    const m = tier.misconceptions && tier.misconceptions[o];
+    return `<p class="mis"><b>${esc(tier.answers[o])}:</b> ${esc(tier.optionExplanations[o])}${m ? `<br><b>Misconception:</b> ${esc(m)}` : ''}</p>`;
+  }).join('');
+}
+function feedback(v) {
+  const q = v.q, r = v.result; let cls, head, body = '';
+  if (q.type === 'self_explain') {
+    cls = ''; head = 'Compare with the model answer';
+    body = `<div class="model">${esc(q.modelAnswer)}</div><p class="mis">Tick each point your answer covered:</p><div class="checklist">${q.checklist.map((c, i) => `<label><input type="checkbox" id="ck-${i}" data-ck="${i}"><span>${esc(c)}</span></label>`).join('')}</div><p class="src">Self-graded. This does not count toward your score.</p>`;
+  } else if (q.type === 'two_tier') {
+    cls = r.correct ? 'good' : r.ca ? 'mixed' : 'bad';
+    head = r.correct ? 'Correct, with the right reason' : r.ca ? 'Right answer, wrong reason' : r.cr ? 'Right reason, wrong answer' : 'Not quite';
+    body = optNotes(q.answerTier, r.a) + optNotes(q.reasonTier, r.r);
+  } else if (q.type === 'matching') {
+    cls = r.correct ? 'good' : 'bad'; head = r.correct ? 'All pairs correct' : `${r.pairs.filter(Boolean).length} of ${r.pairs.length} pairs correct`;
+    body = q.matches.map(([l, rt], i) => `<p class="mis"><b>${r.pairs[i] ? '✓' : '✗'} ${esc(q.leftItems[l])} → ${esc(q.rightItems[rt])}.</b> ${esc(q.pairExplanations[i])}</p>`).join('');
+  } else if (q.type === 'ordering') {
+    cls = r.correct ? 'good' : 'bad'; head = r.correct ? 'Correct order' : 'Not the right order';
+    body = q.correctOrder.map((it, i) => `<p class="mis"><b>${i + 1}. ${esc(q.items[it])}.</b> ${esc(q.stepExplanations[i])}</p>`).join('');
+  } else if (q.type === 'fill_blank') {
+    cls = r.correct ? 'good' : 'bad'; head = r.correct ? 'Correct' : 'Not quite';
+    body = q.blanks.map((b, i) => `<p class="mis"><b>Blank ${b.id}: ${r.each[i] ? '✓' : '✗'} you wrote ${esc(r.vals[i])}, expected ${esc(b.kind === 'number' ? b.value : b.acceptedAnswers[0])}.</b> ${esc(b.explanation)}</p>`).join('');
+  } else {
+    cls = r.correct ? 'good' : 'bad'; head = r.correct ? 'Correct' : 'Not quite';
+    const shown = q.type === 'multiple' ? range(q.answers.length).filter(o => r.picked.includes(o) || q.correct.includes(o)) : r.picked;
+    body = optNotes(q, shown);
+  }
+  if (scored(q) && !r.correct && v.conf && v.conf !== 'Guessing') body = `<p class="mis"><b>You were ${v.conf.toLowerCase()} about this one.</b> That makes it worth reviewing first.</p>` + body;
+  document.getElementById('fb').innerHTML = `<div class="fb ${cls}"><h3>${head}</h3>${body}<p>${esc(q.explanation)}</p><p class="src">Review: ${slides(q.sourceRefs)} · ${esc(LECTURE_FILE)}</p></div>`;
+  if (q.type === 'self_explain') document.querySelectorAll('[data-ck]').forEach(c => c.addEventListener('change', () => { v.result.ticks = document.querySelectorAll('[data-ck]:checked').length; }));
+}
+
+function finish() {
+  state.done = true;
+  const sc = state.qs.filter(v => scored(v.q));
+  const ok = sc.filter(v => v.result.correct).length;
+  const hist = load(); hist.attempts = (hist.attempts || []).concat([{ at: new Date().toISOString(), score: ok, total: sc.length,
+    missed: sc.filter(v => !v.result.correct).map(v => v.q.id),
+    confidentWrong: sc.filter(v => !v.result.correct && v.conf !== 'Guessing').map(v => v.q.id) }]).slice(-20);
+  save(hist); render(); window.scrollTo({ top: 0 });
+}
+function fmtDate(d) { return d.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' }); }
+function summaryHTML() {
+  const sc = state.qs.filter(v => scored(v.q)), ok = sc.filter(v => v.result.correct).length;
+  const cw = sc.filter(v => !v.result.correct && v.conf !== 'Guessing');
+  const wrong = sc.filter(v => !v.result.correct);
+  const rwr = state.qs.filter(v => v.q.type === 'two_tier' && v.result.ca && !v.result.cr);
+  const se = state.qs.filter(v => v.q.type === 'self_explain');
+  const byUnit = {}; wrong.forEach(v => (byUnit[v.q.unitId] = byUnit[v.q.unitId] || []).push(v));
+  const hist = load(), prev = (hist.attempts || []).slice(-2, -1)[0];
+  const now = new Date(), d2 = new Date(now), d3 = new Date(now); d2.setDate(now.getDate() + 2); d3.setDate(now.getDate() + 3);
+  const exam = hist.examDate || '';
+  const item = (v, warn) => {
+    const pick = v.q.answers ? v.result.picked.map(o => v.q.misconceptions && v.q.misconceptions[o]).filter(Boolean)[0]
+      : v.q.answerTier ? [v.q.answerTier.misconceptions[v.result.a[0]], v.q.reasonTier.misconceptions[v.result.r[0]]].filter(Boolean)[0] : null;
+    return `<div class="item ${warn ? 'warn' : ''}"><span class="q">${esc(v.q.answerTier ? v.q.answerTier.prompt : v.q.prompt.replace(/\{\{\d+\}\}/g, '___'))}</span><span class="d">${pick ? 'Likely misconception: ' + esc(pick) + ' · ' : ''}${slides(v.q.sourceRefs)}${v.conf ? ' · you said ' + esc(v.conf.toLowerCase()) : ''}</span></div>`;
+  };
+  return `<section class="card summary">
+    <div class="sec"><h2>Attempt results</h2>
+      <div class="score">${ok}<small> / ${sc.length} scored questions</small></div>
+      <p class="empty">${prev ? `Previous attempt: ${prev.score} / ${prev.total}.` : 'First attempt in this browser.'} Self-explanation is not scored.</p></div>
+    <div class="sec"><h3>Confident but wrong</h3>
+      ${cw.length ? cw.map(v => item(v, false)).join('') : '<p class="empty">None. Every miss was marked as a guess, so your confidence matched your knowledge.</p>'}</div>
+    ${rwr.length ? `<div class="sec"><h3>Right answer, wrong reason</h3>${rwr.map(v => item(v, true)).join('')}</div>` : ''}
+    <div class="sec"><h3>Missed, by topic</h3>
+      ${Object.keys(byUnit).length ? Object.entries(byUnit).map(([u, vs]) => `<div class="item warn"><span class="q">${esc(UNITS[u] || u)}</span><span class="d">${vs.length} missed · ${slides(vs.flatMap(v => v.q.sourceRefs))}</span></div>`).join('') : '<p class="empty">Nothing missed this time.</p>'}</div>
+    ${se.length ? `<div class="sec"><h3>Your explanations</h3>${se.map(v => `<div class="item warn"><span class="q">${esc(v.q.prompt)}</span><span class="d">You ticked ${v.result.ticks || 0} of ${v.q.checklist.length} checklist points.</span></div>`).join('')}</div>` : ''}
+    <div class="sec"><h3>When to retake</h3>
+      <div class="sched"><div><b>Later today</b>Missed questions move up the order</div><div><b>${fmtDate(d2)} – ${fmtDate(d3)}</b>Spaced retake</div><div><b>${exam ? fmtDate(new Date(exam + 'T00:00')) : 'Before the exam'}</b>Final check</div></div>
+      <div class="row"><label for="exam" class="empty">Exam date</label><input type="date" id="exam" value="${esc(exam)}" style="max-width:200px"></div></div>
+    <div class="actions"><button class="btn" id="again">Retake now</button></div>
+  </section>`;
+}
+function wireSummary() {
+  document.getElementById('again').addEventListener('click', () => { start(); window.scrollTo({ top: 0 }); });
+  document.getElementById('exam').addEventListener('change', e => { const h = load(); h.examDate = e.target.value; save(h); render(); });
+}
+start();
+</script>
