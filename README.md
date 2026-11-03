@@ -20,15 +20,15 @@ The marketplace displays as **Skills** and the plugin displays as **Tutor me**. 
 
 The terminal can use teaching instructions, sources and scripts. Interactive HTML grading and Next buttons require a supported graphical host; the CLI alone cannot display those controls. Public downloads require this repository to be public. This GitHub marketplace is separate from the workspace-managed ChatGPT plugin.
 
-## Install Quiz Master in Codex CLI
+## Install Quiz me in Codex CLI
 
 With Codex CLI and Git installed, run:
 
 ```sh
-codex plugin marketplace add QiminZhu/Skills && codex plugin add quiz-master@anker-skills
+codex plugin marketplace add QiminZhu/Skills && codex plugin add adaptive-question-bank@anker-skills
 ```
 
-This installs **Quiz Master**, which provides skills for analyzing lecture concepts, generating quiz questions, and validating answer keys and coverage. It does not install a learner-facing quiz runner. Start a new Codex session after installation. To update it later, run `codex plugin marketplace upgrade anker-skills` followed by `codex plugin add quiz-master@anker-skills`.
+This installs **Quiz me**, which provides formal assessments, adaptive practice, and mastery evidence export. Start a new Codex session after installation. To update it later, run `codex plugin marketplace upgrade anker-skills` followed by `codex plugin add adaptive-question-bank@anker-skills`.
 
 ## Layout
 
