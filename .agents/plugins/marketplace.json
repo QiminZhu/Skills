@@ -5,10 +5,10 @@
   },
   "plugins": [
     {
-      "name": "learn-tutor-plugin",
+      "name": "tutor-me",
       "source": {
         "source": "local",
-        "path": "./plugins/learn-tutor-plugin"
+        "path": "./plugins/tutor-me"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -17,10 +17,10 @@
       "category": "Productivity"
     },
     {
-      "name": "adaptive-question-bank",
+      "name": "quiz-me",
       "source": {
         "source": "local",
-        "path": "./plugins/adaptive-question-bank"
+        "path": "./plugins/quiz-me"
       },
       "policy": {
         "installation": "AVAILABLE",

@@ -10,5 +10,5 @@ if ! command -v git >/dev/null 2>&1; then
   exit 127
 fi
 codex plugin marketplace add QiminZhu/Skills
-codex plugin add learn-tutor-plugin@anker-skills
+codex plugin add tutor-me@anker-skills
 printf '%s\n' 'Tutor me installed. Start a new Codex session to load its skills.'

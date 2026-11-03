@@ -25,27 +25,27 @@
   },
   {
     "plugin_id": "Plugin_39a6717c6ac48191b1581e423838e2e4",
-    "name": "adaptive-question-bank",
+    "name": "quiz-me",
     "description": "Formal fixed assessments, optional adaptive practice, and mastery evidence export.",
     "version": "2.0.0",
     "current_release_id": "pluginrel_6adf6abebcd48191add23e46cadc2ae3",
     "scope": "WORKSPACE",
     "discoverability": "PRIVATE",
     "workspace_id": "73addf6d-14af-4dc0-a5ad-8d5c30c8602b",
-    "source_path": "plugins/adaptive-question-bank",
-    "history_path": "history/adaptive-question-bank"
+    "source_path": "plugins/quiz-me",
+    "history_path": "history/quiz-me"
   },
   {
     "plugin_id": "Plugin_5a240b861520819183297712e07e20db",
-    "name": "learn-tutor-plugin",
+    "name": "tutor-me",
     "description": "Source-grounded learning with goal planning, cognitive chunking, graduated hints, interleaved review, error diagnosis, unassisted checks, and session-only lesson flow.",
     "version": "0.10.0",
     "current_release_id": "pluginrel_6ae983fe57d88191badd7768db92ffb8",
     "scope": "WORKSPACE",
     "discoverability": "PRIVATE",
     "workspace_id": "73addf6d-14af-4dc0-a5ad-8d5c30c8602b",
-    "source_path": "plugins/learn-tutor-plugin",
-    "history_path": "history/learn-tutor-plugin"
+    "source_path": "plugins/tutor-me",
+    "history_path": "history/tutor-me"
   },
   {
     "plugin_id": "Plugin_4a01d1cbc8ac819182cabeea49635fe8",

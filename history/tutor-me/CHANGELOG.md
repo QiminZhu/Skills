@@ -1,4 +1,4 @@
-# learn-tutor-plugin changelog
+# tutor-me changelog
 
 ## 0.9.1 — 2026-11-03
 

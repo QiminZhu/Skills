@@ -1,4 +1,4 @@
-# adaptive-question-bank changelog
+# quiz-me changelog
 
 ## 2.0.0 — 2026-10-26T14:59:10.737722Z
 

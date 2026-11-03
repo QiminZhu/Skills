@@ -6,7 +6,7 @@ import subprocess
 import tempfile
 
 root = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location('practice_renderer', root / 'plugins/learn-tutor-plugin/skills/learn-combined/scripts/render_practice.py')
+spec = importlib.util.spec_from_file_location('practice_renderer', root / 'plugins/tutor-me/skills/learn-combined/scripts/render_practice.py')
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 question = dict(id='fixture', question='What is 2 + 2?', source='Synthetic arithmetic fixture, not lecture content', objective='Add two integers', continuation='Teach the next arithmetic concept.', correct_id='right', explanation='2 + 2 equals 4.', validation=dict(source_checked=True, independent_check='Python independently computed 2 + 2 == 4'), options=[dict(id='right', label='4', feedback='Adding two pairs gives four.'), dict(id='wrong', label='5', feedback='Five is one more than the sum.')])

@@ -1,5 +1,5 @@
 {
-  "name": "learn-tutor-plugin",
+  "name": "tutor-me",
   "version": "0.10.0",
   "description": "Source-grounded learning with goal planning, cognitive chunking, graduated hints, interleaved review, error diagnosis, unassisted checks, and session-only lesson flow.",
   "author": {"name": "Learning System"},

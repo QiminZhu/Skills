@@ -8,7 +8,7 @@
     "defaultPrompt": null,
     "capabilities": []
   },
-  "name": "adaptive-question-bank",
+  "name": "quiz-me",
   "version": "2.0.0",
   "description": "Formal fixed assessments, optional adaptive practice, and mastery evidence export.",
   "author": {

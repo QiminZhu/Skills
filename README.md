@@ -7,7 +7,7 @@ Version-controlled source and recoverable release history for seven accessible c
 With Codex CLI and Git installed, run this single line in a terminal:
 
 ```sh
-codex plugin marketplace add QiminZhu/Skills && codex plugin add learn-tutor-plugin@anker-skills
+codex plugin marketplace add QiminZhu/Skills && codex plugin add tutor-me@anker-skills
 ```
 
 Or use the installer wrapper on macOS/Linux:
@@ -16,9 +16,19 @@ Or use the installer wrapper on macOS/Linux:
 curl -fsSL https://raw.githubusercontent.com/QiminZhu/Skills/main/install-tutor-me.sh | sh
 ```
 
-The marketplace displays as **Skills** and the plugin displays as **Tutor me**. Only Tutor me is installed by these commands. Start a new Codex session afterward. Use `codex plugin marketplace upgrade anker-skills` followed by `codex plugin add learn-tutor-plugin@anker-skills` to refresh/reinstall from current source. See the [official CLI reference](https://learn.chatgpt.com/docs/cli/reference).
+The marketplace displays as **Skills** and the plugin displays as **Tutor me**. Only Tutor me is installed by these commands. Start a new Codex session afterward. Use `codex plugin marketplace upgrade anker-skills` followed by `codex plugin add tutor-me@anker-skills` to refresh/reinstall from current source. See the [official CLI reference](https://learn.chatgpt.com/docs/cli/reference).
 
 The terminal can use teaching instructions, sources and scripts. Interactive HTML grading and Next buttons require a supported graphical host; the CLI alone cannot display those controls. Public downloads require this repository to be public. This GitHub marketplace is separate from the workspace-managed ChatGPT plugin.
+
+## Install Quiz me in Codex CLI
+
+With Codex CLI and Git installed, run:
+
+```sh
+codex plugin marketplace add QiminZhu/Skills && codex plugin add quiz-me@anker-skills
+```
+
+This installs **Quiz me**, which provides formal assessments, adaptive practice, and mastery evidence export. Start a new Codex session after installation. To update it later, run `codex plugin marketplace upgrade anker-skills` followed by `codex plugin add quiz-me@anker-skills`.
 
 ## Layout
 

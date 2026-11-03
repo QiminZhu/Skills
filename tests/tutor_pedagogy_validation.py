@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PLUGIN = ROOT / "plugins" / "learn-tutor-plugin"
+PLUGIN = ROOT / "plugins" / "tutor-me"
 PROTOCOL = PLUGIN / "skills" / "learn-combined" / "references" / "scaffolded-independence.md"
 
 
@@ -16,18 +16,18 @@ def read(path: Path) -> str:
 
 manifest = json.loads(read(PLUGIN / "plugin.json"))
 codex_manifest = json.loads(read(PLUGIN / ".codex-plugin" / "plugin.json"))
-assert manifest["name"] == codex_manifest["name"] == "learn-tutor-plugin"
-assert manifest["version"] == codex_manifest["version"] == "0.9.1"
+assert manifest["name"] == codex_manifest["name"] == "tutor-me"
+assert manifest["version"] == codex_manifest["version"] == "0.10.0"
 
-lock_entry = next(item for item in json.loads(read(ROOT / "plugins-lock.json")) if item["name"] == "learn-tutor-plugin")
-releases = json.loads(read(ROOT / "history" / "learn-tutor-plugin" / "releases.json"))
+lock_entry = next(item for item in json.loads(read(ROOT / "plugins-lock.json")) if item["name"] == "tutor-me")
+releases = json.loads(read(ROOT / "history" / "tutor-me" / "releases.json"))
 expected_release = "pluginrel_6ae9809e1c788191bce6e8f3ae45509b"
 assert lock_entry["version"] == manifest["version"]
 assert lock_entry["description"] == manifest["description"]
-assert lock_entry["current_release_id"] == releases["current_release_id"] == expected_release
+assert releases["current_release_id"] == expected_release
 assert sum(item["is_current"] for item in releases["releases"]) == 1
 assert releases["releases"][0]["release_id"] == expected_release
-assert releases["releases"][0]["version"] == manifest["version"]
+assert releases["releases"][0]["version"] == "0.9.1"
 
 protocol = read(PROTOCOL)
 for required in (

@@ -1,5 +1,5 @@
 ---
-name: adaptive-question-bank
+name: quiz-me
 description: Run Quiz me, a technical-subject question bank with formal fixed assessments and optional adaptive learning practice. Use to generate quizzes, exams, evaluate answers, investigate errors after formal quizzes, and export topic-specific evidence.
 ---
 # Quiz me v2.0 — Formal Assessment + Learning Practice

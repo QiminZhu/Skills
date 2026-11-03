@@ -282,6 +282,6 @@ A seventh rule covers previews: an **author preview** of a blocked bank may be p
 ## Open questions
 
 - [ ] Where will the quiz app be hosted: a GitHub Pages site, a Claude artifact, or files students open locally?
-- [ ] Should Quiz me (adaptive-question-bank) adopt BankQuestion v4, so both plugins share one question format?
+- [ ] Should Quiz me (`quiz-me`, formerly `adaptive-question-bank`) adopt BankQuestion v4, so both plugins share one question format?
 - [ ] Which model or setup runs the blind check by default in Codex: a sub-agent, a second session, or a different model?
 - [ ] Should supporting units be guaranteed within 3 attempts, or a different number?
