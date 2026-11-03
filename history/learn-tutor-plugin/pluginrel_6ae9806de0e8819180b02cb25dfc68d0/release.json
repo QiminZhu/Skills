@@ -1,0 +1,8 @@
+{
+  "release_id": "pluginrel_6ae9806de0e8819180b02cb25dfc68d0",
+  "version": "0.9.0",
+  "published_on": "2026-11-03T06:34:21.878749Z",
+  "is_current": false,
+  "package_origin": "Initial pedagogical integration overlay; superseded immediately because the macOS-created archive included removable AppleDouble metadata files.",
+  "validation": "Functional changed paths read back successfully; package inventory was superseded by the clean 0.9.1 patch release."
+}

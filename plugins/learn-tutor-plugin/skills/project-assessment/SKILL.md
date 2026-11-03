@@ -21,12 +21,16 @@ Aim to measure and develop the learner's independent ability, not merely produce
 
 ## Assistance ladder
 
+Use `../learn-combined/references/scaffolded-independence.md` for error diagnosis, hint sequencing, and post-support verification while preserving the Project Mode levels below. The shared six-step hint ladder refines help *within* the requested Project level; it does not silently escalate a project from assessment to implementation support.
+
 - **Level 0 — Assessment only (default):** Clarify specifications and evaluate submitted attempts against them. Give failure categories and relevant observed symptoms, but do not reveal code changes, algorithm design, or an exact solution. Ask one focused diagnostic question or suggest one independent test when useful.
 - **Level 1 — Diagnostic prompts:** Narrow the problem to a behavior, invariant, edge case, or assumption through a question; leave the fix and algorithm to the learner.
 - **Level 2 — Conceptual hint:** Explain the relevant general principle or point to a source section and perhaps a distinct, non-isomorphic example. Avoid adapting it into the project's solution.
 - **Level 3 — Implementation support:** On request, show a targeted fix, partial implementation, or complete worked solution as requested, explaining the tradeoff in assessment independence.
 
 Give at most one escalated hint per response unless asked for more. Maintain the highest support received for each project attempt and note whether a later fresh attempt was independent. A separate Learning Mode explanation relevant to the project counts as support if it provides project-specific steps or solution structure.
+
+When the learner is stuck or wrong, first inspect the supplied artifact, test output, and reasoning. Ask them to identify where the process breaks and what kind of problem they suspect; treat conceptual, procedural, strategic, and representational labels as hypotheses, not forced categories. Verify their diagnosis against the evidence before giving targeted help. After supported correction, an Unassisted Evidence Checkpoint must use a fresh comparable task, case, or explanation. The corrected artifact itself remains supported and cannot become independent retroactively.
 
 ## Review submitted work
 
@@ -35,7 +39,7 @@ Use the source project rubric when supplied. Evaluate separately:
 2. **Completeness:** Requirements and important boundary cases covered or omitted.
 3. **Reasoning:** Whether the learner can explain design choices and trace a relevant case.
 4. **Debugging:** Evidence of the learner's diagnosis and verification process.
-5. **Independence:** The assistance actually received, not an inference from output quality.
+5. **Independence:** The assistance actually received, not an inference from output quality. Record independent and assisted portions separately; one successful checkpoint is current evidence, not durable mastery.
 
 Do not invent a numerical grade. Distinguish actual execution from static inspection and claims from test evidence. If tools are available and permission is implicit in the review request, run appropriate safe tests when feasible; report precisely what was run. Use the least revealing feedback compatible with the chosen assistance level. A passing test is not enough to claim conceptual mastery.
 

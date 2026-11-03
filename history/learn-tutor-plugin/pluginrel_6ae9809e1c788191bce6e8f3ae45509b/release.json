@@ -1,0 +1,9 @@
+{
+  "release_id": "pluginrel_6ae9809e1c788191bce6e8f3ae45509b",
+  "version": "0.9.1",
+  "published_on": "2026-11-03T06:35:10.111508Z",
+  "is_current": true,
+  "sha256": "be2bc87b58f9624974090a1615aaf416c93a0383f7643ac3ef80d6a5b9731a2f",
+  "package_origin": "Clean overlay tar.gz containing updated manifests, three mode instructions, and the shared scaffolded-independence protocol; unchanged release files preserved by plugin update.",
+  "validation": "Manifest JSON parsing, Tutor me link resolution, pedagogy regression, existing renderer and 20 mocked-runtime checks, successful backend update, changed-path read-back, and clean 16-file inventory. Live host teaching behavior was not interaction-tested."
+}

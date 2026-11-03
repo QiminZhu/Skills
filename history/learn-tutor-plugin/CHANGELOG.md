@@ -1,5 +1,19 @@
 # learn-tutor-plugin changelog
 
+## 0.9.1 — 2026-11-03
+
+- Integrate Stuck and Error Diagnosis Coach, Progressive Hint Ladder, and Unassisted Evidence Checkpoint across Learning, Review, and Project modes.
+- Add a shared source-grounded protocol with diagnosis categories treated as hypotheses, a six-level reflection-gated hint ladder, and honest separation of independent and assisted work.
+- Preserve direct-answer requests, original teaching modes, lecture/specification grounding, session-only evidence, original review results, and Project Mode assistance boundaries.
+- Add structural regression coverage for manifests, mode integration, protocol guardrails, and local Markdown references.
+- Validation: both manifests parsed; all Tutor me relative links resolved; pedagogy regression passed; existing practice renderer and 20 mocked-runtime checks passed; all 16 live plugin files were listed after read-back with no macOS metadata artifacts. Live host teaching behavior was not interaction-tested.
+- Publication: backend release ID: `pluginrel_6ae9809e1c788191bce6e8f3ae45509b`; clean overlay SHA-256: `be2bc87b58f9624974090a1615aaf416c93a0383f7643ac3ef80d6a5b9731a2f`.
+
+## 0.9.0 — 2026-11-03
+
+- Initial publication of the three-technique integration as `pluginrel_6ae9806de0e8819180b02cb25dfc68d0`.
+- Superseded immediately by 0.9.1, which removed macOS `._*` archive metadata files; no pedagogical behavior changed.
+
 ## 0.8.0 — 2026-10-30
 
 - Make the default Learning Mode sequence explicit: Teach → Practice → Check Answer → Next.
