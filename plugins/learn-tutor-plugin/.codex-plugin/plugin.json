@@ -1,19 +1,9 @@
 {
-  "interface": {
-    "displayName": "Tutor me",
-    "shortDescription": "Learning, review, and independent projects",
-    "category": "Other",
-    "longDescription": "Source-grounded learning with original slide visuals, graduated hints, error diagnosis, unassisted checks, locally graded practice, and session-only lesson flow.",
-    "developerName": "Learning System",
-    "defaultPrompt": null,
-    "capabilities": []
-  },
+  "interface": {"displayName": "Tutor me", "shortDescription": "Plan, learn, review, and build independently", "category": "Other", "longDescription": "Source-grounded learning with conditional capability planning, cognitive chunking, teach-back, bottleneck-targeted practice, interleaved review, graduated hints, original slide visuals, and unassisted checks.", "developerName": "Learning System", "defaultPrompt": null, "capabilities": []},
   "name": "learn-tutor-plugin",
-  "version": "0.9.1",
-  "description": "Source-grounded learning with graduated hints, error diagnosis, unassisted checks, and session-only lesson flow.",
-  "author": {
-    "name": "Learning System"
-  },
-  "keywords": [],
+  "version": "0.10.0",
+  "description": "Source-grounded learning with goal planning, cognitive chunking, graduated hints, interleaved review, error diagnosis, unassisted checks, and session-only lesson flow.",
+  "author": {"name": "Learning System"},
+  "keywords": ["learning", "tutoring", "review", "projects", "metalearning", "interleaving"],
   "skills": "./skills"
 }
