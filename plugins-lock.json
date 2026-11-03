@@ -38,9 +38,9 @@
   {
     "plugin_id": "Plugin_5a240b861520819183297712e07e20db",
     "name": "learn-tutor-plugin",
-    "description": "Source-grounded learning with graduated hints, error diagnosis, unassisted checks, and session-only lesson flow.",
-    "version": "0.9.1",
-    "current_release_id": "pluginrel_6ae9809e1c788191bce6e8f3ae45509b",
+    "description": "Source-grounded learning with goal planning, cognitive chunking, graduated hints, interleaved review, error diagnosis, unassisted checks, and session-only lesson flow.",
+    "version": "0.10.0",
+    "current_release_id": "pluginrel_6ae983fe57d88191badd7768db92ffb8",
     "scope": "WORKSPACE",
     "discoverability": "PRIVATE",
     "workspace_id": "73addf6d-14af-4dc0-a5ad-8d5c30c8602b",
