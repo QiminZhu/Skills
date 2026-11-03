@@ -10,11 +10,13 @@ Separate question **generation** from adaptive **selection**. Apply this sequenc
 6. **Validate**: schema/format compatibility, independent answer correctness, grounding, objective alignment, difficulty, unambiguous wording, plausible distractors, and non-duplication. Deterministic checks for numbers, exact sequences, choices and blanks where possible. Regenerate invalid questions up to two times, then report an unfilled slot rather than presenting an unreliable question.
 7. **Bank**: retain only validated questions; store question definitions separately from student attempts and states. In chat, do not imply durable storage across conversations.
 
-## Adaptive selection after grading
+## Adaptive selection after grading (Quiz Mode only)
 
 Filter candidate questions to validated, prerequisite-eligible, and not recently repeated. Give due review and active remediation appropriate priority. Score eligible candidates with heuristic `0.40*mastery_gap + 0.30*misconception_relevance + 0.20*review_urgency + 0.10*difficulty_fit`, each term in [0,1]. This is an illustrative default, not a calibrated model. If no eligible item exists, generate a new targeted question via the seven-stage workflow. If generation fails, provide a different learning strategy or report the gap.
 
-Update mastery with `M_new = 0.8*M_old + 0.2*normalized_score` as a provisional heuristic; discount assisted attempts, preserve first-attempt accuracy, and never infer confirmed mastery from one correct answer. Suspect misconceptions after one diagnostic error, confirm with repeated evidence, remediate with new instances, resolve after repeated independent transfer and schedule reviews (e.g. next day, 3 days, 7 days). Never promise notifications unless actually scheduled.
+Update selection state with `M_new = 0.8*M_old + 0.2*normalized_score` only as a provisional Quiz Mode heuristic for unassisted attempts; keep authorized mastery unchanged for scaffolded, solution-exposed or unknown attempts. Preserve first-attempt accuracy and actual support condition. Never infer confirmed mastery from one correct answer. Suspect an error pattern after one diagnostic error, support it only with repeated evidence, remediate with new instances, and resolve only after repeated independent varied evidence plus later review. Review intervals (for example next day, 3 days, 7 days) are recommendations unless an actual scheduling tool confirms them.
+
+Exam Mode uses this workflow only for generation and pre-exam validation. It does not run adaptive selection, feedback, diagnosis or replacement inside a frozen exam.
 
 ## Generation pseudocode
 

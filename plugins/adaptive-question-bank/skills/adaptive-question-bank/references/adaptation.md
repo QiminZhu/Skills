@@ -1,4 +1,6 @@
-# Adaptive engine v1.0.0
+# Quiz Mode adaptive engine v2.2.0
+
+Run this engine only in Quiz Mode or after the learner explicitly switches a scored Exam Mode attempt into unscored Quiz Mode. Never adapt a frozen Exam Mode blueprint, order, difficulty, key or weights.
 
 ## Candidate eligibility
 Filter out invalid questions, unsupported prerequisite concepts, and recently repeated identical questions. Prefer due review and misconception-remediation candidates; fall back to a fresh prerequisite question if none eligible.
@@ -12,7 +14,7 @@ Rank eligible questions with `P = 0.40*M + 0.30*C + 0.20*R + 0.10*D`, where `M=1
 - Mastery >=0.75: hard/transfer questions, unless misconception evidence contradicts apparent mastery.
 
 ## Update
-For independent graded attempts, `newMastery = 0.8*oldMastery + 0.2*(score/maxScore)`. For assisted attempts, use a smaller weight such as 0.05 or keep mastery unchanged if solution was shown. Initialize uncertain concepts conservatively; explain these are heuristic scores, not calibrated probabilities.
+For provisional Quiz Mode selection only, an independent graded attempt may use `newMastery = 0.8*oldMastery + 0.2*(score/maxScore)`. Keep authorized mastery unchanged for scaffolded, solution-exposed or unknown attempts. These values are heuristic selection state, not calibrated probabilities or permission to update an external mastery record. Keep aggregates separate by support condition.
 
 ## Misconception state machine
 - One diagnostic error -> `suspected`.
@@ -22,7 +24,11 @@ For independent graded attempts, `newMastery = 0.8*oldMastery + 0.2*(score/maxSc
 Do not equate every wrong answer with a misconception; calculation slips and ambiguous questions require separate handling.
 
 ## Review schedule
-After initial error, give feedback and a related new item. After first independent success, give a varied item. After two independent successes, move from active remediation to next-day review; successful reviews extend to 3 days, then 7 days. Failure returns to remediation with a shorter interval. These intervals are configurable heuristics. If no reliable clock/date is available, express relative review windows rather than invent timestamps. Never claim to have scheduled notifications.
+After an initial error, diagnose provisionally and give a related new item. After the first fresh unassisted success, a near-transfer item may be offered; far transfer requires successful near transfer with the principle explained and verified prerequisites. Two varied independent successes may justify a next-day review recommendation; successful comparable reviews may extend to 3 days, then 7 days. These are configurable heuristics, not automatic schedules. If no reliable clock, persistence, consent or scheduling tool is available, express a relative window and never claim a notification exists.
 
 ## Session selection loop
-`eligible = validate_and_filter(question_pool)`; `due = due_reviews(states)`; `weak = weak_concepts(states)`; `rank(eligible, priority)`; choose highest relevant candidate with novelty; present; grade; record attempt; update mastery/misconception; repeat. When pool exhausted, generate and verify a new question or tell learner none is currently available.
+`eligible = validate_and_filter(question_pool)`; `due = authorized_due_reviews(states)`; `weak = weak_concepts(states)`; `rank(eligible, priority)`; choose highest relevant candidate with novelty; present; capture optional confidence before feedback; grade; record response and actual support condition; update provisional Quiz Mode state; repeat. When the pool is exhausted, generate and verify a new question or tell the learner none is currently available.
+
+## Review and transfer gate
+
+Do not infer a longitudinal trend without at least three comparable attempts across at least two sessions including one unassisted result. Otherwise report observations separately or offer baseline goal-setting. Apply the complete gates in `evidence-and-transfer.md`.

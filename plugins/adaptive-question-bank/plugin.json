@@ -1,1 +1,23 @@
-{"name": "adaptive-question-bank", "version": "2.0.0", "description": "Formal fixed assessments, optional adaptive practice, and mastery evidence export.", "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json", "author": {"name": "Learning System"}, "skills": "./skills", "extensions": {"com.openai": {"interface": {"displayName": "Quiz me", "shortDescription": "Formal fixed assessments, optional adaptive practi", "category": "Other", "longDescription": "Formal fixed assessments, optional adaptive practice, and mastery evidence export.", "developerName": "Learning System", "defaultPrompt": null, "capabilities": []}}}}
+{
+  "name": "adaptive-question-bank",
+  "version": "2.2.1",
+  "description": "Fixed Exam Mode, adaptive Quiz Mode, diagnostic feedback, and independent evidence tracking.",
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "name": "Learning System"
+  },
+  "skills": "./skills",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Quiz me",
+        "shortDescription": "Fixed exams and adaptive diagnostic quizzes",
+        "category": "Other",
+        "longDescription": "Fixed Exam Mode, adaptive Quiz Mode, targeted error diagnosis, confidence calibration, and assisted versus unassisted evidence tracking.",
+        "developerName": "Learning System",
+        "defaultPrompt": null,
+        "capabilities": []
+      }
+    }
+  }
+}

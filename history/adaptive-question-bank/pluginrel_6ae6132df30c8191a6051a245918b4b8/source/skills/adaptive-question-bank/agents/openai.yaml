@@ -1,0 +1,3 @@
+interface:
+  display_name: "Quiz me"
+  short_description: "Adaptive technical quizzes, grading, and misconception tracking"

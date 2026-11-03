@@ -26,9 +26,9 @@
   {
     "plugin_id": "Plugin_39a6717c6ac48191b1581e423838e2e4",
     "name": "adaptive-question-bank",
-    "description": "Formal fixed assessments, optional adaptive practice, and mastery evidence export.",
-    "version": "2.0.0",
-    "current_release_id": "pluginrel_6adf6abebcd48191add23e46cadc2ae3",
+    "description": "Fixed Exam Mode, adaptive Quiz Mode, diagnostic feedback, and independent evidence tracking.",
+    "version": "2.2.1",
+    "current_release_id": "pluginrel_6ae987d4c3348191979df544468c57a1",
     "scope": "WORKSPACE",
     "discoverability": "PRIVATE",
     "workspace_id": "73addf6d-14af-4dc0-a5ad-8d5c30c8602b",
