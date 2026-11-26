@@ -1,0 +1,23 @@
+{
+  "name": "learn-tutor-plugin",
+  "version": "0.11.0",
+  "description": "Source-grounded learning with goal planning, cognitive chunking, graduated hints, interleaved review, error diagnosis, unassisted checks, and session-only lesson flow.",
+  "author": {
+    "name": "Learning System"
+  },
+  "skills": "./skills",
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Tutor me",
+        "shortDescription": "Plan, learn, review, and build independently",
+        "category": "Other",
+        "longDescription": "Source-grounded learning with conditional capability planning, cognitive chunking, teach-back, bottleneck-targeted practice, interleaved review, graduated hints, original slide visuals, and unassisted checks.",
+        "developerName": "Learning System",
+        "defaultPrompt": null,
+        "capabilities": []
+      }
+    }
+  }
+}

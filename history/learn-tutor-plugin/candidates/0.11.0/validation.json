@@ -45,7 +45,9 @@
   ],
   "live_host_verified": false,
   "date": "2026-11-26",
-  "publication_status": "candidate_not_yet_published",
+  "publication_status": "published_and_all_files_read_back",
   "prior_release_id": "pluginrel_6ae983fe57d88191badd7768db92ffb8",
-  "plugin_id": "Plugin_5a240b861520819183297712e07e20db"
+  "plugin_id": "Plugin_5a240b861520819183297712e07e20db",
+  "release_id": "pluginrel_6b07dd9888a48191b6ba222fc4f2c086",
+  "source_git_commit": "643557c18f8b9fc122455ceb8258dff2f5dc9695"
 }

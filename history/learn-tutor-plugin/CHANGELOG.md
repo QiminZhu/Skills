@@ -10,7 +10,7 @@
 - Keep Learning/Review/Project identities, existing audience, source terminology, source visuals and session-only evidence. Remove obsolete scheduling/mastery handoffs from active lecture/practice instructions.
 - Preserve exact 0.10.0 source with checksums and add tested forward-version rollback preparation; retain all older history.
 - Validation: package identity/configuration and 17-file inventory preserved; relative links and structural guardrails checked; renderer and evidence-handoff runtime tests passed with a mocked host; rollback reconstruction and version rejection passed; synthetic policy scenarios reviewed. Live conversational behavior, live web sourcing and the actual host bridge were not tested.
-- Publication: candidate prepared; backend publication and read-back pending.
+- Publication: backend release `pluginrel_6b07dd9888a48191b6ba222fc4f2c086`; all 17 files verified after read-back. Source commit `643557c18f8b9fc122455ceb8258dff2f5dc9695`; uploaded ZIP SHA-256 `0280fa670d4e721f8b5a8499127e9bedb6b2eb660816803ea5f4ba49b2562117`.
 
 ## 0.10.0 — 2026-11-03 (history reconciled 2026-11-26)
 
