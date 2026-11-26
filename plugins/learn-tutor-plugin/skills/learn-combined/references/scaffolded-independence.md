@@ -50,6 +50,10 @@ Offer this after scaffolded practice or correction when independent application 
 
 Report actual conditions and results: checkpoint status, independent portion, assisted-resume portion, confidence if supplied, performance observed, and any supported assisted/unassisted gap. Use `unassisted` only for work completed inside the independent window. A skipped or deferred checkpoint has no performance result.
 
+## Difficulty after support
+
+The hint levels above measure assistance, not question difficulty. For Learning Mode progression, apply [assessment.md](assessment.md). After hinted success, use a fresh unassisted task at comparable difficulty before choosing a deeper challenge. If the learner declines, leave verification pending and honor their request to continue. Do not count feedback-assisted retries or recognition of an exposed answer as independent success. Diagnose one error locally rather than resetting unrelated objectives. Record actual difficulty and support separately.
+
 ## Session evidence
 
 Keep this evidence in temporary conversation context when Tutor me is session-only. Do not create persistent learner records, analytics, schedules, or cross-plugin handoffs unless the learner explicitly requests and authorizes that change. At a useful stopping point, summarize:

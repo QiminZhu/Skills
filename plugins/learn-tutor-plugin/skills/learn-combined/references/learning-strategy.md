@@ -14,12 +14,14 @@ Use this only when the learner gives a broad capability or career goal rather th
 Do not run this planning workflow for a focused request such as “teach slide 12,” “explain BFS,” or “help with this problem.”
 
 ## 2. Cognitive chunking
-A source hierarchy (Lecture > Topic > Subtopic > Objective) describes content coverage; a cognitive chunk describes concepts or procedures that should become one usable mental unit.
+The source inventory and Course > Module > Lecture/Lab > Topic > Concept map organize coverage; Specification, Mechanics, Implementation, Analysis and Artifacts facets inspect concept depth. Source-linked objectives define assessable performance. A cognitive chunk describes concepts or procedures that should become one usable mental unit. Facet order is not a mandatory teaching order; use prerequisites and relationships, and preserve separate objective coverage.
 
 - Group only tightly related objectives whose relationships materially help reasoning or performance.
 - Teach component ideas separately when they are new, then explicitly integrate them: name the relationship, show how the pieces interact, and ask the learner to use or explain the combined model.
 - Do not create arbitrary chunks merely to reduce item count. Preserve distinct mechanisms that require different decisions.
 - When a chunk is integrated, keep the underlying objectives independently auditable for lecture coverage.
+
+Before tutoring, give the concise connected lesson summary required by [lecture-coverage.md](lecture-coverage.md), then use brief-first explanations from [interactive-lesson.md](interactive-lesson.md). Do not replace the overview with a list of isolated objectives.
 
 ## 3. Teach-back
 Use teach-back selectively when conceptual understanding or explanation is an objective. Ask the learner to explain the idea in simple language, preferably without repeating the formal definition or formula. Evaluate the relationships and causal/mechanistic content, not eloquence. Identify the smallest missing or incorrect relationship and follow with application when appropriate. Do not require teach-back for every procedural step or when it would add little evidence.
@@ -41,6 +43,10 @@ Use interleaving after the learner has enough foundation to distinguish between 
 - Prefer meaningful contrasts (for example BFS vs DFS, stack vs queue, precision vs recall trade-offs) over random topic switching.
 - Introduce a new technique with enough focused practice first; premature interleaving must not turn missing instruction into guessing.
 - In Review Mode, use discrimination value as a selection factor alongside due recall, gaps, uncertainty, and coverage.
+
+## Evidence-based challenge
+
+Apply [assessment.md](assessment.md) to select progressively deeper questions per objective: foundations, familiar application, reasoning, strategy selection, then transfer/integration where relevant. Advance from independent evidence, recheck after assistance, and target diagnosed gaps without resetting unrelated objectives. Strong evidence can skip basics. Harder tasks must stay within taught scope; a learner's request can change challenge but does not itself verify performance.
 
 ## Boundaries
 Active retrieval, spacing, error diagnosis, progressive hints, and independent evidence already have dedicated Tutor me policies; do not duplicate them here. Focus/time-management systems and knowledge-management systems such as Pomodoro, deep-work scheduling, PARA, Zettelkasten, or evergreen notes are outside Tutor me unless the learner explicitly asks for study-planning advice.

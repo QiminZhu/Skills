@@ -1,0 +1,51 @@
+{
+  "version": "0.11.0",
+  "archive_sha256": "0280fa670d4e721f8b5a8499127e9bedb6b2eb660816803ea5f4ba49b2562117",
+  "file_sha256": {
+    ".codex-plugin/plugin.json": "f477107a0a11944385e706747484bfe816240ecc37167f57299a860d61937480",
+    "plugin.json": "39df3ef4c6fe1ccf5029f9fcf604bf9f7adabc51baa23c51934ef8875a5cffce",
+    "skills/learn-combined/SKILL.md": "65ebfc7cfd18ab51de77845d70304e2e52011fc91578de39a92f74906ffdd441",
+    "skills/learn-combined/references/assessment.md": "272a6ad0113a80e0ac9e6f08e0945e2d680425ca7d500d4defc81dae0bd62da3",
+    "skills/learn-combined/references/feedback.md": "4b81846cfce808da37d83372d4a4e94d9f564694630b5077bc9feae3077b07d5",
+    "skills/learn-combined/references/interactive-lesson.md": "6d6960b4b74b8dc46087559fbbbc7ca3ccde5b169c433a32a633aa36a16d83b0",
+    "skills/learn-combined/references/learning-strategy.md": "23754040cde8bf3d72b4126ee3624cb0d50f14484ed4138cca12cc53579d480d",
+    "skills/learn-combined/references/lecture-coverage.md": "67e8a3aa8c9ff76b4e0fd0093a05df663f5071163b0c58bffdd6a83505db1d9c",
+    "skills/learn-combined/references/quiz-design.md": "02edf0f4ee229433db564c55c5d5f6af19572ec04f8a4ea51d59419ddd32774c",
+    "skills/learn-combined/references/records.md": "8121ebef293b6c58427880297e4e9b108f1135836b1db641815fea7df1c1c18a",
+    "skills/learn-combined/references/scaffolded-independence.md": "1c13dcb78feb589dfc233739877290779377366934af78b1c6035cd51214a8cc",
+    "skills/learn-combined/references/scheduling.md": "dcbe3ebcd4a94ef1a48cb367c3d1beead0b38336e4314f44658857e2f3ed1304",
+    "skills/learn-combined/scripts/render_practice.py": "3272e849c73e6045c43330a97d62f7fec60ea2e89e98e9aa11668ba6a50c6376",
+    "skills/project-assessment/SKILL.md": "1bd0f6c0565e543542634147a11a22dc0f733ffacef5b6046b1a56745d99ef42",
+    "skills/project-assessment/references/project-records.md": "de3b51a8e471975a649958bb160c23544f39aca1e93d0b1e834e7a48eeaf4e20",
+    "skills/review-mode/SKILL.md": "f63d83b5a8057f2c960671977387ddd5275d2aea102983250cd3b8c0d63e7348",
+    "skills/review-mode/references/review-policy.md": "6b69305e8d7ba240f3a1234394139063e05bb23f22551d80b5c156d926c95a65"
+  },
+  "changed_files": [
+    "plugin.json",
+    "skills/learn-combined/SKILL.md",
+    "skills/learn-combined/references/lecture-coverage.md",
+    "skills/learn-combined/references/scaffolded-independence.md",
+    "skills/learn-combined/references/learning-strategy.md",
+    "skills/learn-combined/references/interactive-lesson.md",
+    "skills/learn-combined/references/quiz-design.md",
+    "skills/learn-combined/references/assessment.md",
+    "skills/learn-combined/scripts/render_practice.py",
+    ".codex-plugin/plugin.json"
+  ],
+  "validation": [
+    "exact inventory preserved",
+    "identity/configuration unchanged except versions",
+    "Review and Project skills unchanged",
+    "Python syntax parsed",
+    "skill frontmatter present",
+    "ZIP contents and CRC checked",
+    "relative Markdown links verified by pedagogy validation",
+    "mocked widget retry history verified",
+    "rollback preparation verified"
+  ],
+  "live_host_verified": false,
+  "date": "2026-11-26",
+  "publication_status": "candidate_not_yet_published",
+  "prior_release_id": "pluginrel_6ae983fe57d88191badd7768db92ffb8",
+  "plugin_id": "Plugin_5a240b861520819183297712e07e20db"
+}

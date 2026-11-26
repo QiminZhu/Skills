@@ -75,6 +75,8 @@ def render(data):
   const status = root.querySelector('[data-status]');
   const manual = root.querySelector('[data-manual]');
   let attempt = null;
+  const attempts = [];
+  let feedbackSeen = false;
   let pending = false;
   form.addEventListener('change', () => {{
     attempt = null;
@@ -88,7 +90,9 @@ def render(data):
     if (!selected) {{ status.textContent = 'Choose an answer first.'; return; }}
     const option = config.options.find(option => option.id === selected.value);
     if (!option) return;
-    attempt = {{answer_id: option.id, answer: option.label, correct: option.id === config.correct_id}};
+    attempt = {{answer_id: option.id, answer: option.label, correct: option.id === config.correct_id, feedback_seen_before: feedbackSeen}};
+    attempts.push(attempt);
+    feedbackSeen = true;
     result.textContent = attempt.correct ? 'Correct for the prepared key.' : 'Incorrect for the prepared key.';
     explanation.textContent = option.feedback + ' ' + config.explanation;
     result.hidden = explanation.hidden = challenge.hidden = false;
@@ -96,10 +100,10 @@ def render(data):
   }});
   async function send(kind) {{
     if (pending || (kind === 'challenge' && !attempt)) return;
-    const context = JSON.stringify({{objective: config.objective, source: config.source, question_id: config.id, question: config.question, attempt}});
+    const context = JSON.stringify({{objective: config.objective, source: config.source, question_id: config.id, question: config.question, attempt, attempts, feedback_seen: feedbackSeen, assistance_outside_widget: 'unknown'}});
     const prompt = kind === 'challenge'
       ? 'Tutor me: recheck this practice grade against the original source, independently checking the key and valid alternatives. Keep this session-only. Context: ' + context
-      : config.continuation + '\\nContinue Tutor me in this conversation without mastery tracking or external recording. Context: ' + context;
+      : config.continuation + '\\nContinue Tutor me in this conversation without mastery tracking or external recording. Choose the next difficulty from objective-specific evidence. Feedback-assisted retries are not independent success; a correctness flag alone does not verify reasoning. Context: ' + context;
     manual.value = prompt;
     if (typeof window.openai?.sendFollowUpMessage !== 'function') {{
       status.textContent = 'Automatic messages are unavailable here. Send the text below in chat.';

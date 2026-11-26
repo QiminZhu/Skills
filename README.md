@@ -46,6 +46,8 @@ Historical commits are imports made today. Original release dates remain in meta
 
 ## Rollback
 
+Tutor me includes a [verified-snapshot rollback preparation helper](history/learn-tutor-plugin/ROLLBACK.md). It checks the historical file hashes, bumps the restored behavior to a newer release version, and prepares an explicit overlay/deletion request without publishing. The pre-0.11.0 snapshot preserves the live 0.10.0 release.
+
 Select a previous tag or stored snapshot, restore its content on a new branch, and assign a version higher than the currently installed version. Plugin updates reject lower versions. Because updates overlay existing files, explicitly delete files introduced after the restored snapshot and preserve required generated compatibility files. Publish against the current backend release ID, verify the resulting file inventory, and record which historical release was restored. A Git revert alone does not change the installed plugin.
 
 Do not commit credentials, learner records, lecture uploads, or signed download URLs. No automatic GitHub-to-plugin deployment is configured.
@@ -53,3 +55,5 @@ Do not commit credentials, learner records, lecture uploads, or signed download 
 ## Practice component checks
 
 Run `python3 tests/practice_validation.py` with Python 3 and Node.js available. These checks exercise component behavior with a mocked host; they do not validate arbitrary future answer keys or prove live ChatGPT support.
+
+Tutor me checks: `python3 tests/tutor_pedagogy_validation.py` and `python3 tests/tutor_rollback_validation.py`. Use `--candidate` on the pedagogy check before publishing, while release metadata still correctly identifies the installed version. See [lecture acceptance scenarios](tests/tutor_lecture_scenarios.md) for the policy walkthrough and live-host validation limits.

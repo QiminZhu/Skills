@@ -2,6 +2,12 @@
 
 Use this workflow for new learning unless the learner requests another format. Keep one concept and one practice item per step for ordinary teaching. Honor direct explanation, solution and batch-assessment requests.
 
+## Summary before tutoring and brief-first explanation
+
+Before the first tutoring step, present the concise lesson summary required by [lecture-coverage.md](lecture-coverage.md): big picture, connected key concepts, learning outcomes, teaching order and any source gaps. Combine it with the roadmap; do not repeat a second introduction. For non-lecture topics, give the equivalent short topic overview. Focused requests get only a scoped sentence or two; explicit requests to skip it or answer immediately take precedence.
+
+For each ordinary introduction, default to 2–4 clear sentences for the core idea, one small example or original visual when useful, and one focused question. Wait for the response. Expand for necessary conditions/accuracy, demonstrated gaps or an explicit request. Deeper questions should require deeper thinking, not longer explanations or confusing wording. Do not dump the analysis inventory into teaching turns.
+
 ## Teach from the source
 
 - Use original readable lecture slides as the primary source. Reuse the relevant slide image or accurate crop; do not redraw, regenerate or substitute a generic diagram when the original lecture visual is available.
@@ -10,6 +16,8 @@ Use this workflow for new learning unless the learner requests another format. K
 - Never claim to have inspected or displayed an image that was not actually available.
 
 ## Practice and answer-key validation
+
+Choose and label lecture-provided, tutor-created, external or adapted practice using [quiz-design.md](quiz-design.md). Use [assessment.md](assessment.md) for evidence-based difficulty and target-depth verification. Do not require lecture exercises to exist.
 
 Before rendering any locally graded item:
 
@@ -22,13 +30,13 @@ Before rendering any locally graded item:
 
 ## Individual checkpoint pattern
 
-1. Teach one concept with an original slide visual where relevant.
+1. After the opening lesson summary, teach one concept briefly with an original slide visual where relevant.
 2. Present one focused practice question.
 3. The learner selects or enters an answer and presses **Check Answer**.
 4. Show correct/incorrect status and a concise, option-specific explanation locally, without requiring a model turn to grade.
 5. Offer a separate **Next** button to request the next lesson response. Do not automatically advance after a correct answer.
 
-Allow retry when useful. The Next button remains separate from answer submission and may appear after either a correct or incorrect result. Checking an answer must not itself send a chat message or advance the lesson.
+Allow retry when useful. Feedback-assisted retries are supported practice, not fresh independent success. On Next, inspect received evidence before selecting a deeper or comparable task; a button click alone does not imply the objective was passed. The Next button remains separate from answer submission and may appear after either a correct or incorrect result. Checking an answer must not itself send a chat message or advance the lesson.
 
 ## Multi-question assessment pattern
 
@@ -44,9 +52,9 @@ Keep assessment length and objective coverage explicit. Validate every item inde
 
 ## Rendering and host limitations
 
-Use the bundled \`scripts/render_practice.py\` to create a self-contained practice fragment when a supported HTML interaction surface is available. A saved HTML file is not itself an inline widget. If supported native controls are available and suit the task, use them; otherwise ask the question conversationally. Apply the host's relevant UI skill before implementation where one exists.
+Use the bundled `scripts/render_practice.py` to create a self-contained practice fragment when a supported HTML interaction surface is available. A saved HTML file is not itself an inline widget. If supported native controls are available and suit the task, use them; otherwise ask the question conversationally. Apply the host's relevant UI skill before implementation where one exists.
 
-The HTML component should feature-detect \`window.openai.sendFollowUpMessage({prompt})\` for the separate Next action. Do not invent undocumented message bridges or substitute an external tool call. If the bridge is absent or fails, show the continuation prompt for the learner to send manually. Prevent duplicate clicks while pending and permit retry after failure.
+The HTML component should feature-detect `window.openai.sendFollowUpMessage({prompt})` for the separate Next action. Do not invent undocumented message bridges or substitute an external tool call. If the bridge is absent or fails, show the continuation prompt for the learner to send manually. Prevent duplicate clicks while pending and permit retry after failure.
 
 Do not claim host functionality has been verified without testing local submission, feedback visibility, separate Next handoff, duplicate prevention and missing-bridge fallback in that host. Distinguish implementation checks from live-host verification.
 
@@ -54,7 +62,7 @@ Do not claim host functionality has been verified without testing local submissi
 
 - Do not use a mastery tracker, persistent learner records, progress synchronization, external recording, review scheduling, browser storage, analytics, telemetry or cross-plugin handoffs during this workflow.
 - Keep only temporary conversational context required to continue the lesson.
-- Widget state is transient: never infer that local selections, grades or clicks were received by the model unless explicitly passed through a supported handoff.
+- Widget state is transient: never infer that local selections, grades or clicks were received by the model unless explicitly passed through a supported handoff. A correctness flag alone cannot verify explanation or reasoning. If retry/feedback history is missing, treat assistance as unknown and use a fresh check before advancement.
 - Do not promise control over the platform's ordinary conversation retention.
 
 This session-only rule carries across Review and Project transitions unless the learner explicitly requests a change to persistent tracking.

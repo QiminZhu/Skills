@@ -1,5 +1,24 @@
 # learn-tutor-plugin changelog
 
+## 0.11.0 — 2026-11-26
+
+- Combine complete source inventory, five-facet concept analysis, assessable objectives, three coverage audits and final page-by-page reconciliation.
+- Summarize the lesson before tutoring: big picture, connected concepts, outcomes, order and source gaps. Default to brief-first explanations.
+- Add source-aligned generated practice and conditional online sourcing with attribution, scope checks, independent solving and unavailable-browser fallback.
+- Increase difficulty per objective from demonstrated independent evidence; distinguish target depth, guessed answers, hints and feedback-assisted retries.
+- Preserve widget attempt history and feedback exposure in the separate Next handoff.
+- Keep Learning/Review/Project identities, existing audience, source terminology, source visuals and session-only evidence. Remove obsolete scheduling/mastery handoffs from active lecture/practice instructions.
+- Preserve exact 0.10.0 source with checksums and add tested forward-version rollback preparation; retain all older history.
+- Validation: package identity/configuration and 17-file inventory preserved; relative links and structural guardrails checked; renderer and evidence-handoff runtime tests passed with a mocked host; rollback reconstruction and version rejection passed; synthetic policy scenarios reviewed. Live conversational behavior, live web sourcing and the actual host bridge were not tested.
+- Publication: candidate prepared; backend publication and read-back pending.
+
+## 0.10.0 — 2026-11-03 (history reconciled 2026-11-26)
+
+- Current installed source and GitHub manifests/lockfile confirmed 0.10.0; the historical index and changelog had remained at 0.9.1.
+- Preserve exact backend text files from release `pluginrel_6ae983fe57d88191badd7768db92ffb8`, created 2026-11-03T06:49:34.343358Z, as the pre-update rollback snapshot.
+- Snapshot and reconstructed archive hashes are recorded in that release's release.json. The reconstructed ZIP is not represented as an original backend archive.
+- Scope reconciliation uses current backend source; cosmetic GitHub wording/escaping and legacy-only keyword differences were inspected. Plugin configuration is unchanged from the live release except for the new version.
+
 ## 0.9.1 — 2026-11-03
 
 - Integrate Stuck and Error Diagnosis Coach, Progressive Hint Ladder, and Unassisted Evidence Checkpoint across Learning, Review, and Project modes.

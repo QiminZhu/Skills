@@ -1,0 +1,30 @@
+{
+  "plugin_id": "Plugin_5a240b861520819183297712e07e20db",
+  "release_id": "pluginrel_6ae983fe57d88191badd7768db92ffb8",
+  "version": "0.10.0",
+  "created_at": "2026-11-03T06:49:34.343358Z",
+  "snapshot_date": "2026-11-26",
+  "publication_status": "observed_current_before_0.11.0_update",
+  "source_git_commit": "ff5c5d3ee47a12ecefaa7ea4aed8d3a94ad6bb8c",
+  "archive_kind": "reconstructed_from_exact_backend_text_files_not_original_archive",
+  "archive_sha256": "10574f059aa6b5da734e578afe19cd5ef9cb2109c29f61f9491101e0c7e31470",
+  "file_sha256": {
+    ".codex-plugin/plugin.json": "d2eaad01c2bfb791d338e3bb3937378028e514ec89dc71d91acd955308b4648c",
+    "plugin.json": "65042b9311a52110f071f49536d0ce8fd0c8066cc586051e2f730c10393c4042",
+    "skills/learn-combined/SKILL.md": "0bd531d012ae1bfc00068e4395aa3cb76b2307b97e59cb15981683e9eb108bac",
+    "skills/learn-combined/references/assessment.md": "e249d67c4f6bad9ca415b355d136aa888ed3c40371b4f661acd5ef790460cac1",
+    "skills/learn-combined/references/feedback.md": "4b81846cfce808da37d83372d4a4e94d9f564694630b5077bc9feae3077b07d5",
+    "skills/learn-combined/references/interactive-lesson.md": "9d480b8e61e41d2dd7b7822dbe69e3b80e99a0c50a0d6e21d820c350bf6e6452",
+    "skills/learn-combined/references/learning-strategy.md": "b0b1b0a32b1aafea8af680bf0157f8b751e9391b507b4cfd446df64a7d48e4ab",
+    "skills/learn-combined/references/lecture-coverage.md": "8dbcd8d732c29c977904b71f11c762abc0464c55887bd5de9f2a36a36eea32db",
+    "skills/learn-combined/references/quiz-design.md": "39a1c3462761cbba24a0fd1a45e08c0a94ff6711bc248396cb53337be6dc3ba6",
+    "skills/learn-combined/references/records.md": "8121ebef293b6c58427880297e4e9b108f1135836b1db641815fea7df1c1c18a",
+    "skills/learn-combined/references/scaffolded-independence.md": "7933977d98458f906847686687539751bbba83fee0a23e9e7f63251d7ff725cd",
+    "skills/learn-combined/references/scheduling.md": "dcbe3ebcd4a94ef1a48cb367c3d1beead0b38336e4314f44658857e2f3ed1304",
+    "skills/learn-combined/scripts/render_practice.py": "d23ad3996580084c97069532c15f68c07e645b1a56f15bbeea6a2be71457687f",
+    "skills/project-assessment/SKILL.md": "1bd0f6c0565e543542634147a11a22dc0f733ffacef5b6046b1a56745d99ef42",
+    "skills/project-assessment/references/project-records.md": "de3b51a8e471975a649958bb160c23544f39aca1e93d0b1e834e7a48eeaf4e20",
+    "skills/review-mode/SKILL.md": "f63d83b5a8057f2c960671977387ddd5275d2aea102983250cd3b8c0d63e7348",
+    "skills/review-mode/references/review-policy.md": "6b69305e8d7ba240f3a1234394139063e05bb23f22551d80b5c156d926c95a65"
+  }
+}

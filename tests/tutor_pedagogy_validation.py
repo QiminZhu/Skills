@@ -2,6 +2,7 @@
 
 import json
 import re
+import sys
 from pathlib import Path
 
 
@@ -17,17 +18,18 @@ def read(path: Path) -> str:
 manifest = json.loads(read(PLUGIN / "plugin.json"))
 codex_manifest = json.loads(read(PLUGIN / ".codex-plugin" / "plugin.json"))
 assert manifest["name"] == codex_manifest["name"] == "learn-tutor-plugin"
-assert manifest["version"] == codex_manifest["version"] == "0.9.1"
+assert manifest["version"] == codex_manifest["version"] == "0.11.0"
 
 lock_entry = next(item for item in json.loads(read(ROOT / "plugins-lock.json")) if item["name"] == "learn-tutor-plugin")
 releases = json.loads(read(ROOT / "history" / "learn-tutor-plugin" / "releases.json"))
-expected_release = "pluginrel_6ae9809e1c788191bce6e8f3ae45509b"
-assert lock_entry["version"] == manifest["version"]
+expected_release = lock_entry["current_release_id"]
 assert lock_entry["description"] == manifest["description"]
 assert lock_entry["current_release_id"] == releases["current_release_id"] == expected_release
 assert sum(item["is_current"] for item in releases["releases"]) == 1
 assert releases["releases"][0]["release_id"] == expected_release
-assert releases["releases"][0]["version"] == manifest["version"]
+assert releases["releases"][0]["version"] == lock_entry["version"]
+if "--candidate" not in sys.argv:
+    assert lock_entry["version"] == manifest["version"]
 
 protocol = read(PROTOCOL)
 for required in (
